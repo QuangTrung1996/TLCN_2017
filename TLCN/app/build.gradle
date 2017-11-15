@@ -34,7 +34,6 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'// thiet ke drawer
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    //implementation 'com.android.volley:volley:1.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
@@ -54,5 +53,5 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.github.sundeepk:compact-calendar-view:2.0.2.2'
-    implementation 'org.apache.httpcomponents:httpclient:4.5'
 }
+apply plugin: 'com.google.gms.google-services'
