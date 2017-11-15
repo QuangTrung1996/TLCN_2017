@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    
     @SuppressLint("CommitTransaction")
 // chon item trong drowble
     fun initNavigationDrawer() {
