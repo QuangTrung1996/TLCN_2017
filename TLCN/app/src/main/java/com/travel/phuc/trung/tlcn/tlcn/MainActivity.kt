@@ -15,6 +15,8 @@ import com.travel.phuc.trung.tlcn.tlcn.Schedule.ScheduleFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    /////////sdasdasdfasfadfadfadg
+    //âsdasf
 
     val sharedprperences : String="taikhoan";
     val KEY_ID_USER = "ID_User"
