@@ -1,0 +1,102 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.MapsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"  >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:weightSum="6">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="6"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp">
+            <EditText
+                android:textSize="10sp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/etOrigin"
+                android:hint="Dịa điểm xuất phát" />
+
+            <EditText
+                android:textSize="10sp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:hint="địa điểm đến"
+                android:id="@+id/etDestination" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnFindPath"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|end"
+                android:background="@color/colorPrimary"
+                android:gravity="end"
+                android:text="Find path"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_marginLeft="10dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_distance"/>
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="0 km"
+            android:id="@+id/tvDistance" />
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_clock"/>
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="0 min"
+            android:id="@+id/tvDuration" />
+        <Spinner
+            android:id="@+id/loaimap"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp">
+        </Spinner>
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</LinearLayout>
+

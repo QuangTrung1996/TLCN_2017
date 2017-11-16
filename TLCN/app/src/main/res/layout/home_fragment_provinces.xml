@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/txtvung"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Khu Vực: "
+            android:textColor="#d21c1c"
+            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+            <Spinner
+                android:id="@+id/Sp_KhuVuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="0.5"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+            <CheckBox
+                android:id="@+id/ChonkhuVuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:background="#f7f4f4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <ExpandableListView
+            android:groupIndicator="@null"
+            android:dividerHeight="2dp"
+            android:divider="#ffffff"
+            android:layout_width="match_parent"
+            android:id="@+id/expd_tinhthanh_dulich"
+            android:layout_height="match_parent"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

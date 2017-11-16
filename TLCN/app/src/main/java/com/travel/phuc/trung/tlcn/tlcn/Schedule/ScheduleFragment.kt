@@ -2,15 +2,11 @@ package com.travel.phuc.trung.tlcn.tlcn.Schedule
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeAdapter
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragmentFestivalLocation
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragmentTouristDestination
 import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
 

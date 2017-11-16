@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment">
+    <LinearLayout
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/bogoc_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_gravity="center_vertical"
+                android:id="@+id/thoatcomment"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginStart="5dp" />
+            <TextView
+                android:id="@+id/tongsocomment"
+                android:textColor="@color/blue"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="11 comment"
+                android:layout_marginStart="15dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/lightGrey">
+        </LinearLayout>
+        <TextView
+            android:gravity="center"
+            android:text="khu du lich a"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ListView
+            android:dividerHeight="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/LV_TTComment"
+            android:layout_weight="1">
+        </ListView>
+        <FrameLayout
+            android:background="@color/white"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_marginRight="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/commenttext"
+                android:layout_toLeftOf="@+id/send"
+                android:background="@null"
+                android:paddingLeft="16dp"
+                android:textSize="16sp"
+                android:singleLine="false"
+                android:hint="Add a comment here"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/send" />
+            <Button
+                android:layout_marginLeft="3dp"
+                android:layout_marginEnd="5dp"
+                android:text="Đăng"
+                android:background="@color/white"
+                android:textColor="@color/blue"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="3dp" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

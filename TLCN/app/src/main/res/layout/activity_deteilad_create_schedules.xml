@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f1efef"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladActivityCreateSchedules">
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/tieude"
+            android:hint="Tiêu đề"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bogoc_edittext"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_marginLeft="5dp"
+                android:text="Ngày Bắt Đầu"
+                android:layout_marginStart="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/gioBD"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bogocbutton"/>
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ngayBD"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bogocbutton"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:layout_marginLeft="5dp"
+                android:text="Ngày Bắt Kết Thúc"
+                android:layout_marginStart="5dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/gioKT"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bogocbutton"/>
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ngayKT"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bogocbutton"
+                    android:layout_marginStart="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp">
+        <EditText
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/nghichu"
+            android:hint="Nghi Chú"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="15sp"
+            android:layout_marginEnd="5dp" />
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <Button
+            android:textStyle="italic"
+            android:id="@+id/HuyLT"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="Hủy"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp" />
+        <Button
+            android:id="@+id/CapNhat"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:text="Cập Nhật"
+            android:textColor="@color/white"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+
+</LinearLayout>
