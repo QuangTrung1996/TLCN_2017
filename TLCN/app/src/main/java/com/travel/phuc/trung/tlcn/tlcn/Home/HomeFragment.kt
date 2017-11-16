@@ -1,20 +1,16 @@
 package com.travel.phuc.trung.tlcn.tlcn.Home
 
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeFragmentTouristDestination
 import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 /**
  * Created by Admin on 15/11/2017.

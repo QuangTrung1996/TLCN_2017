@@ -5,9 +5,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.PagerAdapter
 
-/**
- * Created by Admin on 15/11/2017.
- */
+
+// lớp adapter của faragment dulich và lễ hội
 class HomeAdapter (fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     private val tabTitles = arrayOf("Du Lịch", "Lễ Hội");
     private  var FrmItem: ArrayList<Fragment> = ArrayList();
