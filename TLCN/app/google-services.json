@@ -75,6 +75,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "318147422549-oorhekpdh4orma5o54h4tlrdbupnemtq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.travel.phuc.trung.tlcn.tlcn",
+            "certificate_hash": "ac0911555bcfe64ccd7ed80bb932c6a24a4ece2d"
+          }
+        },
+        {
           "client_id": "318147422549-kilb18f3tk9hahr74ahvbod4bhonppec.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

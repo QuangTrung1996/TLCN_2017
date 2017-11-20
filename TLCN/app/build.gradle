@@ -42,11 +42,11 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation 'com.google.firebase:firebase-storage:11.4.2'
-    implementation 'com.google.android.gms:play-services-maps:11.4.2'
-    implementation 'com.google.firebase:firebase-auth:11.4.2'
-    implementation 'com.google.firebase:firebase-database:11.4.2'
-    implementation 'com.google.android.gms:play-services-auth:11.4.2'       // tai khoan google
+    implementation 'com.google.firebase:firebase-storage:11.6.0'
+    implementation 'com.google.android.gms:play-services-maps:11.6.0'
+    implementation 'com.google.firebase:firebase-auth:11.6.0'
+    implementation 'com.google.firebase:firebase-database:11.6.0'
+    implementation 'com.google.android.gms:play-services-auth:11.6.0'       // tai khoan google
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'// hinh tron
     implementation 'com.squareup.picasso:picasso:2.5.2'
