@@ -11,9 +11,6 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 
-/**
- * Created by Admin on 16/11/2017.
- */
 class HomeLvComment constructor(var context: Context, var arayThongTinCoomnet:ArrayList<HomeInfromationCommentData> ) : BaseAdapter() {
     inner class viewholder(row: View)
     {

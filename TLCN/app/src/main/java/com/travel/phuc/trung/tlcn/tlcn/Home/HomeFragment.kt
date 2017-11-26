@@ -12,9 +12,6 @@ import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeFragmentTouris
 import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
 
-/**
- * Created by Admin on 15/11/2017.
- */
 class HomeFragment : Fragment() {
     val sharedprperences : String="taikhoan";
     var id_USER :String?=null

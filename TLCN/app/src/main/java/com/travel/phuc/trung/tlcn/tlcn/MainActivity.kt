@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity() {
         // mac dinh mo trang Home
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.content,HomeFragment()).commit()
+        //transaction.replace(R.id.content,HomeFragment()).commit()
+        transaction.replace(R.id.content,ScheduleFragment()).commit()
+        //transaction.replace(R.id.content, LichTrinh()).commit()
     }
 
     // lấy thông tin user từ sharedprperences
@@ -109,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.content,ScheduleFragment()).commit()
+                    transaction.replace(R.id.content, ScheduleFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.album -> {
