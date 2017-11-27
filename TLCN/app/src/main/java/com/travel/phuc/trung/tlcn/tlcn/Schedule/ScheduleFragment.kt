@@ -1,5 +1,6 @@
 package com.travel.phuc.trung.tlcn.tlcn.Schedule
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeTypeInterface
 import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -14,6 +16,7 @@ import de.hdodenhof.circleimageview.CircleImageView
  * Created by Admin on 15/11/2017.
  */
 class ScheduleFragment : Fragment() {
+    var a :HomeTypeInterface?=null
     val sharedprperences: String = "taikhoan";
     var id_USER: String? = null
     var ten: String? = null
@@ -44,5 +47,10 @@ class ScheduleFragment : Fragment() {
                     .into(anhdaidien)
         }
 
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        a=activity as HomeTypeInterface
     }
 }

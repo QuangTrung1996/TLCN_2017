@@ -28,7 +28,7 @@ class HomeActivityDeteiladTourism : AppCompatActivity() {
         val intent = intent
 
         nhanTT = intent.getSerializableExtra("data") as HomeInformationTourisData
-        Toast.makeText(this,nhanTT!!.Lat.toString(),Toast.LENGTH_SHORT).show()
+       // Toast.makeText(this,nhanTT!!.SoCmmt.toString(),Toast.LENGTH_SHORT).show()
 
         val bundle : Bundle = Bundle()
         bundle.putSerializable("data1", nhanTT)

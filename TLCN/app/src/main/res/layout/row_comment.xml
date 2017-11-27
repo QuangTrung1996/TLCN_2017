@@ -13,7 +13,7 @@
             android:id="@+id/AnhDaidien_Cmmt"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/anhdaidien"/>
+            android:src="@drawable/anhao"/>
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="2dp"

@@ -3,13 +3,13 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string-array name="theloai">
-        <item>Mới Cập Nhật</item>
         <item>Ưu Đãi</item>
         <item>Tự Do</item>
         <item>Bán Vé</item>
         <item>Bảo Tàng</item>
         <item>Di Tích</item>
         <item>Công Viên</item>
+        <item>Thám Hiểm</item>
     </string-array>
     <string-array name="maps_type">
         <item>MAP_TYPE_NONE</item>

@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.travel.phuc.trung.tlcn.tlcn.HomeActivityCheckDislike">
+    android:orientation="vertical"
+    android:background="#f1efef"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeActivityCheckDislike">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="Thông Báo"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <FrameLayout
+        android:layout_marginTop="5dp"
+        android:background="@color/blue"
+        android:layout_width="match_parent"
+        android:layout_height="2dp">
+    </FrameLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="bạn sẽ không nhìn thấy địa điểm này trong lần tới"/>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:textStyle="italic"
+            android:id="@+id/HuyDislike"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#f1efef"
+            android:text="không"
+            android:textColor="@color/red"
+            android:layout_marginStart="10dp" />
+        <TextView
+            android:id="@+id/Dislike"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#f1efef"
+            android:text="có"
+            android:textColor="@color/blue"
+            android:layout_gravity="right"/>
+    </FrameLayout>
+</LinearLayout>
