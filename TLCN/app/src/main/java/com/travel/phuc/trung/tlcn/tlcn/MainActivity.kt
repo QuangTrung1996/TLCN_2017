@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
         // mac dinh mo trang Home
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        //transaction.replace(R.id.content,HomeFragment()).commit()
-        transaction.replace(R.id.content,ScheduleFragment()).commit()
-        //transaction.replace(R.id.content, LichTrinh()).commit()
+        transaction.replace(R.id.content,HomeFragment()).commit()
+        //transaction.replace(R.id.content,ScheduleFragment()).commit()
     }
 
     // lấy thông tin user từ sharedprperences
@@ -140,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         }
         actionBarDrawerToggle!!.syncState()
     }
+
     private fun shortToast(string : String) {
         val length : Int = Toast.LENGTH_SHORT
         Toast.makeText(this, string, length).show()

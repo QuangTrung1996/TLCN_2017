@@ -16,8 +16,6 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-
 class ScheduleFragment : Fragment() {
 
     val sdf      : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy 'at' HH:mm", Locale.getDefault())
@@ -25,7 +23,7 @@ class ScheduleFragment : Fragment() {
     val sdf_time : SimpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
     var idUser : String = "null"
     val key : String = "$1$2$3$4$5$6$"
-    var itemLongClickListener = -1
+
     lateinit var dateClick : Date
     var keyValue = ""
 
