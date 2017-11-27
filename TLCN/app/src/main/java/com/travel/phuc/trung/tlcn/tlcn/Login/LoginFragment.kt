@@ -25,9 +25,6 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.login_fragment.view.*
 
-/**
- * Created by Admin on 15/11/2017.
- */
 class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     var name = ""

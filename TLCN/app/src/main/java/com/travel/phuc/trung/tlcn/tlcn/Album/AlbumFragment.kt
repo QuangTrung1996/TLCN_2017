@@ -109,9 +109,6 @@ class AlbumFragment : Fragment() {
         return view
     }
 
-
-
-
     // menu
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)

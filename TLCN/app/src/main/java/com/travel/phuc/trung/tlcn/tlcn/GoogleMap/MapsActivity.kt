@@ -3,15 +3,14 @@ package com.travel.phuc.trung.tlcn.tlcn.GoogleMap
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -40,7 +39,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
         setContentView(R.layout.activity_maps)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        var TT = intent
+        val TT = intent
         Lat = TT.getDoubleExtra("lat",1.0)
         Long = TT.getDoubleExtra("long",1.0)
         tenDD = TT.getStringExtra("TenDD")
