@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.content,HomeFragment()).commit()
+        //transaction.replace(R.id.content,ScheduleFragment()).commit()
     }
 
     // lấy thông tin user từ sharedprperences
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.content,ScheduleFragment()).commit()
+                    transaction.replace(R.id.content, ScheduleFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.album -> {
@@ -137,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         }
         actionBarDrawerToggle!!.syncState()
     }
+
     private fun shortToast(string : String) {
         val length : Int = Toast.LENGTH_SHORT
         Toast.makeText(this, string, length).show()

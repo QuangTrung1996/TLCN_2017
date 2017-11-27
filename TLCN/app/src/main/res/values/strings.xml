@@ -29,8 +29,29 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
 
-    // menu cua album
+    <!--menu cua album-->
     <string name="add">Add</string>
     <string name="upload">Upload</string>
     <string name="delete">Delete</string>
+
+    <!--menu cua schedule-->
+    <string name="action_today">Today</string>
+    <string name="action_day_view">Day view</string>
+    <string name="action_three_day_view">3 day view</string>
+    <string name="action_week_view">Week view</string>
+    <string name="title_activity_basic">Basic Example</string>
+    <string name="title_activity_asynchronous">Asynchronous Events</string>
+    <string name="async_error">Could not download events from the internet</string>
+
+    <!--add event of schedule-->
+    <string name="action_add">Add Event</string>
+    <string name="form_button_add">add</string>
+    <string name="form_button_cancel">cancel</string>
+    <string name="date_bd">Bắt đầu</string>
+    <string name="date_kt">Kết thúc</string>
+    <string name="temptext">text</string>
+    <string name="form_button_ok">ok</string>
+    <string name="title">Title</string>
+    <string name="detail">Detail</string>
+    <string name="event_date">Event Date</string>
 </resources>

@@ -1,8 +1,5 @@
 package com.travel.phuc.trung.tlcn.tlcn.Login
 
-/**
- * Created by Admin on 15/11/2017.
- */
 class UserData  {
 
     var id : String = ""
