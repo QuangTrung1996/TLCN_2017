@@ -3,6 +3,7 @@ package com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -145,9 +146,16 @@ class DeteiladActivityCreateSchedules : AppCompatActivity() {
                     val key = ref.key
                     // 10/10/2017 - 20/10/2017
                     val lich = DeteiladSchedulesData(key,EDT_tieude!!.text.toString(), NgayBatDau.timeInMillis, NgayKetThuc.timeInMillis, EDT_ghichu!!.text.toString())
-                    ref.setValue(lich).addOnCompleteListener {
-                        Toast.makeText(this,"Đã thêm vào Lịch Trình",Toast.LENGTH_LONG).show()
-                    }
+                    ref.setValue(lich,DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                        if (databaseError==null)
+                        {
+                            Toast.makeText(this,"Đã thêm vào Lịch Trình",Toast.LENGTH_LONG).show()
+                        }
+                        else
+                        {
+                            Toast.makeText(this,"thêm thất bại, hãy thử lại",Toast.LENGTH_LONG).show()
+                        }
+                    })
 
 
                 }

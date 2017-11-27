@@ -3,18 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:background="@color/white">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:fadeScrollbars="false"
             android:scrollbars="vertical"
-            android:background="#ffffff">
+            android:background="@color/white">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,31 +38,13 @@
                     android:gravity="center"
                     android:text="117/123/3/4 lê anh hòa/p22/quận 14"/>
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:maxLength="800"
-                        android:id="@+id/mota"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:text="
-down vote
-A note to people who are already using a custom input filter and also want to limit the max length:
-
-When you assign input filters in code all previously set input filters are cleared, including one set with android:maxLength. I found this out when attempting to use a custom input filter to prevent the use of some characters that we don't allow in a password field. After setting that filter with setFilters the maxLength was no longer observed. The solution was to set maxLength and my custom filter together programmatically. Something like this:"/>
-                </LinearLayout>
-                <LinearLayout
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="360dp">
+                    android:layout_height="260dp">
                     <android.support.v4.view.ViewPager
                         android:id="@+id/ViewPager_Hinhanh_chitiet"
                         android:layout_width="match_parent"
-                        android:layout_height="350dp"
+                        android:layout_height="250dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginStart="5dp"
@@ -82,13 +65,7 @@ When you assign input filters in code all previously set input filters are clear
                         android:src="@drawable/like"
                         android:scaleType="fitXY"
                         android:layout_marginLeft="10dp" />
-                    <TextView
-                        android:id="@+id/soluoclike"
-                        android:layout_marginLeft="2dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="122"/>
+
                     <ImageButton
                         android:id="@+id/Btn_Dislike_chitiet"
                         android:layout_width="30dp"
@@ -97,14 +74,7 @@ When you assign input filters in code all previously set input filters are clear
                         android:src="@drawable/dislike"
                         android:scaleType="fitXY"
                         android:background="@color/white"/>
-                    <TextView
-                        android:id="@+id/soluoccomment"
-                        android:layout_marginStart="2dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="111"
-                        android:layout_marginLeft="2dp" />
+
                     <ImageButton
                         android:id="@+id/Btn_YeuThich_chitiet"
                         android:layout_width="30dp"
@@ -122,10 +92,10 @@ When you assign input filters in code all previously set input filters are clear
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <RatingBar
-                        android:rating="3.5"
+                        android:rating="3"
                         android:max="5"
                         android:isIndicator="false"
-                        android:stepSize="0.5"
+                        android:stepSize="0.1"
                         android:id="@+id/DanhGia_chitiet"
                         android:layout_marginStart="20dp"
                         android:layout_width="wrap_content"
@@ -141,6 +111,24 @@ When you assign input filters in code all previously set input filters are clear
                         android:layout_gravity="end|center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:maxLength="800"
+                        android:id="@+id/mota"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text="
+down vote
+A note to people who are already using a custom input filter and also want to limit the max length:
+
+When you assign input filters in code all previously set input filters are cleared, including one set with android:maxLength. I found this out when attempting to use a custom input filter to prevent the use of some characters that we don't allow in a password field. After setting that filter with setFilters the maxLength was no longer observed. The solution was to set maxLength and my custom filter together programmatically. Something like this:"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_marginTop="10dp"

@@ -7,11 +7,13 @@ import android.widget.ImageButton
 import android.widget.ListView
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.R
+import kotlinx.android.synthetic.main.activity_home_comment.*
 
 class HomeActivityComment : AppCompatActivity() {
 
     private var database: DatabaseReference
     var keyDL :String?=null
+    var socomment:Int=0;
     init {
         database    = FirebaseDatabase.getInstance().reference
     }
@@ -26,6 +28,8 @@ class HomeActivityComment : AppCompatActivity() {
         supportActionBar!!.hide()
         val intent = intent
         keyDL = intent.getStringExtra("keyDL")
+        socomment = intent.getIntExtra("socm",0)
+        tongsocomment.text = socomment.toString()+" "+" Comment"
         Lv=findViewById<ListView>(R.id.LV_TTComment)
         addcomment()
         var btnBack=findViewById<ImageButton>(R.id.thoatcomment)
@@ -51,13 +55,25 @@ class HomeActivityComment : AppCompatActivity() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot?) {
-                        Arrthongtincomment!!.add(HomeInfromationCommentData("cho",data.text,p0!!.value.toString(),data.time))
-                        var adapter=HomeLvComment(this@HomeActivityComment,Arrthongtincomment)
-                        adapter.notifyDataSetChanged()
-                        Lv!!.adapter=adapter
+                        database.child("Users").child(data!!.id_User).child("UserName").addValueEventListener(object :ValueEventListener{
+                            override fun onCancelled(p1: DatabaseError?) {
+
+                            }
+
+                            override fun onDataChange(p1: DataSnapshot?) {
+                                Arrthongtincomment.add(HomeInfromationCommentData(p1!!.value.toString(),data.text,p0!!.value.toString(),data.time))
+                                var adapter=HomeLvComment(this@HomeActivityComment,Arrthongtincomment)
+                                adapter.notifyDataSetChanged()
+                                Lv!!.adapter=adapter
+                            }
+
+                        })
+
                     }
 
-                })            }
+                })
+
+            }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
                 val data:GetDataComment? = p0!!.getValue(GetDataComment::class.java)
@@ -67,10 +83,20 @@ class HomeActivityComment : AppCompatActivity() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot?) {
-                        Arrthongtincomment!!.add(HomeInfromationCommentData("cho",data.text,p0!!.value.toString(),data.time))
-                        var adapter=HomeLvComment(this@HomeActivityComment,Arrthongtincomment)
-                        adapter.notifyDataSetChanged()
-                        Lv!!.adapter=adapter
+                        database.child("Users").child(data!!.id_User).child("UserName").addValueEventListener(object :ValueEventListener{
+                            override fun onCancelled(p1: DatabaseError?) {
+
+                            }
+
+                            override fun onDataChange(p1: DataSnapshot?) {
+                                Arrthongtincomment.add(HomeInfromationCommentData(p1!!.value.toString(),data.text,p0!!.value.toString(),data.time))
+                                var adapter=HomeLvComment(this@HomeActivityComment,Arrthongtincomment)
+                                adapter.notifyDataSetChanged()
+                                Lv!!.adapter=adapter
+                            }
+
+                        })
+
                     }
 
                 })

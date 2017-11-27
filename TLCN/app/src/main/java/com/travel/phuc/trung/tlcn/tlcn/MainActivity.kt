@@ -102,7 +102,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
-
                     transaction.replace(R.id.content,HomeFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }

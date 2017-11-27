@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/home"  android:title="Home"/>
-    <item android:id="@+id/schedule" android:title="Schedule"/>
-    <item  android:id="@+id/album" android:title="Album"/>
-    <item android:id="@+id/favorite" android:title="Favorite"/>
+    <item android:id="@+id/home"  android:title="Home"   android:icon="@drawable/home"/>
+    <item android:id="@+id/schedule" android:title="Schedule"  android:icon="@drawable/lich"/>
+    <item  android:id="@+id/album" android:title="Album"  android:icon="@drawable/album"/>
+    <item android:id="@+id/favorite" android:title="Favorite"  android:icon="@drawable/chuayeuthich"/>
     <item android:id="@+id/login" android:title="Login" />
 </menu>
