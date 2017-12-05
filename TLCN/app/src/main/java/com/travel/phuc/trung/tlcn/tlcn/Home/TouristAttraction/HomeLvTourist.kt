@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
+import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.MapsActivity
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityImage
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
@@ -72,6 +73,7 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
             view=convertview
             viewHolder= convertview.tag as viewHolder
         }
+
         ListRT!!.clear()
         database.child("DanhGia").child(arrayList.get(position).key).addChildEventListener(object : ChildEventListener{
             var i=0
@@ -160,7 +162,7 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
 
         viewHolder.Khung_TTDL.setOnClickListener(){
             if (doctaikhoan()) {
-                val intent = Intent(view!!.getContext(), HomeActivityDeteiladTourism::class.java)
+                val intent = Intent(view!!.getContext(), MapsActivity::class.java)
                 var Thongtin: HomeInformationTourisData
                 Thongtin = arrayList.get(position)
                 //Toast.makeText(view!!.context,arrayList.get(position).SoCmmt.toString(),Toast.LENGTH_SHORT).show()

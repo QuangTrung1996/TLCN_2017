@@ -13,12 +13,14 @@ import com.bumptech.glide.Glide
 import com.travel.phuc.trung.tlcn.tlcn.Album.AlbumFragment
 import com.travel.phuc.trung.tlcn.tlcn.Favorite.FavoriteFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeTypeInterface
 import com.travel.phuc.trung.tlcn.tlcn.Login.LoginFragment
 import com.travel.phuc.trung.tlcn.tlcn.Schedule.ScheduleFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
 
     val sharedprperences : String="taikhoan"
     var id_USER :String?=null
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         navigationView = findViewById<NavigationView>(R.id.navigation);
         initNavigationDrawer()
-
         // mac dinh mo trang Home
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
