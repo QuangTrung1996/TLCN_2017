@@ -8,12 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityImage
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeRatingData
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.GetDataTourist
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeActivityDeteiladTourism
+import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.MapsActivity
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeInformationTourisData
 import com.travel.phuc.trung.tlcn.tlcn.R
 
@@ -73,7 +68,7 @@ class FavoriteAdapter(var context: Context, var arrayList:ArrayList<HomeInformat
             //viewHolder.soluoclike.text=arrayList.get(position).LuocLike.toString()
 
             viewHolder.Khung_TTDL.setOnClickListener(){
-                    val intent = Intent(view!!.getContext(), HomeActivityDeteiladTourism::class.java)
+                    val intent = Intent(view!!.getContext(), MapsActivity::class.java)
                     var Thongtin: HomeInformationTourisData
                     Thongtin = arrayList.get(position)
                     //Toast.makeText(view!!.context,arrayList.get(position).SoCmmt.toString(),Toast.LENGTH_SHORT).show()

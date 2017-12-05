@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:id="@+id/theloai"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp" />
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/tick"
+            android:layout_gravity="right|center"
+            android:scaleType="fitXY"
+            android:src="@drawable/tick"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+    </FrameLayout>
+
+</LinearLayout>

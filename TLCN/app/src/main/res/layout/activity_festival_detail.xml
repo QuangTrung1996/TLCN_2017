@@ -1,8 +1,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.MapsActivity"
-    android:layout_width="match_parent"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.Home.festivalVenues.FestivalDetail"    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="@color/white">
         <ScrollView
-            android:id="@+id/scrollmapDL"
+                android:id="@+id/scrollmapLH"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/Ten_DDDL_ChiTiet"
+                    android:id="@+id/Ten_DDLH_ChiTiet"
                     android:layout_gravity="center_horizontal"
                     android:textSize="20sp"
                     android:layout_width="wrap_content"
@@ -42,12 +42,38 @@
                     android:gravity="center"
                     android:text="117/123/3/4 lê anh hòa/p22/quận 14"/>
                 <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/ngayBDLH_detail"
+                        android:textColor="@color/blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:text="ngày bắt đầu:"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/ngayKTLH_detail"
+                        android:textColor="@color/blue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:text="ngày kết thúc:"/>
+                </LinearLayout>
+                <LinearLayout
                     android:background="@color/white"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="220dp">
                     <android.support.v4.view.ViewPager
-                        android:id="@+id/ViewPager_Hinhanh_chitiet"
+                        android:id="@+id/ViewPager_Hinhanh_LH_chitiet"
                         android:layout_width="match_parent"
                         android:layout_height="210dp"
                         android:layout_marginBottom="5dp"
@@ -65,7 +91,7 @@
                     android:layout_gravity="center_horizontal">
                     <ImageButton
                         android:layout_marginStart="10dp"
-                        android:id="@+id/Bnt_like_chitiet"
+                        android:id="@+id/Bnt_like_chitiet_LH"
                         android:background="@color/white"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -74,7 +100,7 @@
                         android:layout_marginLeft="10dp" />
 
                     <ImageButton
-                        android:id="@+id/Btn_Dislike_chitiet"
+                        android:id="@+id/Btn_Dislike_chitiet_LH"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
@@ -83,7 +109,7 @@
                         android:background="@color/white"/>
 
                     <ImageButton
-                        android:id="@+id/Btn_YeuThich_chitiet"
+                        android:id="@+id/Btn_YeuThich_chitiet_LH"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
@@ -96,7 +122,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/luoclikeDDDL"
+                        android:id="@+id/luoclikeDDDL_LH"
                         android:textColor="@color/blue"
                         android:layout_marginStart="20dp" />
                     <TextView
@@ -105,38 +131,10 @@
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/binhluan_DDDL"
+                        android:id="@+id/binhluan_DDDL_LH"
                         android:textColor="@color/blue"
                         android:layout_marginStart="30dp" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <RatingBar
-                        android:rating="3"
-                        android:max="5"
-                        android:isIndicator="false"
-                        android:stepSize="0.1"
-                        android:id="@+id/DanhGia_chitiet"
-                        android:layout_marginStart="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:numStars="5"
-                        android:layout_marginLeft="10dp" />
-                    <Button
-                        android:id="@+id/XacNhanDAnhGia"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="10dp"
-                        android:background="@color/colorAccent"
-                        android:text="Xác Nhận"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -146,7 +144,7 @@
                     <TextView
                         android:layout_marginTop="5dp"
                         android:maxLength="800"
-                        android:id="@+id/mota"
+                        android:id="@+id/mota_LH"
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="15dp"
                         android:layout_width="wrap_content"
@@ -159,52 +157,53 @@ A note to people who are already using a custom input filter and also want to li
 When you assign input filters in code all previously set input filters are cleared, including one set with android:maxLength. I found this out when attempting to use a custom input filter to prevent the use of some characters that we don't allow in a password field. After setting that filter with setFilters the maxLength was no longer observed. The solution was to set maxLength and my custom filter together programmatically. Something like this:"/>
                 </LinearLayout>
 
-            <LinearLayout
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:weightSum="6">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp">
-                    <EditText
-                        android:textSize="10sp"
-                        android:gravity="center_vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:id="@+id/etOrigin"
-                        android:hint="Dịa điểm xuất phát" />
 
-                    <EditText
-                        android:textSize="10sp"
-                        android:gravity="center_vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:hint="địa điểm đến"
-                        android:id="@+id/etDestination" />
-                </LinearLayout>
                 <LinearLayout
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/btnFindPath"
+                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:weightSum="6">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="6"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center_vertical|end"
-                        android:background="@color/colorPrimary"
-                        android:gravity="end"
-                        android:text="Find path"
-                        android:textColor="@color/colorAccent" />
+                        android:layout_height="70dp">
+                        <EditText
+                            android:textSize="10sp"
+                            android:gravity="center_vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:id="@+id/etOrigin_LH"
+                            android:hint="Dịa điểm xuất phát" />
+
+                        <EditText
+                            android:textSize="10sp"
+                            android:gravity="center_vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:hint="địa điểm đến"
+                            android:id="@+id/etDestination_LH" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/btnFindPath_LH"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:background="@color/colorPrimary"
+                            android:gravity="end"
+                            android:text="Find path"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -223,7 +222,7 @@ When you assign input filters in code all previously set input filters are clear
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="0 km"
-                        android:id="@+id/tvDistance" />
+                        android:id="@+id/tvDistance_LH" />
 
                     <ImageView
                         android:layout_marginLeft="20dp"
@@ -237,9 +236,9 @@ When you assign input filters in code all previously set input filters are clear
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:text="0 min"
-                        android:id="@+id/tvDuration" />
+                        android:id="@+id/tvDuration_LH" />
                     <Spinner
-                        android:id="@+id/loaimap"
+                        android:id="@+id/loaimap_LH"
                         android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -247,7 +246,7 @@ When you assign input filters in code all previously set input filters are clear
                     </Spinner>
                 </LinearLayout>
                 <fragment
-                    android:id="@+id/map"
+                    android:id="@+id/map_LH"
                     class="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
@@ -261,7 +260,7 @@ When you assign input filters in code all previously set input filters are clear
                     android:gravity="center_horizontal">
 
                     <Button
-                        android:id="@+id/ThemVaoLichTrinh"
+                        android:id="@+id/ThemVaoLichTrinh_LH"
                         android:layout_marginBottom="2dp"
                         android:gravity="center"
                         android:layout_width="wrap_content"
@@ -278,4 +277,8 @@ When you assign input filters in code all previously set input filters are clear
         </ScrollView>
     </LinearLayout>
 </LinearLayout>
+
+
+
+
 
