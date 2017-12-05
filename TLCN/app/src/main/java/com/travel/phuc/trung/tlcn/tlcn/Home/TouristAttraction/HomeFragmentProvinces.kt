@@ -11,13 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.travel.phuc.trung.tlcn.tlcn.Conect.ConectDatabaseSQLite
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
 import com.travel.phuc.trung.tlcn.tlcn.R
 
 // fragment điaiểm
 class HomeFragmentProvinces : Fragment() {
-    var tinh:Cursor?=null
-    var huyen:Cursor?=null
     private var ExpandbleLV: ExpandableListView?=null
     private var khuvuc: Spinner?=null
     private val DATABASENAME:String="TinhThanhPho.sqlite"
@@ -32,34 +29,16 @@ class HomeFragmentProvinces : Fragment() {
         khuvuc =view.findViewById<Spinner>(R.id.Sp_KhuVuc)
         addheader(KhuVuc)
 
-
-
+        ExpandbleLV!!.setOnGroupClickListener { parent, v, groupPosition, id ->
+            Toast.makeText(this.activity, groupPosition.toString(), Toast.LENGTH_SHORT).show();
+//            val intent = Intent(this.activity, ThongTinChiTiet_DDDL::class.java)
+//            startActivity(intent)
+            true
+        }
         val adapterKhuVuc: ArrayAdapter<String> = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.KhuVuc))
         adapterKhuVuc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         khuvuc!!.adapter=adapterKhuVuc
        doikhuvuc()
-        ExpandbleLV!!.setOnGroupClickListener { parent, v, groupPosition, id ->
-            //Toast.makeText(this.activity, groupPosition.toString(), Toast.LENGTH_SHORT).show();
-//            val intent = Intent(this.activity, ThongTinChiTiet_DDDL::class.java)
-//            startActivity(intent)
-            tinh!!.moveToPosition(groupPosition)
-            HomeFragmentInformationTourist.tinh = tinh!!.getInt(0)
-            Toast.makeText(this.activity, HomeFragmentInformationTourist.tinh.toString(), Toast.LENGTH_SHORT).show();
-            val fragmentManager = this.activity.supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.content, HomeFragment()).commit()
-            true
-        }
-       ExpandbleLV!!.setOnChildClickListener( {parent, v, groupPosition, childPosition, id ->
-           tinh!!.moveToPosition(groupPosition)
-           HomeFragmentInformationTourist.tinh = tinh!!.getInt(0)
-           HomeFragmentInformationTourist.huyen = read(HomeFragmentInformationTourist.tinh,childPosition)
-           Toast.makeText(this.activity, HomeFragmentInformationTourist.huyen.toString(), Toast.LENGTH_SHORT).show();
-           val fragmentManager = this.activity.supportFragmentManager
-           val transaction = fragmentManager.beginTransaction()
-           transaction.replace(R.id.content, HomeFragment()).commit()
-           false
-       })
         return view;
     }
 // thay đôit khu vực từ spinner
@@ -111,10 +90,8 @@ class HomeFragmentProvinces : Fragment() {
 // đọc dữ liệu từ sqlite và đổ vào ArrayHeader
     @SuppressLint("Recycle")
     private fun addheader(idkhuvuc:Int){
-    HasMap!!.clear()
         database = ConectDatabaseSQLite().initDatabase(this.activity,DATABASENAME);
         var cursor : Cursor = database!!.rawQuery("SELECT * FROM Tinh_TP where Tinh_TP.Vung="+idkhuvuc,null)
-        tinh =cursor
         ArrayHeader!!.clear();
         cursor.moveToPosition(2)
         for (i in 0 until cursor.count){
@@ -135,19 +112,12 @@ class HomeFragmentProvinces : Fragment() {
     private fun addchild(idtinh:Int):ArrayList<HomeDistrictsData> {
         database = ConectDatabaseSQLite().initDatabase(this.activity,DATABASENAME);
         var cursor : Cursor = database!!.rawQuery("SELECT * FROM Huyen where Huyen.Tinh="+idtinh,null)
-       Arraychild!!.clear()
+        Arraychild!!.clear()
         for (i in 0 until cursor.count)
         {
             cursor.moveToPosition(i)
             Arraychild!!.add(HomeDistrictsData(cursor.getString(1)))
         }
         return Arraychild!!
-    }
-    @SuppressLint("Recycle")
-    private fun read(idtinh:Int,vitrihuyen:Int):Int {
-        database = ConectDatabaseSQLite().initDatabase(this.activity,DATABASENAME);
-        var cursor : Cursor = database!!.rawQuery("SELECT * FROM Huyen where Huyen.Tinh="+idtinh,null)
-        cursor.moveToPosition(vitrihuyen)
-        return cursor.getInt(0)
     }
 }

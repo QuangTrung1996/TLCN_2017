@@ -10,16 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         >
         <TextView
-            android:layout_marginStart="15dp"
             android:background="#ffff"
             android:layout_width="wrap_content"
             android:id="@+id/tenquanhuyen"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="logo"
-            android:layout_marginLeft="15dp" />
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 </LinearLayout>

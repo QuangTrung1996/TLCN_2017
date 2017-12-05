@@ -1,62 +1,29 @@
 package com.travel.phuc.trung.tlcn.tlcn.GoogleMap
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.app.ProgressDialog
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeRatingData
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.*
 import com.travel.phuc.trung.tlcn.tlcn.R
 import docongphuc.pttravle.Maps.DirectionFinder
 import docongphuc.pttravle.Maps.DirectionFinderListener
 import docongphuc.pttravle.Maps.Route
-import kotlinx.android.synthetic.main.activity_festival_detail.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.io.UnsupportedEncodingException
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderListener {
-
-    private val sharedprperences : String="taikhoan";
-    private var id_USER:String?=null
-
-    var tenDDDL: TextView?=null
-    var diaChi:TextView?=null
-    var moTa:TextView?=null
-    var btnLike: ImageButton?=null
-    var btnComment: ImageButton?=null
-    var xacsnhandanhgia: Button?=null
-    var soComment:TextView?= null
-    var btnYeuThich: ImageButton?=null
-    var danhGia: RatingBar?=null
-    var btn_Disklike : ImageButton?=null
-    var idDL:String=""
-    var Arraychild:ArrayList<HomeDistrictsData>?= ArrayList();
-    private lateinit var mDateSetListenner: DatePickerDialog.OnDateSetListener
-    private var ThemVaoLichTrinh: Button? = null
-    private var  viepager: ViewPager?=null
-    companion object {
-        var listrating:ArrayList<HomeRatingData>?= ArrayList()
-    }
-    var database: DatabaseReference
-    init {
-        database    = FirebaseDatabase.getInstance().reference
-    }
 
     private lateinit var mMap: GoogleMap
     private var originMarkers:ArrayList<Marker> = ArrayList()
@@ -66,88 +33,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
     private var Lat:Double=1.0
     private var Long:Double=1.0
     private var tenDD:String = ""
-    private var nhanTT :HomeInformationTourisData? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        nhanTT = intent.getSerializableExtra("data") as HomeInformationTourisData
-
-        viepager=findViewById<ViewPager>(R.id.ViewPager_Hinhanh_chitiet);
-        ThemVaoLichTrinh = findViewById<Button>(R.id.ThemVaoLichTrinh)
-        btnYeuThich = findViewById(R.id.Btn_YeuThich_chitiet)
-        btnLike = findViewById(R.id.Bnt_like_chitiet)
-        xacsnhandanhgia = findViewById(R.id.XacNhanDAnhGia)
-//        TT= arguments.getSerializable("data1") as HomeInformationTourisData
-//        anhxa(view)
-        tenDDDL=findViewById(R.id.Ten_DDDL_ChiTiet)
-        tenDDDL!!.text =nhanTT!!.TenDiaDiem
-        moTa=findViewById(R.id.mota)
-        moTa!!.text = nhanTT!!.Mota
-        btn_Disklike = findViewById<ImageButton>(R.id.Btn_Dislike_chitiet)
-        danhGia=findViewById(R.id.DanhGia_chitiet)
-        Arraychild!!.add(HomeDistrictsData(nhanTT!!.url))
-        var adapter: PagerAdapter = DeteiladAdaprerImage(this@MapsActivity,Arraychild!!)
-        adapter.notifyDataSetChanged()
-        viepager!!.adapter=adapter
-        idDL = nhanTT!!.key
-        addListAnh()
-        ktYeuThich()
-        kiemtraDislike()
-        kiemtraLike()
-        setRating()
-        luoclikeDDDL.setOnClickListener {
-            val intent = Intent(this@MapsActivity, HomeActivityLike::class.java)
-            intent.putExtra("keyDDDL",nhanTT!!.key)
-            intent.putExtra("solike",0)
-            this@MapsActivity.startActivity(intent)
-        }
-        binhluan_DDDL.setOnClickListener {
-            val intent = Intent(this@MapsActivity, HomeActivityComment::class.java)
-            intent.putExtra("keyDL",nhanTT!!.key.toString())
-            intent.putExtra("socm",0)
-            this@MapsActivity.startActivity(intent)
-        }
-        btnYeuThich!!.setOnClickListener(){
-            setyeuthich()
-        }
-        btnLike!!.setOnClickListener {
-            setlike()
-        }
-        xacsnhandanhgia!!.setOnClickListener{
-            themdanhgia()
-        }
-        ThemVaoLichTrinh!!.setOnClickListener({
-            //            var a:frmDailogLichTrinh = frmDailogLichTrinh()
-//            a.show(fragmentManager,"con heo")
-            val intent = Intent(this@MapsActivity, DeteiladActivityCreateSchedules::class.java)
-            this@MapsActivity.startActivity(intent)
-        })
-        btn_Disklike!!.setOnClickListener {
-            setDislike()
-        }
-        addTimepicker()
-
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
-        Lat = nhanTT!!.Lat
-        Long = nhanTT!!.Long
-        tenDD = nhanTT!!.TenDiaDiem
-//        val mapFragment = supportFragmentManager
-//                .findFragmentById(R.id.map) as SupportMapFragment
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as WorkaroundMapFragment
+        val TT = intent
+        Lat = TT.getDoubleExtra("lat",1.0)
+        Long = TT.getDoubleExtra("long",1.0)
+        tenDD = TT.getStringExtra("TenDD")
+        val mapFragment = supportFragmentManager
+                .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        mapFragment.setListener(object :WorkaroundMapFragment.OnTouchListener{
-            override fun onTouch() {
-                scrollmapDL.requestDisallowInterceptTouchEvent(true)
-            }
-        })
-
-
         btnFindPath.setOnClickListener(){
             sendRequest()
         }
@@ -305,266 +203,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
 
         return true
     }
-
-
-    private fun addTimepicker() {
-        ThemVaoLichTrinh!!.setOnClickListener({
-            //            var a:frmDailogLichTrinh = frmDailogLichTrinh()
-//            a.show(fragmentManager,"con heo")
-            val intent = Intent(this@MapsActivity, DeteiladActivityCreateSchedules::class.java)
-            intent.putExtra("key",nhanTT!!.TenDiaDiem)
-            this@MapsActivity.startActivity(intent)
-        })
-        btn_Disklike!!.setOnClickListener {
-            setDislike()
-
-        }
-
-    }
-    private fun setDislike() {
-        if(doctaikhoan()){
-            database.child("DisLike").child(idDL).child(id_USER).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.exists()){
-                        btn_Disklike!!.setImageResource(R.drawable.dislike)
-//                        var calender:Calendar= Calendar.getInstance()
-                        database.child("DisLike").child(idDL).child(id_USER).removeValue()
-                    }
-                    else{
-                        val intent = Intent(this@MapsActivity, HomeActivityCheckDislike::class.java)
-                        intent.putExtra("keyDL", idDL)
-                        intent.putExtra("idUser", id_USER)
-                        this@MapsActivity.startActivity(intent)
-                    }
-                }
-
-            })
-        }
-        else{
-            Toast.makeText(this@MapsActivity,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    // lấy danh sach anh tu albul
-    private fun addListAnh() {
-        database.child("AlbumAnhDuLich").child(idDL).addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-
-            }
-
-            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
-                if (p0!=null){
-                    Arraychild!!.add(HomeDistrictsData(p0!!.value.toString()))
-                    var adapter:PagerAdapter= DeteiladAdaprerImage(this@MapsActivity,Arraychild!!)
-                    adapter.notifyDataSetChanged()
-                    viepager!!.adapter=adapter  }
-
-            }
-
-            override fun onChildRemoved(p0: DataSnapshot?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
-    }
-    // kiểm tra địa điểm có trong danh sách yêu thich hay không
-    private fun ktYeuThich() {
-        if(doctaikhoan()){
-            database.child("YeuThich").child(id_USER).child(idDL).addValueEventListener(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.value!=null){
-                        btnYeuThich!!.setImageResource(R.drawable.tim)
-
-                    }
-                }
-
-            })
-        }
-        else{
-            Toast.makeText(this@MapsActivity,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
-        }
-    }
-    // kiểm tra địa điểm có trong bảng dislike khôgn
-    private fun kiemtraDislike() {
-        if (doctaikhoan())
-        {
-            database.child("DisLike").child(idDL).child(id_USER).addValueEventListener(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.value!=null){
-                        btn_Disklike!!.setImageResource(R.drawable.disliked)
-
-                    }
-//                    else
-//                    {
-//                        btn_Disklike!!.setImageResource(R.drawable.dislike)
-//                    }
-                }
-
-            })
-        }
-    }
-    // kiểm tra địa điểm có trong bản like hay không
-    private fun kiemtraLike() {
-        if (doctaikhoan())
-        {
-            database.child("Like").child(idDL).child(id_USER).addValueEventListener(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.value!=null){
-                        btnLike!!.setImageResource(R.drawable.liked)
-
-                    }
-//                    else
-//                    {
-//                        btnLike!!.setImageResource(R.drawable.like)
-//                    }
-                }
-
-            })
-        }
-    }
-    // tính đánh giá của địa điểm
-    private fun setRating() {
-        var sum=0.0
-        var i=0
-        database.child("DanhGia").child(idDL).addChildEventListener(object : ChildEventListener{
-            override fun onCancelled(p0: DatabaseError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-                var sum =0.0;
-                for (i in 0 until listrating!!.size)
-                {
-                    if (p0!!.key ==listrating!!.get(i).key)
-                    {
-                        var a = p0!!.value as String
-                        listrating!!.get(i).danhgia = a.toFloat()
-
-                    }
-                    sum+= listrating!!.get(i).danhgia
-                }
-                //
-                var tb = Math.round((sum/ listrating!!.size)*10)/10.toFloat()
-                danhGia!!.rating = tb
-
-            }
-
-            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
-                var a = p0!!.value as String
-                i++
-                sum  = sum + a.toDouble()
-                listrating!!.add(HomeRatingData(p0!!.key,a.toFloat()))
-                var tam = sum /i
-                var TB =(Math.round(tam*10))/10.toFloat()
-                danhGia!!.rating = TB
-            }
-
-            override fun onChildRemoved(p0: DataSnapshot?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
-    }
-    // thêm địa điểm vào yêu thích khi click like
-    private fun setyeuthich() {
-
-        if(doctaikhoan()){
-            database.child("YeuThich").child(id_USER).child(idDL).addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.exists()){
-                        btnYeuThich!!.setImageResource(R.drawable.chuayeuthich)
-//                        var calender:Calendar= Calendar.getInstance()
-                        database.child("YeuThich").child(id_USER).child(idDL).removeValue()
-                        Toast.makeText(this@MapsActivity,"Đã xóa khỏi mục yêu thích",Toast.LENGTH_LONG).show()
-                    }
-                    else{
-                        btnYeuThich!!.setImageResource(R.drawable.tim)
-                        database.child("YeuThich").child(id_USER).child(idDL).setValue(idDL)
-                        Toast.makeText(this@MapsActivity,"Đã thêm vào mục yêu thích",Toast.LENGTH_LONG).show()
-                    }
-                }
-
-            })
-        }
-        else{
-            Toast.makeText(this@MapsActivity,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
-        }
-
-    }
-    // set like khi click vào image like
-    private fun setlike() {
-        if(doctaikhoan()){
-            database.child("Like").child(idDL).child(id_USER).addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.exists()){
-                        btnLike!!.setImageResource(R.drawable.like)
-//                        var calender:Calendar= Calendar.getInstance()
-                        database.child("Like").child(idDL).child(id_USER).removeValue()
-                    }
-                    else{
-                        btnLike!!.setImageResource(R.drawable.liked)
-                        database.child("Like").child(idDL).child(id_USER).setValue(id_USER)
-                    }
-                }
-
-            })
-        }
-        else{
-            Toast.makeText(this@MapsActivity,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
-        }
-    }
-    private fun themdanhgia() {
-        database.child("DanhGia").child(idDL).child(id_USER).setValue(danhGia!!.rating.toString())
-    }
-
-
-    //dọc tài khoản từ album
-    fun doctaikhoan():Boolean {
-        val sharedpreferences = this@MapsActivity.getSharedPreferences(sharedprperences, android.content.Context.MODE_PRIVATE)
-        id_USER = sharedpreferences.getString("Uid", null)
-
-        if (id_USER != null && !id_USER!!.equals("")) {
-            return true
-            // truyen!!.truyenUser(uid,name,email,photoUrl)
-        }
-        return false
-    }
-
-
 }

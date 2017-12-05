@@ -19,7 +19,7 @@ class HomeExPdbProvinces constructor(context: Context, mHeaderGroup:ArrayList<Ho
         return mHeaderGroup!!.get(groupPosition)    }
 
     override fun isChildSelectable(p0: Int, p1: Int): Boolean {
-        return true;
+        return false;
     }
 
     override fun hasStableIds(): Boolean {

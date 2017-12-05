@@ -8,6 +8,8 @@ import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Login.UserData
 import com.travel.phuc.trung.tlcn.tlcn.R
 import kotlinx.android.synthetic.main.activity_home_like.*
+import kotlinx.android.synthetic.main.detailed_fragment_infromation_tourism.*
+
 class HomeActivityLike : AppCompatActivity() {
     val database : DatabaseReference
     init {
