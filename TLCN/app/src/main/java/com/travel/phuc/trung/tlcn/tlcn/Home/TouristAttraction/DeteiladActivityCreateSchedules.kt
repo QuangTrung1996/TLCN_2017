@@ -57,6 +57,9 @@ class DeteiladActivityCreateSchedules : AppCompatActivity() {
         btnNgayKT!!.text=Ngay
         btnNgayBD!!.text = Ngay
         addNgayGio(this)
+        var tt = intent
+        var tendd:String= tt.getStringExtra("key")
+        EDT_tieude!!.append(tendd)
         val btnHuy:Button=findViewById(R.id.HuyLT)
         supportActionBar!!.hide()
         val dm: DisplayMetrics = DisplayMetrics()

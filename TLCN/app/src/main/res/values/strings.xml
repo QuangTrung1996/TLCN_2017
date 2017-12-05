@@ -56,5 +56,9 @@
     <string name="title">Title</string>
     <string name="detail">Detail</string>
     <string name="event_date">Event Date</string>
+
     <string name="notifications">Thông báo của bạn</string>
+
+    <string name="title_activity_festival_detail">PTTravel</string>
+
 </resources>
