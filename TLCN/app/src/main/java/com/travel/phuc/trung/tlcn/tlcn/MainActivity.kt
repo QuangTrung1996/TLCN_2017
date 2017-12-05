@@ -14,6 +14,8 @@ import com.travel.phuc.trung.tlcn.tlcn.Album.AlbumFragment
 import com.travel.phuc.trung.tlcn.tlcn.Favorite.FavoriteFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
 import com.travel.phuc.trung.tlcn.tlcn.Login.LoginFragment
+import com.travel.phuc.trung.tlcn.tlcn.Manager.ManagerFragment
+import com.travel.phuc.trung.tlcn.tlcn.Notifications.NotificationsFragment
 import com.travel.phuc.trung.tlcn.tlcn.Schedule.ScheduleFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -131,6 +133,20 @@ class MainActivity : AppCompatActivity() {
                     val transaction = fragmentManager.beginTransaction()
 
                     transaction.replace(R.id.content,LoginFragment()).commit()
+                    drawer!!.closeDrawer(GravityCompat.START)
+                }
+                R.id.notifications -> {
+                    val fragmentManager = supportFragmentManager
+                    val transaction = fragmentManager.beginTransaction()
+
+                    transaction.replace(R.id.content, NotificationsFragment()).commit()
+                    drawer!!.closeDrawer(GravityCompat.START)
+                }
+                R.id.manager -> {
+                    val fragmentManager = supportFragmentManager
+                    val transaction = fragmentManager.beginTransaction()
+
+                    transaction.replace(R.id.content,ManagerFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
             }

@@ -1,16 +1,13 @@
 package com.travel.phuc.trung.tlcn.tlcn.Login
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -22,7 +19,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
 import com.travel.phuc.trung.tlcn.tlcn.R
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.login_fragment.view.*
 
 class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
@@ -53,13 +49,8 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
         initGoogle()
 
         // ket noi firebase
-
         mAuth = FirebaseAuth.getInstance()
         return view
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
     }
 
     override fun onPause() {
@@ -112,7 +103,7 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
         super.onActivityResult(requestCode, resultCode, data)
 
         // Kết quả được trả về từ khi tung ra Intent từ GoogleSignInApi.getSignInIntent (...);
-        if (requestCode === RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN) {
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
             if (result.isSuccess) {
                 // Google Sign In was successful, authenticate with Firebase
@@ -157,17 +148,6 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
             KhoiTaoUser()
             // phan cua Phúc
             addtaikhoan(uid,name,email,photoUrl)
-
-//            val anhdaidien  : CircleImageView = activity.findViewById<CircleImageView>(R.id.profile_image)
-//            val TenDN       : TextView = activity.findViewById<TextView>(R.id.username)
-//            val Email       : TextView = activity.findViewById<TextView>(R.id.email)
-//
-//            TenDN.text = name
-//            Email.text = email
-//            Glide.with(context).load(photoUrl)
-//                    .centerCrop()
-//                    .error(R.drawable.wellcom0)
-//                    .into(anhdaidien)
         }
 
         val fragmentManager = activity.supportFragmentManager

@@ -31,6 +31,7 @@
 
     <!--menu cua album-->
     <string name="add">Add</string>
+    <string name="edit">Edit</string>
     <string name="upload">Upload</string>
     <string name="delete">Delete</string>
 
@@ -45,13 +46,15 @@
 
     <!--add event of schedule-->
     <string name="action_add">Add Event</string>
+    <string name="action_edit">Edit Event</string>
     <string name="form_button_add">add</string>
-    <string name="form_button_cancel">cancel</string>
+    <string name="form_button_cancel">Cancel</string>
     <string name="date_bd">Bắt đầu</string>
     <string name="date_kt">Kết thúc</string>
     <string name="temptext">text</string>
-    <string name="form_button_ok">ok</string>
+    <string name="form_button_ok">OK</string>
     <string name="title">Title</string>
     <string name="detail">Detail</string>
     <string name="event_date">Event Date</string>
+    <string name="notifications">Thông báo của bạn</string>
 </resources>

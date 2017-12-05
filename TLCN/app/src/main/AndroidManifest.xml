@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-      
+
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
+
         <activity android:name=".MainActivity" />
-      
+
         <activity android:name=".Home.TouristAttraction.HomeActivityDeteiladTourism" />
-      
+
         <activity
             android:name=".Home.TouristAttraction.DeteiladActivityCreateSchedules"
             android:theme="@style/AppTheme.Customtheme" />
@@ -44,7 +44,7 @@
         <activity
             android:name=".GoogleMap.MapsActivity"
             android:label="@string/app_name" />
-      
+
         <activity
             android:name=".Home.HomeActivityComment"
             android:windowSoftInputMode="adjustResize|adjustPan" />
@@ -52,12 +52,12 @@
         <activity
             android:name=".Home.HomeActivityLike"
             android:theme="@style/AppTheme.Customtheme" />
-      
+
         <activity
             android:name=".Home.TouristAttraction.HomeActivityCheckDislike"
-            android:theme="@style/AppTheme.Customtheme"></activity>
-      
-        <activity android:name=".Home.HomeActivityImage"></activity>
+            android:theme="@style/AppTheme.Customtheme"/>
+
+        <activity android:name=".Home.HomeActivityImage"/>
 
         <activity android:name=".Schedule.AddSchudeleActivity"/>
 

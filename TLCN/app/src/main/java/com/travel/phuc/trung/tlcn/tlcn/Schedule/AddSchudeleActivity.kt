@@ -1,5 +1,6 @@
 package com.travel.phuc.trung.tlcn.tlcn.Schedule
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
@@ -74,6 +75,7 @@ class AddSchudeleActivity : AppCompatActivity(), View.OnClickListener {
         btnAdd.setOnClickListener(this)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getWork(string: String) {
         when(string){
             "add" ->{
@@ -87,6 +89,10 @@ class AddSchudeleActivity : AppCompatActivity(), View.OnClickListener {
                 date_KT = date_BD
             }
             "edit" -> {
+                val txtAddEdit : TextView = findViewById(R.id.txt_AddEvent)
+                txtAddEdit.text = "Edit Event"
+                btnAdd.text = "Edit"
+
                 keyValue = intent.getStringExtra("schedule_key")
                 txtTitle.setText(intent.getStringExtra("schedule_title"))
                 txtDetail.setText(intent.getStringExtra("schedule_detail"))

@@ -145,7 +145,7 @@ class AlbumFragment : Fragment() {
                     }
                 }
                 else{
-                    shortToast("trang 1")
+                    shortToast("Không tìm thấy!!!")
                 }
             }
 
@@ -269,7 +269,7 @@ class AlbumFragment : Fragment() {
         albumLoadAdapter.notifyDataSetChanged()
     }
 
-    // phong lon anh khi click vao hinh trong gridview
+    // phong lon anh khi click vao image in gridView
     private fun zoomImageFromThumb(position: Int) {
 
         if (mCurrentAnimator != null) {
@@ -340,9 +340,6 @@ class AlbumFragment : Fragment() {
                 mCurrentAnimator!!.cancel()
             }
 
-            // Animate the four positioning/sizing properties in parallel,
-            // back to their
-            // original values.
             val animatorSet2 = AnimatorSet()
             animatorSet2.play(
                     ObjectAnimator.ofFloat(imageLoad, View.X, startBounds.left.toFloat()))
