@@ -8,14 +8,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Album.AlbumFragment
 import com.travel.phuc.trung.tlcn.tlcn.Favorite.FavoriteFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeTypeInterface
 import com.travel.phuc.trung.tlcn.tlcn.Login.LoginFragment
-import com.travel.phuc.trung.tlcn.tlcn.Manager.ManagerFragment
+import com.travel.phuc.trung.tlcn.tlcn.Manager.ManagerFragmentUser
 import com.travel.phuc.trung.tlcn.tlcn.Notifications.NotificationsFragment
 import com.travel.phuc.trung.tlcn.tlcn.Schedule.ScheduleFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -23,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
 
     val sharedprperences : String="taikhoan"
     var id_USER :String?=null
@@ -40,39 +40,13 @@ class MainActivity : AppCompatActivity() {
         drawer!!.addDrawerListener(actionBarDrawerToggle!!)
         actionBarDrawerToggle!!.syncState()
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        navigationView = findViewById<NavigationView>(R.id.navigation);
+        navigationView = findViewById(R.id.navigation)
         initNavigationDrawer()
+
         // mac dinh mo trang Home
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.content,HomeFragment()).commit()
-        //transaction.replace(R.id.content,ScheduleFragment()).commit()
-    }
-
-    // lấy thông tin user từ sharedprperences
-    private fun doctaikhoan() {
-
-        val sharedpreferences=this.getSharedPreferences(sharedprperences,android.content.Context.MODE_PRIVATE)
-
-        id_USER =sharedpreferences.getString("Uid",null)
-        ten_email =sharedpreferences.getString("Uemail",null)
-        hinhDaiDien=sharedpreferences.getString("UURLAnh",null)
-        ten= sharedpreferences.getString("Uname",null)
-
-        if (id_USER!=null){
-            //ShortToast(id_USER!!)
-
-            val anh: CircleImageView = this.findViewById<CircleImageView>(R.id.profile_image)
-            val tenDN: TextView = this.findViewById<TextView>(R.id.username)
-            val email: TextView = this.findViewById<TextView>(R.id.email)
-
-            tenDN.text = ten
-            email.text = ten_email
-            Glide.with(this).load(hinhDaiDien)
-                    .centerCrop()
-                    .error(R.drawable.wellcom0)
-                    .into(anh)
-        }
     }
 
     // bắt sự kiện đóng drawble khi nhấn nút back
@@ -94,9 +68,36 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // lấy thông tin user từ sharedprperences
+    private fun doctaikhoan() {
+
+        val sharedpreferences=this.getSharedPreferences(sharedprperences,android.content.Context.MODE_PRIVATE)
+
+        id_USER =sharedpreferences.getString("Uid",null)
+        ten_email =sharedpreferences.getString("Uemail",null)
+        hinhDaiDien=sharedpreferences.getString("UURLAnh",null)
+        ten= sharedpreferences.getString("Uname",null)
+
+        if (id_USER != null){
+
+            val anh: CircleImageView = this.findViewById(R.id.profile_image)
+            val tenDN: TextView = this.findViewById(R.id.username)
+            val email: TextView = this.findViewById(R.id.email)
+
+            tenDN.text = ten
+            email.text = ten_email
+            Glide.with(this).load(hinhDaiDien)
+                    .centerCrop()
+                    .error(R.drawable.wellcom0)
+                    .into(anh)
+
+            kiemTraQuyenManager()
+        }
+    }
+
     // select item in drawable
     @SuppressLint("CommitTransaction")
-    fun initNavigationDrawer() {
+    private fun initNavigationDrawer() {
 
         navigationView!!.setNavigationItemSelectedListener { menuItem ->
             val id = menuItem.itemId
@@ -147,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.content,ManagerFragment()).commit()
+                    transaction.replace(R.id.content,ManagerFragmentUser()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
             }
@@ -156,8 +157,28 @@ class MainActivity : AppCompatActivity() {
         actionBarDrawerToggle!!.syncState()
     }
 
-    private fun shortToast(string : String) {
-        val length : Int = Toast.LENGTH_SHORT
-        Toast.makeText(this, string, length).show()
+    private fun kiemTraQuyenManager() {
+        databaseRef.child("Manager").child(id_USER).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot?) {
+                if (p0!!.value == true){
+                    showItem()
+                }
+                else{
+                    hideItem()
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError?) {}
+        })
+    }
+
+    private fun showItem() {
+        val navMenu = navigationView!!.menu
+        navMenu.findItem(R.id.manager).isVisible = true
+    }
+
+    private fun hideItem() {
+        val navMenu = navigationView!!.menu
+        navMenu.findItem(R.id.manager).isVisible = false
     }
 }

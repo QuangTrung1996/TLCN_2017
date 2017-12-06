@@ -1,6 +1,6 @@
 package com.travel.phuc.trung.tlcn.tlcn.Login
 
-class UserData  {
+open class UserData  {
 
     var id : String = ""
     var ten : String = ""

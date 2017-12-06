@@ -102,13 +102,9 @@ class ScheduleFragment : Fragment() {
     // get calendar FireBase ve , luu vao ListView va CompactCalendarView
     private fun addList() {
         database.child("schedule").child(idUser).addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError?) {
+            override fun onCancelled(p0: DatabaseError?) {}
 
-            }
-
-            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
-
-            }
+            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {}
 
             override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
                 val scheduleAfter = p0!!.getValue(ScheduleEventData::class.java)

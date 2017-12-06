@@ -9,36 +9,42 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/anhao"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="260dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingLeft="5dp">
+        android:layout_margin="5dp">
 
         <TextView
-            android:id="@+id/notification_tenNguoiGui"
+            android:id="@+id/txtId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/notification_noiDung"
+            android:id="@+id/txtNameUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/notification_thoiGian"
+            android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"/>
 
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/managerCheckBox"
+        android:layout_width="50dp"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

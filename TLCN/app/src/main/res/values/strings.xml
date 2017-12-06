@@ -61,4 +61,8 @@
 
     <string name="title_activity_festival_detail">PTTravel</string>
 
+    <string name="manager_user">Danh sách User</string>
+    <string name="manager_quyen">Quyền</string>
+
 </resources>
+

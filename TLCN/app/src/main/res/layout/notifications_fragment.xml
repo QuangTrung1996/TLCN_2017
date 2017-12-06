@@ -9,7 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/notifications"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_margin="5dp"/>
 
     <ListView
         android:id="@+id/notifications_listView"

@@ -5,6 +5,6 @@
     <item  android:id="@+id/album" android:title="Album"  android:icon="@drawable/album"/>
     <item android:id="@+id/favorite" android:title="Favorite"  android:icon="@drawable/chuayeuthich"/>
     <item android:id="@+id/notifications" android:title="Notifications" />
-    <item android:id="@+id/manager" android:title="Manager" />
+    <item android:id="@+id/manager" android:title="Manager" android:visible="false"/>
     <item android:id="@+id/login" android:title="Login" />
 </menu>
