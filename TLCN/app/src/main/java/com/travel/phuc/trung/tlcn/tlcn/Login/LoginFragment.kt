@@ -23,23 +23,19 @@ import kotlinx.android.synthetic.main.login_fragment.view.*
 
 class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    var name = ""
-    var email = ""
-    var photoUrl = ""
-    var emailVerified = false   // Kiểm tra xem email của người dùng có được xác minh hay không
-    var uid = ""                // ma uid trong firebase
+    private var name = ""
+    private var email = ""
+    private var photoUrl = ""
+    private var emailVerified = false   // Kiểm tra xem email của người dùng có được xác minh hay không
+    private var uid = ""                // ma uid trong firebase
 
-    val sharedprperences : String="taikhoan"
+    private val sharedPreferences : String="taikhoan"
 
     private lateinit var dialog: ProgressDialog             // thong bao cho
     private lateinit var mAuth : FirebaseAuth               // khai bao ket noi firebase
     private lateinit var mGoogleApiClient: GoogleApiClient  // khai bao sign in google
     private val RC_SIGN_IN = 999
-    var database    : DatabaseReference
-
-    init {
-        database    = FirebaseDatabase.getInstance().reference
-    }
+    private var database : DatabaseReference = FirebaseDatabase.getInstance().reference
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view =inflater!!.inflate(R.layout.login_fragment,container,false)
@@ -120,7 +116,7 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
         // thong bao cho
         dialog = ProgressDialog.show(activity,"Loading...","Please wait",true)
 
-        val credential = GoogleAuthProvider.getCredential(account.getIdToken(), null)
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         mAuth.signInWithCredential(credential).addOnCompleteListener(activity) { task ->
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
@@ -128,7 +124,7 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
                 dialog.dismiss()
             } else {
                 // If sign in fails, display a message to the user.
-                ShortToast("Login google Failed")
+                shortToast("Login google Failed")
                 dialog.dismiss()
             }
         }
@@ -145,7 +141,7 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
             emailVerified = user.isEmailVerified
             uid = user.uid
 
-            KhoiTaoUser()
+            khoiTaoUser()
             // phan cua Phúc
             addtaikhoan(uid,name,email,photoUrl)
         }
@@ -157,22 +153,22 @@ class LoginFragment : Fragment(), View.OnClickListener, GoogleApiClient.OnConnec
 
     // sharedpreferences
     private fun addtaikhoan(uid: String, name: String, email: String, photoUrl: String) {
-        val sharedpreferences=this.activity.getSharedPreferences(sharedprperences,android.content.Context.MODE_PRIVATE);
-        val editor=sharedpreferences.edit();
-        editor.putString("Uid",uid);
-        editor.putString("Uname",name);
-        editor.putString("Uemail",email);
-        editor.putString("UURLAnh",photoUrl);
+        val sharedPreferences=this.activity.getSharedPreferences(sharedPreferences,android.content.Context.MODE_PRIVATE)
+        val editor=sharedPreferences.edit()
+        editor.putString("Uid",uid)
+        editor.putString("Uname",name)
+        editor.putString("Uemail",email)
+        editor.putString("UURLAnh",photoUrl)
         editor.apply()
     }
 
-    private fun KhoiTaoUser() {
+    private fun khoiTaoUser() {
         database.child("Users").child(uid).setValue(UserData(uid,name,email,photoUrl))
     }
 
     // hien dong thong bao
-    private fun ShortToast(messsage : String) {
+    private fun shortToast(str : String) {
         val length : Int = Toast.LENGTH_SHORT
-        Toast.makeText(activity, messsage, length).show()
+        Toast.makeText(activity, str, length).show()
     }
 }

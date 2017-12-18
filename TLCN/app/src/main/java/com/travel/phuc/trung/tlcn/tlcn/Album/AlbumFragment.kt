@@ -24,30 +24,30 @@ import com.google.firebase.storage.StorageReference
 import com.travel.phuc.trung.tlcn.tlcn.R
 import java.util.*
 
-class AlbumFragment : Fragment() {
+class AlbumFragment : Fragment(){
 
-    val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
-    val storageRef  : StorageReference = FirebaseStorage.getInstance().reference
+    private val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
+    private val storageRef  : StorageReference = FirebaseStorage.getInstance().reference
 
-    var idUser : String = "null"
-    var filePath : Uri? = null
-    var FilePathArray: ArrayList<Uri> = ArrayList()
-    val listImageUrl : ArrayList<String> = ArrayList()
-    val listKeyImage : ArrayList<String> = ArrayList()
+    private var idUser : String = "null"
+    private var filePath : Uri? = null
+    private var filePathArray: ArrayList<Uri> = ArrayList()
+    private val listImageUrl : ArrayList<String> = ArrayList()
+    private val listKeyImage : ArrayList<String> = ArrayList()
 
-    val PICK_IMAGE_REQUEST : Int = 71
-    var selectItemDeleteLoad = -1
-    var selectItemDeleteUp = -1
+    private val PICK_IMAGE_REQUEST : Int = 71
+    private var selectItemDeleteLoad = -1
+    private var selectItemDeleteUp = -1
 
-    lateinit var viewSwitcher : ViewSwitcher
-    lateinit var myFirstView : RelativeLayout
-    lateinit var mySecondView : RelativeLayout
-    lateinit var gridAlbumLoad : GridView
-    lateinit var gridAlbumUp   : GridView
-    lateinit var imageLoad     : ImageView
-    lateinit var imageUp       : ImageView
-    lateinit var albumLoadAdapter : AlbumLoadAdapter
-    lateinit var albumUpAdapter : AlbumUpAdapter
+    private lateinit var viewSwitcher : ViewSwitcher
+    private lateinit var myFirstView : RelativeLayout
+    private lateinit var mySecondView : RelativeLayout
+    private lateinit var gridAlbumLoad : GridView
+    private lateinit var gridAlbumUp   : GridView
+    private lateinit var imageLoad     : ImageView
+    private lateinit var imageUp       : ImageView
+    private lateinit var albumLoadAdapter : AlbumLoadAdapter
+    private lateinit var albumUpAdapter : AlbumUpAdapter
 
     // zoom image when onclick gridview
     private var mCurrentAnimator: Animator? = null
@@ -55,11 +55,9 @@ class AlbumFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.album_fragment,container,false)
-
-        setHasOptionsMenu(true)
-
         val sharedPreferences = activity.getSharedPreferences("taikhoan",android.content.Context.MODE_PRIVATE)
         idUser = sharedPreferences.getString("Uid",null)
+        setHasOptionsMenu(true)
 
         viewSwitcher = view.findViewById(R.id.viewSwitcher_album)
         myFirstView = view.findViewById(R.id.container_load)
@@ -74,7 +72,7 @@ class AlbumFragment : Fragment() {
 
             loadAlbum()
 
-            albumUpAdapter = AlbumUpAdapter(activity, FilePathArray)
+            albumUpAdapter = AlbumUpAdapter(activity, filePathArray)
             albumLoadAdapter = AlbumLoadAdapter(activity, listImageUrl)
             gridAlbumLoad.adapter = albumLoadAdapter
             gridAlbumUp.adapter   = albumUpAdapter
@@ -97,7 +95,7 @@ class AlbumFragment : Fragment() {
             })
 
             gridAlbumUp.onItemLongClickListener = AdapterView.OnItemLongClickListener({parent, view1, position, id->
-                FilePathArray.removeAt(position)
+                filePathArray.removeAt(position)
                 albumUpAdapter.notifyDataSetChanged()
                 true
             })
@@ -131,12 +129,12 @@ class AlbumFragment : Fragment() {
 
             R.id.upload_menu ->{
                 if (viewSwitcher.currentView == mySecondView){
-                    val temp = FilePathArray.size-1
+                    val temp = filePathArray.size-1
                     for(i in temp downTo 0){
                         uploadImage(i, temp)
                         if (i == 0 && viewSwitcher.currentView != myFirstView){
                             viewSwitcher.showPrevious()
-                            FilePathArray.clear()
+                            filePathArray.clear()
                             albumUpAdapter.notifyDataSetChanged()
                         }
                     }
@@ -166,7 +164,7 @@ class AlbumFragment : Fragment() {
                             shortToast("Chưa chọn hình để xóa.")
                         }
                         else{
-                            FilePathArray.removeAt(selectItemDeleteUp)
+                            filePathArray.removeAt(selectItemDeleteUp)
                             albumUpAdapter.notifyDataSetChanged()
                             selectItemDeleteUp = -1
                         }
@@ -209,7 +207,7 @@ class AlbumFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data!!.data != null){
             filePath = data.data
-            FilePathArray.add(filePath!!)
+            filePathArray.add(filePath!!)
             albumUpAdapter.notifyDataSetChanged()
 
             Log.d("AAA",filePath.toString())
@@ -226,7 +224,7 @@ class AlbumFragment : Fragment() {
 
         //val ref : StorageReference = storageref.child("image/" + id_random)
         val ref : StorageReference = storageRef.child(idUser + "/" + nameImage + ".png")
-        ref.putFile(FilePathArray[position])
+        ref.putFile(filePathArray[position])
                 .addOnSuccessListener ({ taskSnapshot ->
                     if (position == 0){
                         dialog.dismiss()
@@ -373,7 +371,7 @@ class AlbumFragment : Fragment() {
         }
 
         // chon hinh trong mang
-        val bm = BitmapFactory.decodeStream(activity.contentResolver.openInputStream(FilePathArray[position]))
+        val bm = BitmapFactory.decodeStream(activity.contentResolver.openInputStream(filePathArray[position]))
         imageUp.setImageBitmap(bm)
 
         val startBounds = Rect()

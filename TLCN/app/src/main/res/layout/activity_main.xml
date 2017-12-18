@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.travel.phuc.trung.tlcn.tlcn.MainActivity"
     android:id="@+id/drawer">
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content"/>
 
-    </FrameLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation"
         android:layout_width="wrap_content"
@@ -21,10 +20,6 @@
         app:itemIconTint="@color/darkgray"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:menu="@menu/drawble_menu"
-        >
-
-    </android.support.design.widget.NavigationView>
-
+        app:menu="@menu/drawble_menu"/>
 
 </android.support.v4.widget.DrawerLayout>

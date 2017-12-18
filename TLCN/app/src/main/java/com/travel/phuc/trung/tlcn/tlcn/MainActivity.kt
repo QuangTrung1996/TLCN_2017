@@ -20,15 +20,15 @@ import com.travel.phuc.trung.tlcn.tlcn.Schedule.ScheduleFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
-    val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
+    private val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
 
-    val sharedprperences : String="taikhoan"
-    var id_USER :String?=null
-    var ten:String? =null
-    var ten_email:String? = null
-    var hinhDaiDien:String?=null
+    private val sharedPreferences : String="taikhoan"
+    private var idUSER      :String? = null
+    private var name        :String? = null
+    private var nameEmail   :String? = null
+    private var imgUser     :String? = null
 
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
     private var navigationView: NavigationView? = null
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         actionBarDrawerToggle = ActionBarDrawerToggle(this@MainActivity,drawer,R.string.open,R.string.close)
         drawer!!.addDrawerListener(actionBarDrawerToggle!!)
         actionBarDrawerToggle!!.syncState()
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         initNavigationDrawer()
 
         // mac dinh mo trang Home
+        openFragmentHome()
+    }
+
+    private fun openFragmentHome() {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.content,HomeFragment()).commit()
@@ -62,37 +67,56 @@ class MainActivity : AppCompatActivity() {
     // bắt sự kiện đóng mở drawble trên button menu actionbar
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (actionBarDrawerToggle!!.onOptionsItemSelected(item)) {
-            doctaikhoan()
+            docTaiKhoan()
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
     // lấy thông tin user từ sharedprperences
-    private fun doctaikhoan() {
+    private fun docTaiKhoan() {
 
-        val sharedpreferences=this.getSharedPreferences(sharedprperences,android.content.Context.MODE_PRIVATE)
+        val sharedPreferences = this.getSharedPreferences(sharedPreferences,android.content.Context.MODE_PRIVATE)
 
-        id_USER =sharedpreferences.getString("Uid",null)
-        ten_email =sharedpreferences.getString("Uemail",null)
-        hinhDaiDien=sharedpreferences.getString("UURLAnh",null)
-        ten= sharedpreferences.getString("Uname",null)
+        idUSER      = sharedPreferences.getString("Uid",null)
+        nameEmail   = sharedPreferences.getString("Uemail",null)
+        imgUser     = sharedPreferences.getString("UURLAnh",null)
+        name        = sharedPreferences.getString("Uname",null)
 
-        if (id_USER != null){
+        if (idUSER != null){
 
             val anh: CircleImageView = this.findViewById(R.id.profile_image)
             val tenDN: TextView = this.findViewById(R.id.username)
             val email: TextView = this.findViewById(R.id.email)
 
-            tenDN.text = ten
-            email.text = ten_email
-            Glide.with(this).load(hinhDaiDien)
+            tenDN.text = name
+            email.text = nameEmail
+            Glide.with(this).load(imgUser)
                     .centerCrop()
                     .error(R.drawable.wellcom0)
                     .into(anh)
 
-            kiemTraQuyenManager()
+            // ẩn menu login và hiện thông tin của những menu khác
+            showMenu()
         }
+        else{
+            hideMenu()
+        }
+    }
+
+    private fun hideMenu() {
+        val navMenu = navigationView!!.menu
+        navMenu.findItem(R.id.login).isVisible = true
+        navMenu.setGroupVisible(R.id.group_menu, false)
+    }
+
+    private fun showMenu() {
+        val navMenu = navigationView!!.menu
+        navMenu.findItem(R.id.login).isVisible = false
+        navMenu.setGroupVisible(R.id.group_menu, true)
+
+        // kiem tra quyen quan ly
+        checkManager()
     }
 
     // select item in drawable
@@ -104,9 +128,7 @@ class MainActivity : AppCompatActivity() {
 
             when (id) {
                 R.id.home -> {
-                    val fragmentManager = supportFragmentManager
-                    val transaction = fragmentManager.beginTransaction()
-                    transaction.replace(R.id.content,HomeFragment()).commit()
+                    openFragmentHome()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.schedule -> {
@@ -151,34 +173,38 @@ class MainActivity : AppCompatActivity() {
                     transaction.replace(R.id.content,ManagerFragmentUser()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
+                R.id.logout -> {
+                    val sharedPreferences = getSharedPreferences(sharedPreferences,android.content.Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("Uid",null)
+                    editor.putString("Uname",null)
+                    editor.putString("Uemail",null)
+                    editor.putString("UURLAnh",null)
+                    editor.apply()
+
+                    openFragmentHome()
+                    drawer!!.closeDrawer(GravityCompat.START)
+                }
             }
             true
         }
         actionBarDrawerToggle!!.syncState()
     }
 
-    private fun kiemTraQuyenManager() {
-        databaseRef.child("Manager").child(id_USER).addValueEventListener(object : ValueEventListener {
+    private fun checkManager() {
+        databaseRef.child("Manager").child(idUSER).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot?) {
                 if (p0!!.value == true){
-                    showItem()
+                    val navMenu = navigationView!!.menu
+                    navMenu.findItem(R.id.manager).isVisible = true
                 }
                 else{
-                    hideItem()
+                    val navMenu = navigationView!!.menu
+                    navMenu.findItem(R.id.manager).isVisible = false
                 }
             }
 
             override fun onCancelled(p0: DatabaseError?) {}
         })
-    }
-
-    private fun showItem() {
-        val navMenu = navigationView!!.menu
-        navMenu.findItem(R.id.manager).isVisible = true
-    }
-
-    private fun hideItem() {
-        val navMenu = navigationView!!.menu
-        navMenu.findItem(R.id.manager).isVisible = false
     }
 }

@@ -63,6 +63,10 @@
 
     <string name="manager_user">Danh sách User</string>
     <string name="manager_quyen">Quyền</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="home">Home</string>
+    <string name="schedule">Schedule</string>
 
 </resources>
 

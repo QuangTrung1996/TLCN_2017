@@ -18,24 +18,26 @@ import java.util.*
 
 class ScheduleFragment : Fragment() {
 
-    val sdf      : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy 'at' HH:mm", Locale.getDefault())
-    val sdf_date : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-    val sdf_time : SimpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-    var idUser : String = "null"
-    val key : String = "$1$2$3$4$5$6$"
+    private val sdf      : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy 'at' HH:mm", Locale.getDefault())
+    private val sdf_date : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    private val sdf_time : SimpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+    private var idUser : String = "null"
+    private val key : String = "$1$2$3$4$5$6$"
 
-    lateinit var dateClick : Date
-    var keyValue = ""
+    private lateinit var dateClick : Date
+    private var keyValue = ""
 
-    val database : DatabaseReference = FirebaseDatabase.getInstance().reference
+    private val database : DatabaseReference = FirebaseDatabase.getInstance().reference
 
     // khai bao cho lich
-    lateinit var compactCalendar : CompactCalendarView
-    lateinit var lvLich : ListView
-    lateinit var adapter : ScheduleAdapter
-    val scheduleEvents : ArrayList<ScheduleEventData> = ArrayList() // dung lam su lien truyen len adapter
-    val listEvents : ArrayList<ScheduleEventData> = ArrayList()     // luu cac gia tri lay tu firebase ve
-    val date : Date = Date()
+    private lateinit var compactCalendar : CompactCalendarView
+    private lateinit var lvLich : ListView
+    private lateinit var adapter : ScheduleAdapter
+    private val scheduleEvents : ArrayList<ScheduleEventData> = ArrayList() // dung lam su lien truyen len adapter
+    private val listEvents : ArrayList<ScheduleEventData> = ArrayList()     // luu cac gia tri lay tu firebase ve
+    private val date : Date = Date()
+
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.schedule_fragment,container,false)
@@ -304,16 +306,6 @@ class ScheduleFragment : Fragment() {
                 val intent = Intent(activity, AddSchudeleActivity::class.java)
                 intent.putExtra("work_menu","add")
                 startActivity(intent)
-                return true
-            }
-            R.id.action_day_view -> {
-                return true
-            }
-            R.id.action_three_day_view -> {
-                return true
-            }
-            R.id.action_week_view -> {
-                shortToast(listEvents.size.toString())
                 return true
             }
         }

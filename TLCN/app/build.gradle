@@ -42,17 +42,16 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation 'com.google.firebase:firebase-storage:11.6.0'
-    implementation 'com.google.android.gms:play-services-maps:11.6.0'
-    implementation 'com.google.firebase:firebase-auth:11.6.0'
-    implementation 'com.google.firebase:firebase-database:11.6.0'
-    implementation 'com.google.android.gms:play-services-auth:11.6.0'       // tai khoan google
+    implementation 'com.google.firebase:firebase-storage:11.6.2'
+    implementation 'com.google.android.gms:play-services-maps:11.6.2'
+    implementation 'com.google.firebase:firebase-auth:11.6.2'
+    implementation 'com.google.firebase:firebase-database:11.6.2'
+    implementation 'com.google.android.gms:play-services-auth:11.6.2'       // tai khoan google
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'// hinh tron
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation 'com.github.sundeepk:compact-calendar-view:2.0.2.2'
     implementation 'com.github.sundeepk:compact-calendar-view:2.0.2.2'
 }
 apply plugin: 'com.google.gms.google-services'

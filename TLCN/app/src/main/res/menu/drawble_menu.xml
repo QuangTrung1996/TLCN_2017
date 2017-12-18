@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/home"  android:title="Home"   android:icon="@drawable/home"/>
-    <item android:id="@+id/schedule" android:title="Schedule"  android:icon="@drawable/lich"/>
-    <item  android:id="@+id/album" android:title="Album"  android:icon="@drawable/album"/>
-    <item android:id="@+id/favorite" android:title="Favorite"  android:icon="@drawable/chuayeuthich"/>
-    <item android:id="@+id/notifications" android:title="Notifications" />
-    <item android:id="@+id/manager" android:title="Manager" android:visible="false"/>
-    <item android:id="@+id/login" android:title="Login" />
+    <item
+        android:id="@+id/login"
+        android:icon="@drawable/ic_action_person"
+        android:title="@string/login"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/home"/>
+
+    <group
+        android:id="@+id/group_menu"
+        android:visible="false">
+
+        <item
+            android:id="@+id/schedule"
+            android:title="@string/schedule"
+            android:icon="@drawable/ic_calendar"/>
+
+        <item
+            android:id="@+id/album"
+            android:title="Album"
+            android:icon="@drawable/ic_album"/>
+
+        <item
+            android:id="@+id/favorite"
+            android:title="Favorite"
+            android:icon="@drawable/chuayeuthich"/>
+
+        <item
+            android:id="@+id/notifications"
+            android:title="Notifications"
+            android:icon="@drawable/ic_notification"/>
+
+        <item
+            android:id="@+id/manager"
+            android:title="Manager"
+            android:icon="@drawable/ic_manager"
+            android:visible="false"/>
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout"/>
+    </group>
 </menu>
