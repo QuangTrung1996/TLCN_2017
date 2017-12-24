@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/add_menu"  android:title="@string/add"/>
-    <item android:id="@+id/upload_menu" android:title="@string/upload"/>
-    <item  android:id="@+id/delete_menu" android:title="@string/delete"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/add_menu"
+        android:title="@string/add"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <item android:id="@+id/back_menu"
+        android:title="@string/back"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
 </menu>

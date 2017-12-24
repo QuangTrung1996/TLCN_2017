@@ -3,9 +3,8 @@ package com.travel.phuc.trung.tlcn.tlcn.Home
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.widget.Toast
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.Login.UserData
+import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 import com.travel.phuc.trung.tlcn.tlcn.R
 import kotlinx.android.synthetic.main.activity_home_like.*
 class HomeActivityLike : AppCompatActivity() {
@@ -56,7 +55,7 @@ class HomeActivityLike : AppCompatActivity() {
                     }
 
                     override fun onDataChange(p0: DataSnapshot?) {
-                        var tt:UserData ?= p0!!.getValue(UserData::class.java)
+                        var tt: UserData?= p0!!.getValue(UserData::class.java)
                         ArrayListThongTin!!.add(tt!!)
                         var adapter = HomeLvAdapterLike(this@HomeActivityLike,ArrayListThongTin)
                         adapter.notifyDataSetChanged()

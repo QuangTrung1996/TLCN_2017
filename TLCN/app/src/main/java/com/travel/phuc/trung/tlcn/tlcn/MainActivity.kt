@@ -10,13 +10,13 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.Album.AlbumFragment
 import com.travel.phuc.trung.tlcn.tlcn.Favorite.FavoriteFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
-import com.travel.phuc.trung.tlcn.tlcn.Login.LoginFragment
-import com.travel.phuc.trung.tlcn.tlcn.Manager.ManagerFragmentUser
-import com.travel.phuc.trung.tlcn.tlcn.Notifications.NotificationsFragment
-import com.travel.phuc.trung.tlcn.tlcn.Schedule.ScheduleFragment
+import com.travel.phuc.trung.tlcn.tlcn.albums.AlbumFragment
+import com.travel.phuc.trung.tlcn.tlcn.logins.LoginFragment
+import com.travel.phuc.trung.tlcn.tlcn.managers.ManagerFragmentUser
+import com.travel.phuc.trung.tlcn.tlcn.notifications.NotificationsFragment
+import com.travel.phuc.trung.tlcn.tlcn.schedules.ScheduleFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity(){
     private var name        :String? = null
     private var nameEmail   :String? = null
     private var imgUser     :String? = null
+
+    lateinit var anh    : CircleImageView
+    lateinit var tenDN  : TextView
+    lateinit var email  : TextView
 
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
     private var navigationView: NavigationView? = null
@@ -46,6 +50,14 @@ class MainActivity : AppCompatActivity(){
 
         // mac dinh mo trang Home
         openFragmentHome()
+
+        //testAAAA()
+    }
+
+    private fun testAAAA() {
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.content, AlbumFragment()).commit()
     }
 
     private fun openFragmentHome() {
@@ -85,15 +97,15 @@ class MainActivity : AppCompatActivity(){
 
         if (idUSER != null){
 
-            val anh: CircleImageView = this.findViewById(R.id.profile_image)
-            val tenDN: TextView = this.findViewById(R.id.username)
-            val email: TextView = this.findViewById(R.id.email)
+            anh   = this.findViewById(R.id.profile_image)
+            tenDN = this.findViewById(R.id.username)
+            email = this.findViewById(R.id.email)
 
             tenDN.text = name
             email.text = nameEmail
             Glide.with(this).load(imgUser)
                     .centerCrop()
-                    .error(R.drawable.wellcom0)
+                    .error(R.drawable.anhao)
                     .into(anh)
 
             // ẩn menu login và hiện thông tin của những menu khác
@@ -156,7 +168,7 @@ class MainActivity : AppCompatActivity(){
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.content,LoginFragment()).commit()
+                    transaction.replace(R.id.content, LoginFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.notifications -> {
@@ -170,7 +182,7 @@ class MainActivity : AppCompatActivity(){
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.content,ManagerFragmentUser()).commit()
+                    transaction.replace(R.id.content, ManagerFragmentUser()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.logout -> {
@@ -181,6 +193,16 @@ class MainActivity : AppCompatActivity(){
                     editor.putString("Uemail",null)
                     editor.putString("UURLAnh",null)
                     editor.apply()
+
+                    anh   = this.findViewById(R.id.profile_image)
+                    tenDN = this.findViewById(R.id.username)
+                    email = this.findViewById(R.id.email)
+
+                    tenDN.text = ""
+                    email.text = ""
+                    Glide.with(this).load(R.drawable.anhao)
+                            .centerCrop()
+                            .into(anh)
 
                     openFragmentHome()
                     drawer!!.closeDrawer(GravityCompat.START)

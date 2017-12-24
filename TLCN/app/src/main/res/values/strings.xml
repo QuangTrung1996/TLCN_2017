@@ -49,8 +49,8 @@
     <string name="action_edit">Edit Event</string>
     <string name="form_button_add">add</string>
     <string name="form_button_cancel">Cancel</string>
-    <string name="date_bd">Bắt đầu</string>
-    <string name="date_kt">Kết thúc</string>
+    <string name="date_bd">Bắt đầu :</string>
+    <string name="date_kt">Kết thúc :</string>
     <string name="temptext">text</string>
     <string name="form_button_ok">OK</string>
     <string name="title">Title</string>
@@ -67,6 +67,7 @@
     <string name="logout">Logout</string>
     <string name="home">Home</string>
     <string name="schedule">Schedule</string>
+    <string name="back">Back</string>
 
 </resources>
 

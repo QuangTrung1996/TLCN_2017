@@ -12,4 +12,7 @@
     <color name="black">#000000</color>
     <color name="duskYellow">#ffbf00</color>
     <color name="lightGrey">#c1c1c1</color>
+
+    <color name="colorFAB1">#2196F3</color>
+    <color name="colorFAB2">#E040FB</color>
 </resources>

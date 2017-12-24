@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.travel.phuc.trung.tlcn.tlcn.Login.UserData
+import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
-import java.text.SimpleDateFormat
 
 /**
  * Created by Admin on 19/11/2017.

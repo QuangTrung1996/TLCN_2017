@@ -1,54 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/viewSwitcher_album"
+<RelativeLayout android:id="@+id/container_load"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:padding="2dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:id="@+id/container_load"
+    <GridView
+        android:id="@+id/grid_album"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:numColumns="4" />
 
-        <GridView
-            android:id="@+id/grid_album_load"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="4" />
-
-        <ImageView
-            android:id="@+id/expanded_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            android:background="@color/darkgray"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/container_up"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
-
-        <GridView
-            android:id="@+id/grid_album_up"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="4" />
-
-        <ImageView
-            android:id="@+id/expanded_image_up"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            android:background="@color/darkgray"/>
-
-    </RelativeLayout>
-
-</ViewSwitcher>
+</RelativeLayout>

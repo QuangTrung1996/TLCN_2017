@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TLCN.iml" filepath="$PROJECT_DIR$/TLCN.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multipleimagepickerlibrary/multipleimagepickerlibrary.iml" filepath="$PROJECT_DIR$/multipleimagepickerlibrary/multipleimagepickerlibrary.iml" />
     </modules>
   </component>
 </project>

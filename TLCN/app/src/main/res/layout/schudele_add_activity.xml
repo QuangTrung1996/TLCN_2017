@@ -56,10 +56,12 @@
         android:id="@+id/eventLayoutBD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:text="@string/date_bd"
@@ -67,11 +69,16 @@
 
         <TextView
             android:id="@+id/txt_eventBD"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:padding="3dp"
             android:text="@string/temptext"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_calendar"/>
 
     </LinearLayout>
 
@@ -79,10 +86,11 @@
         android:id="@+id/eventLayoutKT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:gravity="center">
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:text="@string/date_kt"
@@ -90,11 +98,16 @@
 
         <TextView
             android:id="@+id/txt_eventKT"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:textSize="16sp"
             android:padding="3dp"
             android:text="@string/temptext"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_calendar"/>
 
     </LinearLayout>
 
