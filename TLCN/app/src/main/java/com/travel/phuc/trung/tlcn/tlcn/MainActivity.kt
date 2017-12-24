@@ -10,6 +10,8 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
+import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InformationFragment
+import com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation.ConfirmFragment
 import com.travel.phuc.trung.tlcn.tlcn.Favorite.FavoriteFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
 import com.travel.phuc.trung.tlcn.tlcn.albums.AlbumFragment
@@ -205,6 +207,22 @@ class MainActivity : AppCompatActivity(){
                             .into(anh)
 
                     openFragmentHome()
+                    drawer!!.closeDrawer(GravityCompat.START)
+                }
+                R.id.addinfromation ->
+                {
+                    val fragmentManager = supportFragmentManager
+                    val transaction = fragmentManager.beginTransaction()
+
+                    transaction.replace(R.id.content, InformationFragment()).commit()
+                    drawer!!.closeDrawer(GravityCompat.START)
+                }
+                R.id.confirm ->
+                {
+
+                    val fragmentManager = supportFragmentManager
+                    val transaction = fragmentManager.beginTransaction()
+                    transaction.replace(R.id.content, ConfirmFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
             }

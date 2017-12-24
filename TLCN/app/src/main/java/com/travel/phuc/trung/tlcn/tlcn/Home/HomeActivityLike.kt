@@ -3,6 +3,7 @@ package com.travel.phuc.trung.tlcn.tlcn.Home
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.widget.Toast
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 import com.travel.phuc.trung.tlcn.tlcn.R
@@ -27,8 +28,6 @@ class HomeActivityLike : AppCompatActivity() {
         window.setLayout((width * .8).toInt(),(height * .65).toInt())
         var intent = intent
         keyDL=intent.getStringExtra("keyDDDL")
-        soLike = intent.getIntExtra("solike",0)
-        tongsolike.text = soLike.toString()+"lược like"
         thoatLike.setOnClickListener {
             finish()
         }
@@ -49,13 +48,15 @@ class HomeActivityLike : AppCompatActivity() {
             }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
+                soLike++
+                tongsolike.text = soLike.toString().plus("lược like")
                 database.child("Users").child(p0!!.value.toString()).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError?) {
                         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     }
 
                     override fun onDataChange(p0: DataSnapshot?) {
-                        var tt: UserData?= p0!!.getValue(UserData::class.java)
+                        var tt:UserData ?= p0!!.getValue(UserData::class.java)
                         ArrayListThongTin!!.add(tt!!)
                         var adapter = HomeLvAdapterLike(this@HomeActivityLike,ArrayListThongTin)
                         adapter.notifyDataSetChanged()
@@ -65,6 +66,8 @@ class HomeActivityLike : AppCompatActivity() {
             }
 
             override fun onChildRemoved(p0: DataSnapshot?) {
+                soLike --
+                tongsolike.text = soLike.toString().plus("lược like")
                 for (i in 0 until ArrayListThongTin.size-1)
                 {
                     if (ArrayListThongTin.get(i).id ==p0!!.value.toString())

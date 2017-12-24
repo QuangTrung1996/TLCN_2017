@@ -66,7 +66,16 @@ class HomeFragmentFestivalLocation : Fragment() {
             }
 
             override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
+                var tt = DataFestival(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.TenLeHoi, data.DiaChi, data.AnhDaiDien, data.NgayBD, data.NgayKT)
+                for (i in 0 until ArrlistFestival.size)
+                {
+                    if (ArrlistFestival.get(i).key==p0!!.key)
+                    {
+                        ArrlistFestival[i]=tt
+                        adapterLH.notifyDataSetChanged()
+                    }
+                }
             }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {

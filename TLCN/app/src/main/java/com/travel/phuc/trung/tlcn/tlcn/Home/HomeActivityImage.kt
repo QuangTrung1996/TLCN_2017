@@ -4,14 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.FrameLayout
-import android.widget.Toast
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladAdaprerImage
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeDistrictsData
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.RecrycleListViewAdapter
 import com.travel.phuc.trung.tlcn.tlcn.R
 import kotlinx.android.synthetic.main.activity_home_image.*
 

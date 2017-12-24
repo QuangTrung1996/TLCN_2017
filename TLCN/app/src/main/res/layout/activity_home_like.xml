@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="11 Like"
+            android:text="0 Like"
             android:layout_marginStart="15dp" />
         </LinearLayout>
     <LinearLayout

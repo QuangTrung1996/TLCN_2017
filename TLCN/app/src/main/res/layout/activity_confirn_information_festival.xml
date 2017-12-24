@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation.ConfirnInformationFestival" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#e18181">
+
+        <ScrollView
+            android:id="@+id/scrollADDfestival"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f9e9e9"
+            android:fadeScrollbars="false"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/CFAddTenDDLH"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bogoc_edittext"
+                    android:hint="Tên địa điểm" />
+
+                <EditText
+                    android:id="@+id/CFAddDiachiLH"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="Địa Chỉ" />
+
+                <EditText
+                    android:id="@+id/CFAddMotaLH"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="Mô tả chi tiết địa điểm của bạn"
+                    android:inputType="textMultiLine"
+                    android:maxLength="40" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:text="Ngày Bắt Đầu"
+                            android:textColor="@color/blue" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/CFAddgioBDLH"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/bogocbutton" />
+
+                            <Button
+                                android:id="@+id/CFAddngayBDLH"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/bogocbutton" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:text="Ngày Bắt Kết Thúc"
+                            android:textColor="@color/blue" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/CFAddgioKTLH"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/bogocbutton" />
+
+                            <Button
+                                android:id="@+id/CFAddngayKTLH"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/bogocbutton" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:background="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/CFViewPager_Hinhanh_chitietLH"
+                        android:layout_width="match_parent"
+                        android:layout_height="210dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffff">
+                    </android.support.v4.view.ViewPager>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+                    <EditText
+                        android:id="@+id/CFthongtinphanhoiLH"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bogoc_edittext"
+                        android:hint="thông tin phản hồi"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp" />
+                </LinearLayout>
+                <FrameLayout
+                    android:id="@+id/CFconfirmLH"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/CFAddcapnhatTTLH"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:background="@drawable/botrongoc"
+                        android:text="Cập Nhật Thông Tin"
+                        android:textStyle="normal"
+                        android:textSize="10sp"
+                        />
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="right"
+                        android:id="@+id/CFkhongxacnhanLH"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:background="@drawable/botrongoc"
+                        android:text="Không xác nhận"
+                        android:textStyle="normal"
+                        android:textSize="10sp"
+                        />
+                </FrameLayout>
+                <ProgressBar
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/CFaddtientrinhcapnhatLH"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Cập Nhật Thông Tin"
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    />
+                <fragment
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/CFmapLH"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
+

@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.MapsActivity
+import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
+import com.travel.phuc.trung.tlcn.tlcn.Home.HomeTypeAdapter
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeInformationTourisData
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeLvTourist
 import com.travel.phuc.trung.tlcn.tlcn.R
@@ -84,8 +86,18 @@ class HomeFestivalListAdapter constructor(var context:Context,var listFestival:A
             intent.putExtra("data", Thongtin)
             context.startActivity(intent)
         })
-
-        return return view as View
+        viewHolder.like.setOnClickListener {
+            val intent = Intent(view!!.getContext(), HomeActivityLike::class.java)
+            intent.putExtra("keyDDDL",listFestival.get(position).key)
+            view!!.getContext().startActivity(intent)
+        }
+        viewHolder.comment.setOnClickListener {
+            val intent = Intent(view!!.getContext(), HomeActivityComment::class.java)
+            intent.putExtra("keyDL",listFestival.get(position).key)
+            intent.putExtra("key",0)
+            view!!.getContext().startActivity(intent)
+        }
+         return view as View
     }
 
     override fun getItem(position: Int): Any {

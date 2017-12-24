@@ -1,0 +1,280 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation.ComfirnInformationTouris"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <ScrollView
+            android:id="@+id/scrollmapCF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fadeScrollbars="false"
+            android:scrollbars="vertical"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/CFAddTenDD"
+                    android:hint="Tên địa điểm"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bogoc_edittext"
+                    />
+                <EditText
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/CFAddDiachi"
+                    android:hint="Địa Chỉ"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    />
+                <EditText
+                    android:inputType="textMultiLine"
+                    android:maxLength="40"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/CFAddMota"
+                    android:hint="Mô tả chi tiết địa điểm của bạn"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    />
+
+                <LinearLayout
+                    android:background="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/CFViewPager_Hinhanh_chitiet"
+                        android:layout_width="match_parent"
+                        android:layout_height="210dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffff">
+                    </android.support.v4.view.ViewPager>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bogoclinerlayout_add_thongtin">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Thể loại du lịch của bạn"
+                        android:textColor="@color/colorPrimary"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFadduudai"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="ưu đãi"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFaddtudo"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="tự do"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFaddbanve"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="bán vé"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFaddbaotang"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="bảo tàng"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFaddditich"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="di tích"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFaddcongvien"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="công viên"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:id="@+id/CFaddthamhiem"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="thám hiểm"
+                            android:layout_weight="1"
+                            android:layout_width="0dip"
+                            android:layout_height="30dp"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/CFaddkhunbanggia"
+                    android:weightSum="5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <TextView
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:text="giá vé"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                    <EditText
+                        android:id="@+id/CFaddgiave"
+                        android:layout_marginLeft="10dp"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <EditText
+                        android:id="@+id/CFthongtinphanhoi"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bogoc_edittext"
+                        android:hint="thông tin phản hồi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <FrameLayout
+                    android:id="@+id/CFconfirm"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/CFAddcapnhatTT"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:background="@drawable/botrongoc"
+                        android:text="Cập Nhật Thông Tin"
+                        android:textStyle="normal"
+                        android:textSize="10sp"
+                        />
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="right"
+                        android:id="@+id/CFkhongxacnhan"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:background="@drawable/botrongoc"
+                        android:text="Không xác nhận"
+                        android:textStyle="normal"
+                        android:textSize="10sp"
+                        />
+                </FrameLayout>
+                <ProgressBar
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/CFaddtientrinhcapnhat"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Cập Nhật Thông Tin"
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    />
+
+                <fragment
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/CFmap"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    tools:context="com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation.ComfirnInformationTouris" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

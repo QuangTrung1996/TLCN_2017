@@ -3,6 +3,7 @@ package docongphuc.pttravle.Maps
 import android.annotation.SuppressLint
 import android.os.AsyncTask
 import android.util.Log
+import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.AddInfromationTourist
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -56,9 +57,11 @@ class getLatlng(): AsyncTask<String, Void, String>() {
         var lngt:String= jsonoject.getJSONArray("results").getJSONObject(0).getJSONObject("geometry")
                 .getJSONObject("location").get("lng").toString()
         //lat=latt.toDouble()
-        long=lngt.toDouble()
+        //long=lngt.toDouble()
         //frm_DiaDiemDuLich.a=latt.toDouble()
         //Toast.makeText(this.activity,frm_DiaDiemLeHoi.a.toString(), Toast.LENGTH_LONG).show()
+        AddInfromationTourist.lat = latt.toDouble()
+        AddInfromationTourist.long = lngt.toDouble()
     }
 
 

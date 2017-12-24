@@ -177,13 +177,12 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
         viewHolder.btn_comment.setOnClickListener(){
             val intent = Intent(view!!.getContext(), HomeActivityComment::class.java)
             intent.putExtra("keyDL",arrayList.get(position).key)
-            intent.putExtra("socm",arrayList.get(position).SoCmmt)
+            intent.putExtra("key",0)
             view!!.getContext().startActivity(intent)
         }
         viewHolder.btn_like.setOnClickListener {
             val intent = Intent(view!!.getContext(), HomeActivityLike::class.java)
             intent.putExtra("keyDDDL",arrayList.get(position).key)
-            intent.putExtra("solike",arrayList.get(position).LuocLike)
             view!!.getContext().startActivity(intent)
         }
         viewHolder.anhdaidien.setOnClickListener {

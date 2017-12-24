@@ -2,6 +2,11 @@
     <string name="app_name">PTTravel</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="themdulich">Thêm Địa Điểm DL</string>
+    <string name="themlehoi">Thêm Địa Điểm LH</string>
+    <string name="thaydoitt">Thay Đổi Thông Tin</string>
+    <string name="Album">Abbum</string>
+    <string name="Anh">Anh</string>
     <string-array name="theloai">
         <item>Ưu Đãi</item>
         <item>Tự Do</item>

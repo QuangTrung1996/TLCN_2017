@@ -15,6 +15,7 @@ import android.widget.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
@@ -25,6 +26,8 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 import docongphuc.pttravle.Maps.DirectionFinder
 import docongphuc.pttravle.Maps.DirectionFinderListener
 import docongphuc.pttravle.Maps.Route
+import kotlinx.android.synthetic.main.activity_comfirn_information_touris.*
+import kotlinx.android.synthetic.main.activity_festival_detail.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.io.UnsupportedEncodingException
 
@@ -99,13 +102,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
         luoclikeDDDL.setOnClickListener {
             val intent = Intent(this@MapsActivity, HomeActivityLike::class.java)
             intent.putExtra("keyDDDL",nhanTT!!.key)
-            intent.putExtra("solike",0)
             this@MapsActivity.startActivity(intent)
         }
         binhluan_DDDL.setOnClickListener {
             val intent = Intent(this@MapsActivity, HomeActivityComment::class.java)
             intent.putExtra("keyDL",nhanTT!!.key.toString())
-            intent.putExtra("socm",0)
+            intent.putExtra("key",1)
             this@MapsActivity.startActivity(intent)
         }
         btnYeuThich!!.setOnClickListener(){
@@ -236,7 +238,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        //mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true);
     }
 
     override fun onDirectionFinderStart() {
@@ -367,7 +369,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
                     Arraychild!!.add(HomeDistrictsData(p0!!.value.toString()))
                     var adapter:PagerAdapter= DeteiladAdaprerImage(this@MapsActivity,Arraychild!!)
                     adapter.notifyDataSetChanged()
-                    viepager!!.adapter=adapter  }
+                    CFViewPager_Hinhanh_chitiet!!.adapter=adapter  }
 
             }
 

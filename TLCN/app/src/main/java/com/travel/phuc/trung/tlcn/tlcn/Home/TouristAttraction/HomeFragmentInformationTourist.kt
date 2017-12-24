@@ -64,7 +64,7 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
             //Toast.makeText(this.context,"có in ternet",Toast.LENGTH_LONG).show()
             if(doctaikhoan()) {
                 if (theloai==-1 ){
-               addthongtin()
+                addthongtin()
                     //test()
                 }
                 else
@@ -154,7 +154,15 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
             }
 
             override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-
+                for (i in 0 until arrList_ThongTinDL.size)
+                {
+                    var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                    if (p0!!.key ==arrList_ThongTinDL.get(i).key )
+                    {
+                        var tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                        arrList_ThongTinDL[i] = tt
+                    }
+                }
             }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
@@ -167,6 +175,7 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
                 arrList_ThongTinDL.add(tt)
                 adapter.notifyDataSetChanged()
                 Lv_ThongTin!!.adapter = adapter
+                loading!!.visibility = FrameLayout.GONE
 
 
             }
@@ -190,7 +199,15 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
             }
 
             override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-
+                for (i in 0 until arrList_ThongTinDL.size)
+                {
+                    var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                    if (p0!!.key ==arrList_ThongTinDL.get(i).key )
+                    {
+                        var tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                        arrList_ThongTinDL[i] = tt
+                    }
+                }
             }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
@@ -225,13 +242,21 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
         })
     }
     private fun test(){
-        database.child("DiadiemDuLich").orderByChild("Huyen").equalTo(13.0).addChildEventListener(object :ChildEventListener{
+        database.child("DiadiemDuLich").orderByChild("Huyen").equalTo(11.0).addChildEventListener(object :ChildEventListener{
             override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-                Toast.makeText(activity,p0!!.toString(),Toast.LENGTH_LONG).show()
+                for (i in 0 until arrList_ThongTinDL.size)
+                {
+                    var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                    if (p0!!.key ==arrList_ThongTinDL.get(i).key )
+                    {
+                        var tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                        arrList_ThongTinDL[i] = tt
+                    }
+                }
             }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {

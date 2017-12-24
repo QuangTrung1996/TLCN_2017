@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.travel.phuc.trung.tlcn.tlcn.AddInfromation.AddInfromationTourist">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <ScrollView
+            android:id="@+id/scrollmapDL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fadeScrollbars="false"
+            android:scrollbars="vertical"
+            android:background="@color/white">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+               <EditText
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="20dp"
+                   android:layout_marginStart="20dp"
+                   android:id="@+id/AddTenDD"
+                   android:hint="Tên địa điểm"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="20dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:background="@drawable/bogoc_edittext"
+                   />
+               <EditText
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="20dp"
+                   android:layout_marginStart="20dp"
+                   android:id="@+id/AddDiachi"
+                   android:hint="Địa Chỉ"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="20dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   />
+               <EditText
+                   android:inputType="textMultiLine"
+                   android:maxLength="40"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginEnd="20dp"
+                   android:layout_marginStart="20dp"
+                   android:layout_gravity="center"
+                   android:id="@+id/AddMota"
+                   android:hint="Mô tả chi tiết địa điểm của bạn"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="20dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   />
+               <LinearLayout
+                   android:id="@+id/addkhuvuc"
+                   android:orientation="vertical"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="5dp"
+                       android:text="chọn khu vực tỉnh và huyện"
+                       android:textColor="@color/blue"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="10dp" />
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="40dp"
+                       android:weightSum="3">
+                       <Spinner
+                           android:layout_marginRight="10dp"
+                           android:id="@+id/Addkhuvuc"
+                           android:layout_weight="1"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginEnd="10dp">
+                       </Spinner>
+                       <Spinner
+                           android:layout_marginLeft="10dp"
+                           android:id="@+id/Addtinh"
+                           android:layout_weight="1"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="10dp">
+                       </Spinner>
+                       <Spinner
+                           android:layout_marginLeft="10dp"
+                           android:id="@+id/Addhuyen"
+                           android:layout_weight="1"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="10dp">
+                       </Spinner>
+                   </LinearLayout>
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="30dp"
+                   android:orientation="horizontal"
+                   android:layout_gravity="center"
+                   android:gravity="center_vertical">
+                   <TextView
+                       android:layout_gravity="center"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="5dp"
+                       android:text="chọn ảnh đại diện cho địa điểm này"
+                       android:textColor="@color/blue"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="10dp" />
+                   <ImageView
+                       android:id="@+id/laytuBST"
+                       android:layout_marginTop="6dp"
+                       android:layout_gravity="center_vertical"
+                       android:scaleType="fitXY"
+                       android:src="@drawable/album"
+                       android:layout_marginLeft="10dp"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp" />
+                   <ImageView
+                       android:id="@+id/laytuCMR"
+                       android:layout_marginTop="6dp"
+                       android:layout_gravity="center_vertical"
+                       android:scaleType="fitXY"
+                       android:src="@drawable/camera"
+                       android:layout_marginLeft="10dp"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp" />
+               </LinearLayout>
+               <ImageView
+                   android:src="@drawable/anhbia"
+                   android:layout_marginRight="20dp"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginLeft="20dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="200dp"
+                   android:id="@+id/Addanhdaidien"/>
+               <LinearLayout
+                   android:orientation="vertical"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginRight="10dp"
+                   android:layout_marginLeft="10dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:background="@drawable/bogoclinerlayout_add_thongtin">
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:text="Thể loại du lịch của bạn"
+                       android:textColor="@color/colorPrimary"/>
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="5dp"
+                       android:orientation="horizontal"
+                       android:weightSum="4">
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/adduudai"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="ưu đãi"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/addtudo"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="tự do"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/addbanve"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="bán vé"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/addbaotang"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="bảo tàng"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_marginBottom="5dp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_marginTop="5dp"
+                       android:orientation="horizontal"
+                       android:weightSum="3">
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/addditich"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="di tích"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/addcongvien"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="công viên"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                       <TextView
+                           android:textColor="@color/black"
+                           android:textStyle="italic"
+                           android:id="@+id/addthamhiem"
+                           android:gravity="center"
+                           android:layout_marginLeft="5dp"
+                           android:text="thám hiểm"
+                           android:layout_weight="1"
+                           android:layout_width="0dip"
+                           android:layout_height="30dp"
+                           tools:ignore="SmallSp" />
+                   </LinearLayout>
+               </LinearLayout>
+               <LinearLayout
+                   android:visibility="gone"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:id="@+id/addkhunbanggia"
+                   android:weightSum="5"
+                   android:layout_marginLeft="10dp"
+                   android:layout_marginRight="10dp">
+                   <TextView
+                       android:gravity="center"
+                       android:textColor="@color/colorPrimary"
+                       android:text="giá vé"
+                       android:layout_width="0dip"
+                       android:layout_height="match_parent"
+                       android:layout_weight="1"/>
+                   <EditText
+                       android:id="@+id/addgiave"
+                       android:layout_marginLeft="10dp"
+                       android:inputType="number"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+               </LinearLayout>
+               <Button
+                   android:layout_marginTop="20dp"
+                   android:id="@+id/AddcapnhatTT"
+                   android:layout_marginBottom="2dp"
+                   android:gravity="center"
+                   android:layout_width="wrap_content"
+                   android:layout_height="35dp"
+                   android:layout_gravity="center_horizontal"
+                   android:background="@drawable/botrongoc"
+                   android:text="Cập Nhật Thông Tin"
+                   android:textStyle="normal"
+                   android:textSize="10sp"
+                   />
+               <ProgressBar
+                   android:visibility="gone"
+                   android:layout_marginTop="20dp"
+                   android:id="@+id/addtientrinhcapnhat"
+                   android:layout_marginBottom="2dp"
+                   android:gravity="center"
+                   android:layout_width="wrap_content"
+                   android:layout_height="35dp"
+                   android:layout_gravity="center_horizontal"
+                   android:text="Cập Nhật Thông Tin"
+                   android:textStyle="normal"
+                   android:textSize="10sp"
+                   />
+           </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

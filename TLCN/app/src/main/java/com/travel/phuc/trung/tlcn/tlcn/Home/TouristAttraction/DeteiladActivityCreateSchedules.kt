@@ -142,7 +142,7 @@ class DeteiladActivityCreateSchedules : AppCompatActivity() {
             val NgayKetThuc =GregorianCalendar(namkt, thangkt, ngaykt,giokt,phutkt)
             //Toast.makeText(context,NgayBatDau.timeInMillis.toString(),Toast.LENGTH_LONG).show()
             var a=EDT_ghichu!!.text
-            if (EDT_ghichu !=null && EDT_ghichu!!.text.toString()!=""&&EDT_tieude !=null && EDT_tieude!!.text.toString()!=""&&NgayBatDau!=NgayKetThuc){
+            if (EDT_ghichu !=null && EDT_ghichu!!.text.toString()!=""&&EDT_tieude !=null && EDT_tieude!!.text.toString()!=""&&NgayBatDau < NgayKetThuc){
                 doctaikhoan()
                 if (doctaikhoan()){
                     val ref = database.child("lich").child(id_USER).push()

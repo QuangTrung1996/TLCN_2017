@@ -15,11 +15,13 @@ class getDataFestival {
     var NgayKT:Long=1
     var TenLeHoi:String=""
     var Tinh:Int=1
+    var idAnh:String = ""
+    var idUser : String =""
     constructor()
-    constructor( AnhDaiDien:String, DiaChi:String, Huyen:Int,KhuVuc:Int, Lat:Double, Long:Double, MoTa:String, NgayBD:Long,NgayKT:Long, TenLeHoi:String ,Tinh:Int){
+    constructor( AnhDaiDien:String, DiaChi:String, Huyen:Int,KhuVuc:Int, Lat:Double, Long:Double, MoTa:String, NgayBD:Long,NgayKT:Long, TenLeHoi:String ,Tinh:Int,idAnh:String,idUser:String){
         this.TenLeHoi=TenLeHoi
         this.KhuVuc = KhuVuc
-        this.NgayBD==NgayBD
+        this.NgayBD=NgayBD
         this.NgayKT = NgayKT
         this.DiaChi=DiaChi
         this.Huyen=Huyen
@@ -28,6 +30,8 @@ class getDataFestival {
         this.MoTa=MoTa
         this.Tinh=Tinh
         this.AnhDaiDien=AnhDaiDien
+        this.idAnh = idAnh
+        this.idUser = idUser
 
     }
 }

@@ -31,6 +31,16 @@
             android:icon="@drawable/chuayeuthich"/>
 
         <item
+            android:id="@+id/addinfromation"
+            android:title="Add Infromation"
+            android:icon="@drawable/edit"/>
+
+        <item
+            android:id="@+id/confirm"
+            android:title="Confirm"
+            android:icon="@drawable/confirm"/>
+
+        <item
             android:id="@+id/notifications"
             android:title="Notifications"
             android:icon="@drawable/ic_notification"/>

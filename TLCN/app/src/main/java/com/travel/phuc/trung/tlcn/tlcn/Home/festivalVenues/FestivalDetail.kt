@@ -4,13 +4,14 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -19,15 +20,18 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeRatingData
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladActivityCreateSchedules
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladAdaprerImage
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeActivityCheckDislike
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeDistrictsData
 import com.travel.phuc.trung.tlcn.tlcn.R
 import kotlinx.android.synthetic.main.activity_festival_detail.*
 import java.text.SimpleDateFormat
+import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment
+import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
+import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladActivityCreateSchedules
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeActivityCheckDislike
+import kotlinx.android.synthetic.main.activity_maps.*
 
 
 class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
@@ -102,6 +106,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         loadmapType()
         addTimepicker()
         ktYeuThich()
+        kiemtraLike()
     }
 
     private fun loadmapType() {
@@ -134,7 +139,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
+// lấy d/s ảnh
     private fun addlistanh() {
         Arraychild!!.add(HomeDistrictsData(nhanTT!!.url))
         adapter = DeteiladAdaprerImage(this@FestivalDetail,Arraychild!!)
@@ -142,7 +147,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         viepager!!.adapter=adapter
     }
 
-
+// set ngày BD le hoi
     private fun setngayBD() {
         val sdf_date_bd : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
         val sdf_date_bd1 : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
@@ -195,7 +200,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        //mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true);
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item!!.itemId
@@ -228,6 +233,17 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         }
         btn_Disklike!!.setOnClickListener {
             setDislike()
+        }
+        binhluan_DDDL_LH.setOnClickListener {
+            val intent = Intent(this@FestivalDetail, HomeActivityComment::class.java)
+            intent.putExtra("keyDL",nhanTT!!.key)
+            intent.putExtra("key",1)
+            this@FestivalDetail.startActivity(intent)
+        }
+        luoclikeDDDL_LH.setOnClickListener {
+            val intent = Intent(this@FestivalDetail, HomeActivityLike::class.java)
+            intent.putExtra("keyDDDL",nhanTT!!.key)
+            this@FestivalDetail.startActivity(intent)
         }
 
     }
@@ -316,6 +332,31 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
             Toast.makeText(this@FestivalDetail,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
         }
     }
+    // kiem tra đã like chưa để set hinh anh cho imagebuuton like
+
+    private fun kiemtraLike() {
+        if (doctaikhoan())
+        {
+            database.child("Like").child(idLH).child(id_USER).addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onDataChange(p0: DataSnapshot?) {
+                    if (p0!!.value!=null){
+                        btnLike!!.setImageResource(R.drawable.liked)
+
+                    }
+//                    else
+//                    {
+//                        btnLike!!.setImageResource(R.drawable.like)
+//                    }
+                }
+
+            })
+        }
+    }
+
     // kiểm tra địa điểm có trong danh sách yêu thich hay không
     private fun ktYeuThich() {
         if(doctaikhoan()){
