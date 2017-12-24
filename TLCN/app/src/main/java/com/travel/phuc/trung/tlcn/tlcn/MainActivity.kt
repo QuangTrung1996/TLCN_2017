@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity(){
     lateinit var tenDN  : TextView
     lateinit var email  : TextView
 
+    var flagHome : Boolean = true
+
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
     private var navigationView: NavigationView? = null
 
@@ -63,6 +65,9 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun openFragmentHome() {
+
+        flagHome = true
+
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.content,HomeFragment()).commit()
@@ -72,6 +77,9 @@ class MainActivity : AppCompatActivity(){
     override fun onBackPressed() {
         if (drawer!!.isDrawerOpen(GravityCompat.START)) {
             drawer!!.closeDrawer(GravityCompat.START)
+        }else
+        if (flagHome == false) {
+            openFragmentHome()
         }
         else {
             super.onBackPressed()
@@ -146,6 +154,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.schedule -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
@@ -153,6 +164,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.album -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
@@ -160,6 +174,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.favorite -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
@@ -167,6 +184,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.login -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
@@ -174,6 +194,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.notifications -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
@@ -181,6 +204,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.manager -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
@@ -188,6 +214,9 @@ class MainActivity : AppCompatActivity(){
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.logout -> {
+
+                    flagHome = false
+
                     val sharedPreferences = getSharedPreferences(sharedPreferences,android.content.Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     editor.putString("Uid",null)
@@ -209,16 +238,19 @@ class MainActivity : AppCompatActivity(){
                     openFragmentHome()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
-                R.id.addinfromation ->
-                {
+                R.id.addinfromation -> {
+
+                    flagHome = false
+
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
                     transaction.replace(R.id.content, InformationFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
-                R.id.confirm ->
-                {
+                R.id.confirm -> {
+
+                    flagHome = false
 
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()

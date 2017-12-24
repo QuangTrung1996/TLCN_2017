@@ -15,7 +15,6 @@ import android.widget.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
@@ -26,8 +25,6 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 import docongphuc.pttravle.Maps.DirectionFinder
 import docongphuc.pttravle.Maps.DirectionFinderListener
 import docongphuc.pttravle.Maps.Route
-import kotlinx.android.synthetic.main.activity_comfirn_information_touris.*
-import kotlinx.android.synthetic.main.activity_festival_detail.*
 import kotlinx.android.synthetic.main.activity_maps.*
 import java.io.UnsupportedEncodingException
 
@@ -238,7 +235,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        mMap.setMyLocationEnabled(true);
+        //mMap.setMyLocationEnabled(true);
     }
 
     override fun onDirectionFinderStart() {
@@ -369,8 +366,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
                     Arraychild!!.add(HomeDistrictsData(p0!!.value.toString()))
                     var adapter:PagerAdapter= DeteiladAdaprerImage(this@MapsActivity,Arraychild!!)
                     adapter.notifyDataSetChanged()
-                    CFViewPager_Hinhanh_chitiet!!.adapter=adapter  }
-
+                    ViewPager_Hinhanh_chitiet!!.adapter=adapter
+                }
             }
 
             override fun onChildRemoved(p0: DataSnapshot?) {

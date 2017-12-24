@@ -129,7 +129,6 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                             finish()
                         }
                     })
-//                                //Toast.makeText(this@AddInfromationTourist, "thành công", Toast.LENGTH_LONG).show()
                 }
             })
         }
