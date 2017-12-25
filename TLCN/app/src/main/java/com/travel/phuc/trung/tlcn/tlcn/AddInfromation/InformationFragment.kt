@@ -80,7 +80,7 @@ class InformationFragment : Fragment() {
                 {
                     if (p0!!.key == listthongtin.get(i).key)
                     {
-                        val  a =InformationDataAdapter(data!!.TenLeHoi,p0.key,4)
+                        val  a =InformationDataAdapter(data!!.TenLeHoi,p0.key,4,data.AnhDaiDien)
                         listthongtin[i] = a!!
                     }
                 }            }
@@ -98,7 +98,7 @@ class InformationFragment : Fragment() {
                 if (a==0) {
                     var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
                     // Toast.makeText(activity,data.toString(),Toast.LENGTH_SHORT).show()
-                    listthongtin.add(InformationDataAdapter(data!!.TenLeHoi, p0.key, 4))
+                    listthongtin.add(InformationDataAdapter(data!!.TenLeHoi, p0.key, 4,data.AnhDaiDien))
                     adapter.notifyDataSetChanged()
                     lvDaDang!!.adapter = adapter
                 }
@@ -135,7 +135,7 @@ class InformationFragment : Fragment() {
                 {
                     if (p0!!.key == listthongtin.get(i).key)
                     {
-                        val  a =InformationDataAdapter(data!!.tenDiaDiem,p0.key,3)
+                        val  a =InformationDataAdapter(data!!.tenDiaDiem,p0.key,3,data.AnhDaiDien)
                         listthongtin[i] = a!!
                         adapter.notifyDataSetChanged()
                         lvDaDang!!.adapter = adapter
@@ -157,7 +157,7 @@ class InformationFragment : Fragment() {
                 if (a==0) {
                     var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
                     // Toast.makeText(activity,data.toString(),Toast.LENGTH_SHORT).show()
-                    listthongtin.add(InformationDataAdapter(data!!.tenDiaDiem, p0.key, 3))
+                    listthongtin.add(InformationDataAdapter(data!!.tenDiaDiem, p0.key, 3,data.AnhDaiDien))
                     adapter.notifyDataSetChanged()
                     lvDaDang!!.adapter = adapter
                 }
@@ -194,7 +194,7 @@ class InformationFragment : Fragment() {
                 {
                     if (p0!!.key == listthongtin.get(i).key)
                     {
-                        val  a =InformationDataAdapter(data!!.TenLeHoi,p0.key,2)
+                        val  a =InformationDataAdapter(data!!.TenLeHoi,p0.key,2,data.AnhDaiDien)
                         listthongtin[i] = a!!
                         break
                     }
@@ -204,7 +204,7 @@ class InformationFragment : Fragment() {
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
                 var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
                 // Toast.makeText(activity,data.toString(),Toast.LENGTH_SHORT).show()
-                listthongtin.add(InformationDataAdapter(data!!.TenLeHoi,p0.key,2))
+                listthongtin.add(InformationDataAdapter(data!!.TenLeHoi,p0.key,2,data.AnhDaiDien))
                 adapter.notifyDataSetChanged()
                 lvDaDang!!.adapter = adapter
             }
@@ -239,7 +239,7 @@ class InformationFragment : Fragment() {
                 {
                     if (p0!!.key == listthongtin.get(i).key)
                     {
-                        val  a =InformationDataAdapter(data!!.tenDiaDiem,p0.key,1)
+                        val  a =InformationDataAdapter(data!!.tenDiaDiem,p0.key,1,data.AnhDaiDien)
                         listthongtin[i] = a!!
                         adapter.notifyDataSetChanged()
                         break
@@ -251,7 +251,7 @@ class InformationFragment : Fragment() {
 
                 var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
                // Toast.makeText(activity,data.toString(),Toast.LENGTH_SHORT).show()
-                listthongtin.add(InformationDataAdapter(data!!.tenDiaDiem,p0.key,1))
+                listthongtin.add(InformationDataAdapter(data!!.tenDiaDiem,p0.key,1,data.AnhDaiDien))
                 adapter.notifyDataSetChanged()
                 lvDaDang!!.adapter = adapter
             }

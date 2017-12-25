@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
 
@@ -17,6 +18,7 @@ import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.GetDataTourist
 import com.travel.phuc.trung.tlcn.tlcn.Home.festivalVenues.getDataFestival
 import com.travel.phuc.trung.tlcn.tlcn.R
+import com.travel.phuc.trung.tlcn.tlcn.notifications.NotificationsData
 import kotlinx.android.synthetic.main.activity_add_information_festival.*
 import kotlinx.android.synthetic.main.activity_comfirn_information_touris.*
 import kotlinx.android.synthetic.main.activity_confirn_information_festival.*
@@ -60,11 +62,52 @@ class ConfirnInformationFestival : AppCompatActivity(), OnMapReadyCallback {
         else{
             CFconfirmLH.visibility = FrameLayout.GONE
         }
-
+        xacnhantt()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.CFmapLH) as SupportMapFragment
         mapFragment.getMapAsync(this)
+    }
+
+    private fun xacnhantt() {
+        CFkhongxacnhanLH.setOnClickListener {
+            CFaddtientrinhcapnhat.visibility = ProgressBar.VISIBLE
+            if (CFthongtinphanhoiLH.text.toString()!="" && CFthongtinphanhoiLH !=null)
+            {
+                val time = System.currentTimeMillis()
+                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, CFthongtinphanhoiLH.text.toString(), time)
+                databaseRef.child("Notification").child(ttLH.idUser).child(time.toString()).setValue(ttCom)
+                finish()
+            }
+            else
+            {
+                val time = System.currentTimeMillis()
+                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, "không nhận địa điểm :".plus(ttLH.TenLeHoi), time)
+                databaseRef.child("Notification").child(ttLH.idUser).child(time.toString()).setValue(ttCom)
+                finish()
+            }
+        }
+        CFAddcapnhatTTLH.setOnClickListener({
+            CFaddtientrinhcapnhatLH.visibility = ProgressBar.VISIBLE
+            databaseRef.child("DiaDiemLeHoi").child(key).setValue(ttLH, DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                if (databaseError ==null)
+                {
+                    for (i in 0 until Arraychild!!.size) {
+                        databaseRef.child("AlbumAnhLeHoi").child(key).child(Arraychild!!.get(i).keyanh).setValue(Arraychild!!.get(i).linkanh)
+                        databaseRef.child("Tam").child("Album").child(key).child(Arraychild!!.get(i).keyanh).removeValue()
+                    }
+                    databaseRef.child("Tam").child("DiaDiemLH").child(key).removeValue(DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                        if (databaseError ==null)
+                        {
+                            val time = System.currentTimeMillis()
+                            var ttCom = NotificationsData(ten!!, hinhDaiDien!!, "đã xác nhận địa điểm :".plus(ttLH.TenLeHoi), time)
+                            databaseRef.child("Notification").child(ttLH.idUser.toString()).child(time.toString()).setValue(ttCom)
+                            finish()
+                        }
+                    })
+                }
+            })
+        })
     }
 
     private fun docthongtin() {
@@ -121,7 +164,17 @@ class ConfirnInformationFestival : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onChildRemoved(p0: DataSnapshot?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                if (p0 != null)
+                {
+                    for (i in 0 until Arraychild!!.size)
+                    {
+                        if (p0!!.key == Arraychild!!.get(i).keyanh)
+                        {
+                            Arraychild!!.removeAt(i)
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
+                }
             }
 
         })

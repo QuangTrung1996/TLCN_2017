@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityImage
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeLvComment
 import com.travel.phuc.trung.tlcn.tlcn.R
@@ -18,10 +20,12 @@ import de.hdodenhof.circleimageview.CircleImageView
 class InfrormationAddedAdapter constructor(var context:Context,var listThongtin:ArrayList<InformationDataAdapter>) : BaseAdapter() {
     inner class viewholder(row: View)
     {
+        var anh:ImageView
         var Ten: TextView
         var ChinhSua: TextView
         var Album: TextView
         init {
+            anh = row.findViewById(R.id.anhthongtindang)
             Ten=row.findViewById<TextView>(R.id.tenddadded)
             ChinhSua=row.findViewById<TextView>(R.id.chinhsuathongtin)
             Album =row.findViewById<TextView>(R.id.chinhsuaAlbum)
@@ -39,6 +43,7 @@ class InfrormationAddedAdapter constructor(var context:Context,var listThongtin:
             view = convertView
             viewHolder = convertView.tag as viewholder
         }
+
         viewHolder.Ten.text = listThongtin.get(position).ten
         viewHolder.ChinhSua.setOnClickListener {
             if (listThongtin.get(position).loai ==1) {
@@ -75,6 +80,9 @@ class InfrormationAddedAdapter constructor(var context:Context,var listThongtin:
             intent.putExtra("loaiDD",listThongtin.get(position).loai)
             view!!.getContext().startActivity(intent)
         })
+        Glide.with(context).load(listThongtin.get(position).linkanh)
+                .centerCrop()
+                .into(viewHolder.anh)
         return view as View
     }
 

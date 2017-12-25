@@ -21,16 +21,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-         <activity android:name=".WelcomeActivity">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
-         </activity>
-
-         <activity android:name=".MainActivity" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".Home.TouristAttraction.DeteiladActivityCreateSchedules"
             android:theme="@style/AppTheme.Customtheme" />
@@ -45,25 +43,18 @@
         <activity
             android:name=".Home.HomeActivityComment"
             android:windowSoftInputMode="adjustResize|adjustPan" />
-
         <activity
             android:name=".Home.HomeActivityLike"
             android:theme="@style/AppTheme.Customtheme" />
-
         <activity
             android:name=".Home.TouristAttraction.HomeActivityCheckDislike"
             android:theme="@style/AppTheme.Customtheme" />
-
         <activity android:name=".Home.HomeActivityImage" />
-
         <activity android:name=".schedules.AddScheduleActivity" />
-
         <activity
             android:name=".Home.festivalVenues.FestivalDetail"
             android:label="@string/title_activity_festival_detail" />
-
-        <activity android:name=".albums.AlbumImageViewPager"/>
-
+        <activity android:name=".albums.AlbumImageViewPager" />
         <activity
             android:name=".AddInfromation.AddInfromationTourist"
             android:label="@string/themdulich" />
@@ -88,7 +79,9 @@
             android:label="@string/app_name" />
         <activity
             android:name=".ConfirmInformation.ConfirnInformationFestival"
-            android:label="@string/app_name"></activity>
-
+            android:label="@string/app_name" />
+        <activity android:name=".ConfirmInformation.AlbumUnconfimred" />
+        <activity android:name=".ConfirmInformation.CofirmImage"></activity>
     </application>
+
 </manifest>

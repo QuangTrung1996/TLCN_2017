@@ -7,11 +7,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ListView
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.ChangInfomationfestival
 import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InformationDataAdapter
-import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InfrormationAddedAdapter
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.GetDataTourist
 import com.travel.phuc.trung.tlcn.tlcn.Home.festivalVenues.getDataFestival
 import com.travel.phuc.trung.tlcn.tlcn.R
@@ -28,6 +27,7 @@ class ConfirmFragment : Fragment(){
         database    = FirebaseDatabase.getInstance().reference
     }
     private var add: FloatingActionButton?=null
+    private var xacnan:Button?=null
     private var lvDaDang: ListView?=null
     private var listthongtin:ArrayList<InformationDataAdapter> = ArrayList()
     private lateinit var adapter: ConfirnApter
@@ -36,8 +36,14 @@ class ConfirmFragment : Fragment(){
         val view = inflater!!.inflate(R.layout.ifomation, container, false);
         add = view.findViewById(R.id.addthongtin)
         lvDaDang = view.findViewById(R.id.thongtindadang)
-//        listthongtin.add(InformationDataAdapter("khu du lịch tân cảng ","dfdsfsdg",1))
         adapter = ConfirnApter(this.context,listthongtin)
+        xacnan = view.findViewById(R.id.xacnhananhcho)
+        xacnan!!.visibility = Button.VISIBLE
+        xacnan!!.setOnClickListener {
+            val intent = Intent(view!!.getContext(), AlbumUnconfimred::class.java)
+//                intent.putExtra("loai",2)
+            this.getContext().startActivity(intent)
+        }
         add!!.visibility = FloatingActionButton.INVISIBLE
         docthongtinDL()
         docthongtinLH()
@@ -76,7 +82,7 @@ class ConfirmFragment : Fragment(){
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
                 var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
                 // Toast.makeText(activity,data.toString(),Toast.LENGTH_SHORT).show()
-                listthongtin.add(InformationDataAdapter(data!!.TenLeHoi,p0.key,2))
+                listthongtin.add(InformationDataAdapter(data!!.TenLeHoi,p0.key,2,data.AnhDaiDien))
                 adapter.notifyDataSetChanged()
                 lvDaDang!!.adapter = adapter
             }
@@ -117,7 +123,7 @@ class ConfirmFragment : Fragment(){
                 {
                     var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
                     // Toast.makeText(activity,data.toString(),Toast.LENGTH_SHORT).show()
-                    listthongtin.add(InformationDataAdapter(data!!.tenDiaDiem, p0.key, 1))
+                    listthongtin.add(InformationDataAdapter(data!!.tenDiaDiem, p0.key, 1,data.AnhDaiDien))
                     adapter.notifyDataSetChanged()
                     lvDaDang!!.adapter = adapter
                 }

@@ -331,8 +331,7 @@ class AddInfromationTourist : AppCompatActivity() {
                                                     databaseRef.child("Tam").child("Album").child(key).child(nameImage.toString()).setValue(downloadUrl.toString(), DatabaseReference.CompletionListener { databaseError, databaseReference ->
                                                         if (databaseError ==null)
                                                         {
-                                                            if (arrTheloai.get(2)==0){}
-                                                                //this@AddInfromationTourist.finish()
+
                                                         }
                                                     })
 
@@ -340,6 +339,9 @@ class AddInfromationTourist : AppCompatActivity() {
 
                                             })
                                         }
+                                    }
+                                    if (arrTheloai.get(2)==0) {
+                                        this@AddInfromationTourist.finish()
                                     }
                                     if (arrTheloai.get(2)==1)
                                     {

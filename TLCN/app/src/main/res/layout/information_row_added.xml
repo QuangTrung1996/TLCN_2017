@@ -8,9 +8,20 @@
         android:layout_marginTop="5dp"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_margin="5dp"
         android:background="@drawable/bogoclinnerlayout" >
+        <ImageView
+            android:id="@+id/anhthongtindang"
+            android:layout_marginLeft="10dp"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/anhdaidien"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
             android:textColor="@color/colorPrimary"
             android:id="@+id/tenddadded"
@@ -40,6 +51,7 @@
                 android:id="@+id/chinhsuaAlbum"
                 android:text="Album"/>
 
-        </FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

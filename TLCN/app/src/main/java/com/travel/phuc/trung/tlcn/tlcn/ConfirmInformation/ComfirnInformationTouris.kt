@@ -23,6 +23,7 @@ import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.GetDataTourist
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeDistrictsData
 import com.travel.phuc.trung.tlcn.tlcn.Home.festivalVenues.getDataFestival
 import com.travel.phuc.trung.tlcn.tlcn.R
+import com.travel.phuc.trung.tlcn.tlcn.notifications.NotificationsData
 import kotlinx.android.synthetic.main.activity_add_infromation_tourist.*
 import kotlinx.android.synthetic.main.activity_comfirn_information_touris.*
 import kotlinx.android.synthetic.main.confirm_information_row.*
@@ -88,55 +89,64 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
         CFkhongxacnhan.setOnClickListener {
             if (CFthongtinphanhoi.text.toString()!="" &&CFthongtinphanhoi.text.toString()!=null)
             {
+                val time = System.currentTimeMillis()
+                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, CFthongtinphanhoi.text.toString(), time)
+                databaseRef.child("Notification").child(tt.idUser.toString()).child(time.toString()).setValue(ttCom)
                 finish()
             }
             else
             {
-                Toast.makeText(this@ComfirnInformationTouris,"cần gởi thông tin phản hồi",Toast.LENGTH_LONG).show()
+                val time = System.currentTimeMillis()
+                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, "không nhận địa điểm :".plus(tt.tenDiaDiem), time)
+                databaseRef.child("Notification").child(tt.idUser).child(time.toString()).setValue(ttCom)
+                finish()
             }
         }
         CFAddcapnhatTT.setOnClickListener {
-            CFaddtientrinhcapnhat.visibility = ProgressBar.VISIBLE
-            databaseRef.child("DiadiemDuLich").child(key).setValue(tt, DatabaseReference.CompletionListener { databaseError, databaseReference ->
-                if (databaseError == null) {
-                    for (i in 0 until arrTheloai.size) {
-                        if (arrTheloai.get(i) == 1) {
-                            databaseRef.child("TheLoai").child(i.toString()).child(key).setValue(0, DatabaseReference.CompletionListener { databaseError, databaseReference ->
-                                if (databaseError == null) {
-                                    databaseRef.child("Tam").child("TheLoai").child(key).child(i.toString()).child(key).removeValue()
-                                }
+            if (doctaikhoan()) {
+                CFaddtientrinhcapnhat.visibility = ProgressBar.VISIBLE
+                databaseRef.child("DiadiemDuLich").child(key).setValue(tt, DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                    if (databaseError == null) {
+                        for (i in 0 until arrTheloai.size) {
+                            if (arrTheloai.get(i) == 1) {
+                                databaseRef.child("TheLoai").child(i.toString()).child(key).setValue(0, DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                                    if (databaseError == null) {
+                                        databaseRef.child("Tam").child("TheLoai").child(key).child(i.toString()).child(key).removeValue()
+                                    }
 
-                            })
-                        } else {
-                            databaseRef.child("TheLoai").child(i.toString()).child(key).removeValue()
+                                })
+                            } else {
+                                databaseRef.child("TheLoai").child(i.toString()).child(key).removeValue()
+                            }
                         }
-                    }
-                    if (arrTheloai.get(2) == 1) {
-                        databaseRef.child("BanVe").child(key).setValue(docgiave(), DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                        if (arrTheloai.get(2) == 1) {
+                            databaseRef.child("BanVe").child(key).setValue(docgiave(), DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                                if (databaseError == null) {
+                                    databaseRef.child("Tam").child("GiaVe").child(key).removeValue()
+                                }
+                            })
+                        }
+                        for (i in 0 until Arraychild!!.size) {
+                            databaseRef.child("AlbumAnhDuLich").child(key).child(Arraychild!!.get(i).keyanh).setValue(Arraychild!!.get(i).linkanh)
+                            databaseRef.child("Tam").child("Album").child(key).child(Arraychild!!.get(i).keyanh).removeValue()
+                        }
+                        databaseRef.child("Tam").child("DiaDiemDL").child(key).removeValue(DatabaseReference.CompletionListener { databaseError, databaseReference ->
                             if (databaseError == null) {
-                                databaseRef.child("Tam").child("GiaVe").child(key).removeValue()
+                                val time = System.currentTimeMillis()
+                                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, "đã xác nhận địa điểm :".plus(tt.tenDiaDiem), time)
+                                databaseRef.child("Notification").child(tt.idUser.toString()).child(time.toString()).setValue(ttCom)
+                                finish()
                             }
                         })
                     }
-                    for (i in 0 until Arraychild!!.size) {
-                        databaseRef.child("AlbumAnhDuLich").child(Arraychild!!.get(i).keyanh).setValue(Arraychild!!.get(i).linkanh)
-                    }
-                    databaseRef.child("Tam").child("DiaDiemDL").child(key).removeValue(DatabaseReference.CompletionListener { databaseError, databaseReference ->
-                        if (databaseError ==null)
-                        {
-                            val time = System.currentTimeMillis()
-                            databaseRef.child("Notification").child(id_USER).child(time.toString()).setValue("testthooi")
-                            finish()
-                        }
-                    })
-                }
-            })
+                })
+            }
         }
     }
 
     // dọc gia ve
     private fun docgiave():Int{
-        var gia=addgiave.text.toString()
+        var gia=CFaddgiave.text.toString()
         giave = gia.toInt()
         return giave
     }
@@ -176,7 +186,17 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onChildRemoved(p0: DataSnapshot?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                if (p0 != null)
+                {
+                    for (i in 0 until Arraychild!!.size)
+                    {
+                        if (p0!!.key == Arraychild!!.get(i).keyanh)
+                        {
+                            Arraychild!!.removeAt(i)
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
+                }
             }
 
         })
@@ -213,7 +233,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                 override fun onDataChange(p0: DataSnapshot?) {
                     if (p0!!.value !=null)
                     {
-                        //Toast.makeText(this@ChangeInformationTourist,i.toString(),Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ComfirnInformationTouris,i.toString(),Toast.LENGTH_SHORT).show()
                         arrTheloai[i]=1
                         checktheloai(i)
 

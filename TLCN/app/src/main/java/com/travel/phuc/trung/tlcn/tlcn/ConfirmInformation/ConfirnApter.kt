@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InformationDataAdapter
 import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InfrormationAddedAdapter
 import com.travel.phuc.trung.tlcn.tlcn.R
@@ -16,9 +18,11 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 class ConfirnApter constructor(var context: Context, var listThongtin:ArrayList<InformationDataAdapter>): BaseAdapter() {
     inner class viewholder(row: View)
     {
+        var anh:ImageView
         var Ten: TextView
         init {
             Ten=row.findViewById<TextView>(R.id.CFtenDD)
+            anh = row.findViewById(R.id.anhComfirm)
         }
     }
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -33,7 +37,11 @@ class ConfirnApter constructor(var context: Context, var listThongtin:ArrayList<
             view = convertView
             viewHolder = convertView.tag as viewholder
         }
+
         viewHolder.Ten.text = listThongtin.get(position).ten
+        Glide.with(context).load(listThongtin.get(position).linkanh)
+                .centerCrop()
+                .into(viewHolder.anh)
         return view as View
     }
 
