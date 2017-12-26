@@ -1,17 +1,13 @@
-package com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation
+package com.travel.phuc.trung.tlcn.tlcn.managers.tourist
 
-import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.Toast
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -19,17 +15,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladAdaprerImage
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.GetDataTourist
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeDistrictsData
-import com.travel.phuc.trung.tlcn.tlcn.Home.festivalVenues.getDataFestival
 import com.travel.phuc.trung.tlcn.tlcn.R
+import com.travel.phuc.trung.tlcn.tlcn.managers.festivals.ManagerFestivalImageAdapter
+import com.travel.phuc.trung.tlcn.tlcn.managers.festivals.ManagerFestivalImageData
 import com.travel.phuc.trung.tlcn.tlcn.notifications.NotificationsData
-import kotlinx.android.synthetic.main.activity_add_infromation_tourist.*
 import kotlinx.android.synthetic.main.activity_comfirn_information_touris.*
-import kotlinx.android.synthetic.main.confirm_information_row.*
 
-class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
+class ManagerTouristConfirmInformation : AppCompatActivity(), OnMapReadyCallback {
     val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
     private var arrTheloai:IntArray = intArrayOf(0,0,0,0,0,0,0)
     private var giave:Int = 0
@@ -38,7 +31,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
     private var key = ""
     private var tenDD:String = ""
     private var tt: GetDataTourist = GetDataTourist()
-    var Arraychild:ArrayList<DataListImage>?= ArrayList();
+    var Arraychild:ArrayList<ManagerFestivalImageData>?= ArrayList();
     private lateinit var adapter: PagerAdapter
     private val sharedprperences : String="taikhoan";
     var ten:String? =null
@@ -54,8 +47,8 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
         CFAddTenDD.isEnabled = false
         CFAddMota.isEnabled = false
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        var intent = getIntent()
-        adapter= AdapterImage(this@ComfirnInformationTouris,Arraychild!!)
+        val intent = intent
+        adapter= ManagerFestivalImageAdapter(this@ManagerTouristConfirmInformation, Arraychild!!)
         key = intent.getStringExtra("key")
         doctaikhoan()
         if (key != "" && doctaikhoan()) {
@@ -66,11 +59,22 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
         else{
             CFconfirm.visibility = FrameLayout.GONE
         }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.CFmap) as SupportMapFragment
+
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.CFmap) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item!!.itemId
+        when (id) {
+            android.R.id.home ->{
+                finish()
+            }
+
+        }
+        return true
+    }
+
     fun doctaikhoan():Boolean {
         val sharedpreferences=this.getSharedPreferences(sharedprperences,android.content.Context.MODE_PRIVATE)
 
@@ -81,7 +85,6 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
 
         if (id_USER!=null){
             return true
-            // truyen!!.truyenUser(uid,name,email,photoUrl)
         }
         return false
     }
@@ -91,7 +94,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
             if (CFthongtinphanhoi.text.toString()!="" &&CFthongtinphanhoi.text.toString()!=null)
             {
                 val time = System.currentTimeMillis()
-                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, CFthongtinphanhoi.text.toString(), time)
+                val ttCom = NotificationsData(ten!!, hinhDaiDien!!, CFthongtinphanhoi.text.toString(), time)
                 databaseRef.child("Notification").child(tt.idUser.toString()).child(time.toString()).setValue(ttCom)
                 finish()
             }
@@ -128,13 +131,13 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                             })
                         }
                         for (i in 0 until Arraychild!!.size) {
-                            databaseRef.child("AlbumAnhDuLich").child(key).child(Arraychild!!.get(i).keyanh).setValue(Arraychild!!.get(i).linkanh)
-                            databaseRef.child("Tam").child("Album").child(key).child(Arraychild!!.get(i).keyanh).removeValue()
+                            databaseRef.child("AlbumAnhDuLich").child(key).child(Arraychild!![i].key).setValue(Arraychild!![i].link)
+                            databaseRef.child("Tam").child("Album").child(key).child(Arraychild!!.get(i).key).removeValue()
                         }
                         databaseRef.child("Tam").child("DiaDiemDL").child(key).removeValue(DatabaseReference.CompletionListener { databaseError, databaseReference ->
                             if (databaseError == null) {
                                 val time = System.currentTimeMillis()
-                                var ttCom = NotificationsData(ten!!, hinhDaiDien!!, "đã xác nhận địa điểm :".plus(tt.tenDiaDiem), time)
+                                val ttCom = NotificationsData(ten!!, hinhDaiDien!!, "đã xác nhận địa điểm :".plus(tt.tenDiaDiem), time)
                                 databaseRef.child("Notification").child(tt.idUser.toString()).child(time.toString()).setValue(ttCom)
                                 finish()
                             }
@@ -147,21 +150,11 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
 
     // dọc gia ve
     private fun docgiave():Int{
-        var gia=CFaddgiave.text.toString()
+        val gia = CFaddgiave.text.toString()
         giave = gia.toInt()
         return giave
     }
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id = item!!.itemId
-        when (id) {
-            android.R.id.home ->{
-                finish()
-            }
 
-        }
-
-        return true
-    }
     private fun layanh() {
         databaseRef.child("Tam").child("Album").child(key).addChildEventListener(object :ChildEventListener{
             override fun onCancelled(p0: DatabaseError?) {
@@ -179,15 +172,10 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
                 if (p0!=null)
                 {
-                    Arraychild!!.add(DataListImage(p0.key.toString(),p0.value.toString()))
+                    Arraychild!!.add(ManagerFestivalImageData(p0.key.toString(), p0.value.toString()))
                     adapter.notifyDataSetChanged()
                     CFViewPager_Hinhanh_chitiet.adapter = adapter
 
-                }
-                else
-                {
-                    khungviewpager.visibility = LinearLayout.GONE
-                    Toast.makeText(this@ComfirnInformationTouris,"Album đã xác nhận",Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -196,7 +184,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                 {
                     for (i in 0 until Arraychild!!.size)
                     {
-                        if (p0!!.key == Arraychild!!.get(i).keyanh)
+                        if (p0.key == Arraychild!!.get(i).key)
                         {
                             Arraychild!!.removeAt(i)
                             adapter.notifyDataSetChanged()
@@ -216,7 +204,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
 
             override fun onDataChange(p0: DataSnapshot?) {
                 if (p0!=null) {
-                    val data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                    val data: GetDataTourist? = p0.getValue(GetDataTourist::class.java)
                     tt = if (data != null) data else throw NullPointerException("Expression 'data' must not be null")
                     CFAddMota.append(data.MoTa)
                     CFAddDiachi.append(data.DiaChi)
@@ -229,6 +217,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
         })
         doctheloai()
     }
+
     private fun doctheloai() {
         for (i in 0..6) {
             databaseRef.child("Tam").child("TheLoai").child(key).child(i.toString()).child(key).addListenerForSingleValueEvent(object :ValueEventListener{
@@ -239,16 +228,10 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                 override fun onDataChange(p0: DataSnapshot?) {
                     if (p0!!.value !=null)
                     {
-                        Toast.makeText(this@ComfirnInformationTouris,i.toString(),Toast.LENGTH_SHORT).show()
                         arrTheloai[i]=1
                         checktheloai(i)
 
                     }
-//                    else
-//                    {
-//                        Toast.makeText(this@ChangeInformationTourist,"no",Toast.LENGTH_SHORT).show()
-//
-//                    }
                 }
             })
         }
@@ -281,6 +264,7 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+
     private fun themve() {
         databaseRef.child("Tam").child("GiaVe").child(key).addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError?) {
@@ -292,23 +276,14 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                     CFaddgiave.append(p0.value.toString())
                 }
             }
-        })    }
+        })
+    }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(Lat, Long)
-        Toast.makeText(this,Lat.toString(), Toast.LENGTH_LONG).show()
         mMap.addMarker(MarkerOptions().position(sydney).title(tenDD))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14f))
     }

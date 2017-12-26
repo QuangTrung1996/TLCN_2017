@@ -1,4 +1,4 @@
-package com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation
+package com.travel.phuc.trung.tlcn.tlcn.managers.festivals
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
@@ -8,19 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeDistrictsData
 import com.travel.phuc.trung.tlcn.tlcn.R
 
-/**
- * Created by Admin on 23/12/2017.
- */
-class AdapterImage  : PagerAdapter {
+class ManagerFestivalImageAdapter : PagerAdapter {
 
     var context: Context
-    var ArrayUrl:ArrayList<DataListImage>
+    var ArrayUrl:ArrayList<ManagerFestivalImageData>
     lateinit var inflator: LayoutInflater
 
-    constructor(context: Context, ArrayUrl:ArrayList<DataListImage>)
+    constructor(context: Context, ArrayUrl:ArrayList<ManagerFestivalImageData>)
     {
         this.context=context
         this.ArrayUrl=ArrayUrl
@@ -38,7 +34,7 @@ class AdapterImage  : PagerAdapter {
         inflator = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var view=inflator.inflate(R.layout.image,container,false)
         img=view.findViewById(R.id.Anh_Pager_DL)
-        Glide.with(context).load(ArrayUrl.get(position).linkanh)
+        Glide.with(context).load(ArrayUrl.get(position).link)
                 .centerCrop()
                 .placeholder(R.drawable.loading_image)
                 .into(img)

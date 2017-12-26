@@ -1,4 +1,4 @@
-package com.travel.phuc.trung.tlcn.tlcn.managers
+package com.travel.phuc.trung.tlcn.tlcn.managers.users
 
 import android.content.Context
 import android.view.LayoutInflater

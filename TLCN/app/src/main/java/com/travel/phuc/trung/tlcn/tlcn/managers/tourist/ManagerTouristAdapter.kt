@@ -1,4 +1,4 @@
-package com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation
+package com.travel.phuc.trung.tlcn.tlcn.managers.tourist
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,13 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InformationDataAdapter
-import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InfrormationAddedAdapter
 import com.travel.phuc.trung.tlcn.tlcn.R
 
-/**
- * Created by Admin on 23/12/2017.
- */
-class ConfirnApter constructor(var context: Context, var listThongtin:ArrayList<InformationDataAdapter>): BaseAdapter() {
+class ManagerTouristAdapter constructor(var context: Context, var listThongtin:ArrayList<InformationDataAdapter>): BaseAdapter() {
     inner class viewholder(row: View)
     {
         var anh:ImageView

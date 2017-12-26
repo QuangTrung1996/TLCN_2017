@@ -49,39 +49,48 @@
         <activity
             android:name=".Home.TouristAttraction.HomeActivityCheckDislike"
             android:theme="@style/AppTheme.Customtheme" />
+
         <activity android:name=".Home.HomeActivityImage" />
+
         <activity android:name=".schedules.AddScheduleActivity" />
+
         <activity
             android:name=".Home.festivalVenues.FestivalDetail"
             android:label="@string/title_activity_festival_detail" />
+
         <activity android:name=".albums.AlbumImageViewPager" />
+
         <activity
             android:name=".AddInfromation.AddInfromationTourist"
             android:label="@string/themdulich" />
+
         <activity
             android:name=".AddInfromation.AddInformationFestival"
             android:label="@string/themlehoi" />
+
         <activity
             android:name=".AddInfromation.ChangeInformationTourist"
             android:label="@string/thaydoitt" />
+
         <activity
             android:name=".AddInfromation.ChangInfomationfestival"
             android:label="@string/thaydoitt" />
+
         <activity
             android:name=".AddInfromation.AddAlbum"
             android:label="@string/Album" />
+
         <activity
             android:name=".AddInfromation.AddImageDetail"
             android:label="@string/Anh" />
+
         <activity android:name=".AddInfromation.AddChangImage" />
-        <activity
-            android:name=".ConfirmInformation.ComfirnInformationTouris"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".ConfirmInformation.ConfirnInformationFestival"
-            android:label="@string/app_name" />
-        <activity android:name=".ConfirmInformation.AlbumUnconfimred" />
-        <activity android:name=".ConfirmInformation.CofirmImage"></activity>
+
+
+        <activity android:name=".managers.tourist.ManagerTouristConfirmInformation" />
+        <activity android:name=".managers.festivals.ManagerFestivalConfirmInformation" />
+        <activity android:name=".managers.albumUpdate.ManagerAlbumUpdateConfirmInformation" />
+
     </application>
 
 </manifest>

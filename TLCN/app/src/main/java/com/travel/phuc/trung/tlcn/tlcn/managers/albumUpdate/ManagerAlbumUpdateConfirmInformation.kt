@@ -1,22 +1,19 @@
-package com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation
+package com.travel.phuc.trung.tlcn.tlcn.managers.albumUpdate
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.view.PagerAdapter
-import android.view.FrameMetrics
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.ImageData
 import com.travel.phuc.trung.tlcn.tlcn.R
-import com.travel.phuc.trung.tlcn.tlcn.notifications.NotificationsData
 import kotlinx.android.synthetic.main.activity_cofirm_image.*
 
-class CofirmImage : AppCompatActivity() {
+class ManagerAlbumUpdateConfirmInformation : AppCompatActivity(){
     val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
     var Arraychild:ArrayList<ImageData>?= ArrayList();
-    private lateinit var adapter: ConfirmAdapterAlbum
+    private lateinit var adapter: ManagerAlbumUpdateAdapter
     private val sharedprperences : String="taikhoan";
     var ten:String? =null
     var ten_email:String? = null
@@ -29,7 +26,7 @@ class CofirmImage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cofirm_image)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        adapter= ConfirmAdapterAlbum(this@CofirmImage,Arraychild!!)
+        adapter= ManagerAlbumUpdateAdapter(this@ManagerAlbumUpdateConfirmInformation,Arraychild!!)
         val intent = intent
         keyanh=intent.getStringExtra("keyAlbum")
         loai = intent.getIntExtra("loai",0)
@@ -54,7 +51,7 @@ class CofirmImage : AppCompatActivity() {
     }
 
     private fun layanh() {
-        databaseRef.child("Tam").child("Album").child(keyanh).addChildEventListener(object :ChildEventListener{
+        databaseRef.child("Tam").child("Album").child(keyanh).addChildEventListener(object : ChildEventListener {
             override fun onCancelled(p0: DatabaseError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }

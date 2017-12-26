@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/bogoclinnerlayout">
+
         <ImageView
             android:layout_marginLeft="10dp"
             android:scaleType="center"
-            android:src="@drawable/anhdaidien"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:id="@+id/anhComfirm"/>

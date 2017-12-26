@@ -36,11 +36,6 @@
             android:icon="@drawable/edit"/>
 
         <item
-            android:id="@+id/confirm"
-            android:title="Confirm"
-            android:icon="@drawable/confirm"/>
-
-        <item
             android:id="@+id/notifications"
             android:title="Notifications"
             android:icon="@drawable/ic_notification"/>

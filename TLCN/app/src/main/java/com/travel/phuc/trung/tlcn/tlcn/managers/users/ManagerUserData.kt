@@ -1,4 +1,4 @@
-package com.travel.phuc.trung.tlcn.tlcn.managers
+package com.travel.phuc.trung.tlcn.tlcn.managers.users
 
 import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 

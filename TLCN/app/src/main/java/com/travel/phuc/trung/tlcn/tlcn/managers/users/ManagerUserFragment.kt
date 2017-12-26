@@ -1,4 +1,4 @@
-package com.travel.phuc.trung.tlcn.tlcn.managers
+package com.travel.phuc.trung.tlcn.tlcn.managers.users
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
 import com.google.firebase.database.*
-import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 import com.travel.phuc.trung.tlcn.tlcn.R
+import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 
-class ManagerFragmentUser : Fragment() {
+class ManagerUserFragment : Fragment() {
 
     val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
 
@@ -22,13 +21,13 @@ class ManagerFragmentUser : Fragment() {
     lateinit var adapter : ManagerUserAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view =inflater!!.inflate(R.layout.manager_fragment_user,container,false)
+        val view =inflater!!.inflate(R.layout.manager_fragment_list,container,false)
 
         val sharedPreferences = activity.getSharedPreferences("taikhoan",android.content.Context.MODE_PRIVATE)
         idUser = sharedPreferences.getString("Uid","null")
 
         addListUser()
-        listUser = view.findViewById(R.id.manager_fragment_users_listView)
+        listUser = view.findViewById(R.id.manager_fragment_listView)
         adapter = ManagerUserAdapter(activity, managerUserData)
         listUser.adapter = adapter
 
@@ -84,11 +83,5 @@ class ManagerFragmentUser : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         })
-    }
-
-    // hien dong thong bao
-    private fun shortToast(str : String) {
-        val length : Int = Toast.LENGTH_SHORT
-        Toast.makeText(activity, str, length).show()
     }
 }

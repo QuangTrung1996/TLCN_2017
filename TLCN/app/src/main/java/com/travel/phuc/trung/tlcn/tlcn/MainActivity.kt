@@ -11,12 +11,11 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.AddInfromation.InformationFragment
-import com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation.ConfirmFragment
 import com.travel.phuc.trung.tlcn.tlcn.Favorite.FavoriteFragment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeFragment
 import com.travel.phuc.trung.tlcn.tlcn.albums.AlbumFragment
 import com.travel.phuc.trung.tlcn.tlcn.logins.LoginFragment
-import com.travel.phuc.trung.tlcn.tlcn.managers.ManagerFragmentUser
+import com.travel.phuc.trung.tlcn.tlcn.managers.ManagerFragment
 import com.travel.phuc.trung.tlcn.tlcn.notifications.NotificationsFragment
 import com.travel.phuc.trung.tlcn.tlcn.schedules.ScheduleFragment
 import de.hdodenhof.circleimageview.CircleImageView
@@ -32,11 +31,11 @@ class MainActivity : AppCompatActivity(){
     private var nameEmail   :String? = null
     private var imgUser     :String? = null
 
-    lateinit var anh    : CircleImageView
-    lateinit var tenDN  : TextView
-    lateinit var email  : TextView
+    private lateinit var anh    : CircleImageView
+    private lateinit var tenDN  : TextView
+    private lateinit var email  : TextView
 
-    var flagHome : Boolean = true
+    private var flagHome : Boolean = true
 
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
     private var navigationView: NavigationView? = null
@@ -54,14 +53,6 @@ class MainActivity : AppCompatActivity(){
 
         // mac dinh mo trang Home
         openFragmentHome()
-
-        //testAAAA()
-    }
-
-    private fun testAAAA() {
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.content, AlbumFragment()).commit()
     }
 
     private fun openFragmentHome() {
@@ -78,7 +69,7 @@ class MainActivity : AppCompatActivity(){
         if (drawer!!.isDrawerOpen(GravityCompat.START)) {
             drawer!!.closeDrawer(GravityCompat.START)
         }else
-        if (flagHome == false) {
+        if (!flagHome) {
             openFragmentHome()
         }
         else {
@@ -210,7 +201,7 @@ class MainActivity : AppCompatActivity(){
                     val fragmentManager = supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.content, ManagerFragmentUser()).commit()
+                    transaction.replace(R.id.content, ManagerFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
                 R.id.logout -> {
@@ -246,15 +237,6 @@ class MainActivity : AppCompatActivity(){
                     val transaction = fragmentManager.beginTransaction()
 
                     transaction.replace(R.id.content, InformationFragment()).commit()
-                    drawer!!.closeDrawer(GravityCompat.START)
-                }
-                R.id.confirm -> {
-
-                    flagHome = false
-
-                    val fragmentManager = supportFragmentManager
-                    val transaction = fragmentManager.beginTransaction()
-                    transaction.replace(R.id.content, ConfirmFragment()).commit()
                     drawer!!.closeDrawer(GravityCompat.START)
                 }
             }
