@@ -3,7 +3,10 @@ package com.travel.phuc.trung.tlcn.tlcn.ConfirmInformation
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
+import android.view.MenuItem
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -67,6 +70,17 @@ class ConfirnInformationFestival : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.CFmapLH) as SupportMapFragment
         mapFragment.getMapAsync(this)
+    }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item!!.itemId
+        when (id) {
+            android.R.id.home ->{
+                finish()
+            }
+
+        }
+
+        return true
     }
 
     private fun xacnhantt() {
@@ -160,6 +174,11 @@ class ConfirnInformationFestival : AppCompatActivity(), OnMapReadyCallback {
                     adapter.notifyDataSetChanged()
                     CFViewPager_Hinhanh_chitietLH.adapter = adapter
 
+                }
+                else
+                {
+                    khungviewpagerLH.visibility = LinearLayout.GONE
+                    Toast.makeText(this@ConfirnInformationFestival,"Album đã xác nhận",Toast.LENGTH_LONG).show()
                 }
             }
 

@@ -246,12 +246,6 @@ When you assign input filters in code all previously set input filters are clear
                         android:layout_marginStart="5dp">
                     </Spinner>
                 </LinearLayout>
-                <fragment
-                    android:id="@+id/map"
-                    class="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    />
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
@@ -273,6 +267,13 @@ When you assign input filters in code all previously set input filters are clear
                         android:textSize="10sp"
                         />
                 </LinearLayout>
+                <fragment
+                    android:id="@+id/map"
+                    class="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    />
+
             </LinearLayout>
 
         </ScrollView>

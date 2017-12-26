@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -182,6 +183,11 @@ class ComfirnInformationTouris : AppCompatActivity(), OnMapReadyCallback {
                     adapter.notifyDataSetChanged()
                     CFViewPager_Hinhanh_chitiet.adapter = adapter
 
+                }
+                else
+                {
+                    khungviewpager.visibility = LinearLayout.GONE
+                    Toast.makeText(this@ComfirnInformationTouris,"Album đã xác nhận",Toast.LENGTH_LONG).show()
                 }
             }
 
