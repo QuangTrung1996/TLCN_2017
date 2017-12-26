@@ -15,6 +15,7 @@
         <item>Di Tích</item>
         <item>Công Viên</item>
         <item>Thám Hiểm</item>
+        <item>Tất Cả</item>
     </string-array>
     <string-array name="maps_type">
         <item>MAP_TYPE_NONE</item>

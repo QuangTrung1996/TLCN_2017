@@ -44,6 +44,10 @@ class HomeTypeAdapter constructor(var context:Context,var arrayList: ArrayList<H
         if(position ==a && a!=-1){
             viewHolder.tick.visibility = ImageView.VISIBLE
         }
+        if (a==7)
+        {
+            viewHolder.tick.visibility = ImageView.GONE
+        }
         viewHolder.tenTL.text = arrayList.get(position).TenQuanHuyen.toString()
 
         return view as View

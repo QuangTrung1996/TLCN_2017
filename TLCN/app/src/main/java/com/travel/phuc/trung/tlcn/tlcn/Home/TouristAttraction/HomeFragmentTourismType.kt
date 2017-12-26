@@ -27,6 +27,7 @@ class HomeFragmentTourismType: Fragment() {
         arraylist!!.add(HomeDistrictsData("Di Tích"))
         arraylist!!.add(HomeDistrictsData("Công Viên"))
         arraylist!!.add(HomeDistrictsData("Thám Hiểm"))
+        arraylist!!.add(HomeDistrictsData("Tất Cả"))
         var Lv = view.findViewById<ListView>(R.id.lv_theloai_dulich)
         var adapter =  HomeTypeAdapter(this.context,arraylist!!,HomeFragmentInformationTourist.theloai)
         adapter.notifyDataSetChanged()

@@ -1,5 +1,6 @@
 package com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityImage
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeRatingData
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeLvTourist.viewHolder
 import com.travel.phuc.trung.tlcn.tlcn.R
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -33,39 +35,18 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
         database    = FirebaseDatabase.getInstance().reference
     }
 
-    class viewHolder(row : View) {
-        var sotien:TextView
-        var Banve:LinearLayout
-        var Khung_TTDL: LinearLayout
-        var anhdaidien: ImageView
-        var tenDD: TextView
-        var diachi: TextView
-        var btn_like: ImageButton
-        var danhgia: RatingBar
-        var btn_comment:ImageButton
-        init {
-            sotien = row.findViewById<TextView>(R.id.sotien)
-            Banve = row.findViewById<LinearLayout>(R.id.banve)
-            Khung_TTDL = row.findViewById(R.id.id_DuLich)
-            anhdaidien=row.findViewById(R.id.AnhDaijDien_DL)
-            tenDD=row.findViewById(R.id.TenDiaDiem_DL)
-            diachi=row.findViewById(R.id.DiaChi_DL)
-            btn_like=row.findViewById(R.id.Btn_Like)
-            danhgia=row.findViewById<RatingBar>(R.id.DanhGia)
-            btn_comment=row.findViewById(R.id.Btn_Comment)
 
-        }
-    }
+    @SuppressLint("InflateParams")
     override fun getView(position: Int, convertview: View?, p2: ViewGroup?): View {
 
 
-        var view:View?
-        var viewHolder: HomeLvTourist.viewHolder
+        val view:View
+        val viewHolder: viewHolder
         if (convertview==null)
         {
-            var layoutInflater: LayoutInflater = LayoutInflater.from(context)
+            val layoutInflater: LayoutInflater = LayoutInflater.from(context)
             view=layoutInflater.inflate(R.layout.row_information_tourisr, null)
-            viewHolder= HomeLvTourist.viewHolder(view)
+            viewHolder= viewHolder(view)
             view.tag=viewHolder
 
         }
@@ -92,7 +73,7 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
                 {
                     if (p0!!.key == ListRT!!.get(i).key)
                     {
-                        var a = p0!!.value as String
+                        val a = p0!!.value as String
                         ListRT!!.get(i).danhgia = a.toFloat()
 
                     }
@@ -105,12 +86,12 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
             }
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
-                var a = p0!!.value as String
+                val a = p0!!.value as String
                 i++
                 tong  = tong + a.toDouble()
                 ListRT!!.add(HomeRatingData(p0!!.key,a.toFloat()))
-                var tam = tong /i
-                var TB =(Math.round((tam*10).toDouble()))/10.toFloat()
+                val tam = tong /i
+                val TB =(Math.round((tam*10).toDouble()))/10.toFloat()
                 viewHolder.danhgia!!.rating = TB
             }
 
@@ -145,15 +126,19 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
             })
 
         }
-        database.child("BanVe").child(arrayList.get(position).key).addListenerForSingleValueEvent(object :ValueEventListener{
+        database.child("BanVe").child(arrayList.get(position).key).addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onDataChange(p0: DataSnapshot?) {
-                if (p0!!.value !=null && p0.value !=""){
+                if (p0!!.value !=null && p0.key !=""){
                     viewHolder.Banve.visibility = LinearLayout.VISIBLE
                     viewHolder.sotien.text = p0.value.toString().plus(" đ")
+                }
+                else
+                {
+                    viewHolder.Banve.visibility = LinearLayout.GONE
                 }
             }
 
@@ -163,7 +148,7 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
         viewHolder.Khung_TTDL.setOnClickListener(){
             if (doctaikhoan()) {
                 val intent = Intent(view!!.getContext(), MapsActivity::class.java)
-                var Thongtin: HomeInformationTourisData
+                val Thongtin: HomeInformationTourisData
                 Thongtin = arrayList.get(position)
                 //Toast.makeText(view!!.context,arrayList.get(position).SoCmmt.toString(),Toast.LENGTH_SHORT).show()
                 intent.putExtra("data", Thongtin)
@@ -204,6 +189,29 @@ class HomeLvTourist(var context: Context, var arrayList:ArrayList<HomeInformatio
 
     override fun getCount(): Int {
         return arrayList.size
+    }
+    inner class viewHolder(row : View) {
+        var sotien:TextView
+        var Banve:LinearLayout
+        var Khung_TTDL: LinearLayout
+        var anhdaidien: ImageView
+        var tenDD: TextView
+        var diachi: TextView
+        var btn_like: ImageButton
+        var danhgia: RatingBar
+        var btn_comment:ImageButton
+        init {
+            sotien = row.findViewById<TextView>(R.id.sotien)
+            Banve = row.findViewById<LinearLayout>(R.id.banve)
+            Khung_TTDL = row.findViewById(R.id.id_DuLich)
+            anhdaidien=row.findViewById(R.id.AnhDaijDien_DL)
+            tenDD=row.findViewById(R.id.TenDiaDiem_DL)
+            diachi=row.findViewById(R.id.DiaChi_DL)
+            btn_like=row.findViewById(R.id.Btn_Like)
+            danhgia=row.findViewById<RatingBar>(R.id.DanhGia)
+            btn_comment=row.findViewById(R.id.Btn_Comment)
+
+        }
     }
     private fun doctaikhoan():Boolean {
         val sharedpreferences = context.getSharedPreferences(sharedprperences, android.content.Context.MODE_PRIVATE)

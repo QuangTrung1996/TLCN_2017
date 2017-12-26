@@ -63,7 +63,7 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
         if (flag==true){
             //Toast.makeText(this.context,"có in ternet",Toast.LENGTH_LONG).show()
             if(doctaikhoan()) {
-                if (theloai==-1 ){
+                if (theloai==-1 || theloai==7 ){
                 addthongtin()
                     //test()
                 }
