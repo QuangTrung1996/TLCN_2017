@@ -9,7 +9,7 @@
         android:scaleType="fitXY"
         android:id="@+id/Anh_Pager_DL"
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="250dp"
         android:src="@drawable/logo"/>
 
 </RelativeLayout>

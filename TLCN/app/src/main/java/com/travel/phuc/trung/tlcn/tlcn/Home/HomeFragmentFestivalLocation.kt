@@ -8,10 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Spinner
+import android.widget.*
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Conect.ConectDatabaseSQLite
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.*
@@ -23,6 +20,7 @@ import com.travel.phuc.trung.tlcn.tlcn.R
 class HomeFragmentFestivalLocation : Fragment() {
     private var khuvuc: Spinner?=null
     private var Tinh: Spinner?=null
+    private var chonkv:CheckBox? = null
     private val DATABASENAME:String="TinhThanhPho.sqlite"
     private var database: SQLiteDatabase?=null;
     private var idkhuvuc:Int = 1;
@@ -38,14 +36,22 @@ class HomeFragmentFestivalLocation : Fragment() {
         val view = inflater!!.inflate(R.layout.home_fragment_festival_location, container, false);
         khuvuc =view.findViewById<Spinner>(R.id.SP_khuvuc_LH)
         Tinh = view.findViewById<Spinner>(R.id.SP_Tinh_LH)
+        chonkv = view.findViewById(R.id.chonKVLH)
+
         lvFestival = view.findViewById<ListView>(R.id.LV_ThongTinLeHoi)
         adapterLH = HomeFestivalListAdapter(this.activity,ArrlistFestival)
-        ArrlistFestival.add(DataFestival("djndsbfdsf",13.343244,6.432434,"bibuhsabdgsytadvsgdvsgdcsadsadsadsad0","làng tre năm nay","117/12213/34324","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_muC2O0PYHfosGb2HQJiMCqc3xGK85W_twwZKQxW2qDD8O-6y",32123213213,244324235125453455))
-        ArrlistFestival.add(DataFestival("ssdsasafsd",13.343244,6.432434,"bibuhsabdgsytadvsgdvsgdcsadsadsadsad0","festival hoa đà lạt","117/12213/34324","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_muC2O0PYHfosGb2HQJiMCqc3xGK85W_twwZKQxW2qDD8O-6y",32123213213,2443))
-
         adapterLH.notifyDataSetChanged()
         lvFestival!!.adapter = adapterLH
-
+        chonkv!!.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked == true)
+            {
+                Toast.makeText(this.context,idkhuvuc.toString(),Toast.LENGTH_SHORT).show()
+                ArrlistFestival.clear()
+                adapterLH.notifyDataSetChanged()
+                lvFestival!!.adapter = adapterLH
+                addTTLeHoitheokhuvuc()
+            }
+        }
         addTTLeHoi()
         val adapterKhuVuc: ArrayAdapter<String> = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.KhuVuc))
         adapterKhuVuc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -53,6 +59,48 @@ class HomeFragmentFestivalLocation : Fragment() {
         addtinh(idkhuvuc)
         doikhuvuc()
         return view
+    }
+
+    private fun addTTLeHoitheokhuvuc() {
+        ArrlistFestival.clear()
+        databaseFB.child("DiaDiemLeHoi").orderByChild("khuVuc").equalTo(idkhuvuc.toDouble()).addChildEventListener(object :ChildEventListener{
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
+                var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
+                var tt = DataFestival(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.TenLeHoi, data.DiaChi, data.AnhDaiDien, data.NgayBD, data.NgayKT)
+                for (i in 0 until ArrlistFestival.size)
+                {
+                    if (ArrlistFestival.get(i).key==p0!!.key)
+                    {
+                        ArrlistFestival[i]=tt
+                        adapterLH.notifyDataSetChanged()
+                    }
+                }
+            }
+
+            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
+                if (p0 == null)
+                {
+
+                }
+                var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
+                var tt = DataFestival(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.TenLeHoi, data.DiaChi, data.AnhDaiDien, data.NgayBD, data.NgayKT)
+                ArrlistFestival.add(tt)
+                adapterLH.notifyDataSetChanged()
+                lvFestival!!.adapter = adapterLH
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
     }
 
     private fun addTTLeHoi() {
@@ -114,6 +162,24 @@ class HomeFragmentFestivalLocation : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 idkhuvuc = p2+1
                 addtinh(idkhuvuc)
+                chonkv!!.isChecked = false
+                when (p2) {
+                    0 ->{ }
+
+                    1 ->{ }
+                    2 ->{ }
+                    3 -> { }
+                    4 ->{ }
+                    5 -> { }
+                    6 ->{ } }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+        Tinh!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                var tinh = p2+1
+                docthongtintheotinh(tinh)
                 when (p2) {
                     0 ->{ }
 
@@ -128,5 +194,49 @@ class HomeFragmentFestivalLocation : Fragment() {
             }
         }
 
+    }
+
+    private fun docthongtintheotinh(idtinh: Int) {
+        ArrlistFestival.clear()
+        adapterLH.notifyDataSetChanged()
+        lvFestival!!.adapter = adapterLH
+        databaseFB.child("DiaDiemLeHoi").orderByChild("tinh").equalTo(idtinh.toDouble()).addChildEventListener(object :ChildEventListener{
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
+                var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
+                var tt = DataFestival(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.TenLeHoi, data.DiaChi, data.AnhDaiDien, data.NgayBD, data.NgayKT)
+                for (i in 0 until ArrlistFestival.size)
+                {
+                    if (ArrlistFestival.get(i).key==p0!!.key)
+                    {
+                        ArrlistFestival[i]=tt
+                        adapterLH.notifyDataSetChanged()
+                    }
+                }
+            }
+
+            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
+                if (p0 == null)
+                {
+
+                }
+                var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
+                var tt = DataFestival(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.TenLeHoi, data.DiaChi, data.AnhDaiDien, data.NgayBD, data.NgayKT)
+                ArrlistFestival.add(tt)
+                adapterLH.notifyDataSetChanged()
+                lvFestival!!.adapter = adapterLH
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
     }
 }

@@ -145,11 +145,9 @@ class DeteiladActivityCreateSchedules : AppCompatActivity() {
             if (EDT_ghichu !=null && EDT_ghichu!!.text.toString()!=""&&EDT_tieude !=null && EDT_tieude!!.text.toString()!=""&&NgayBatDau < NgayKetThuc){
                 doctaikhoan()
                 if (doctaikhoan()){
-                    val ref = database.child("lich").child(id_USER).push()
-                    val key = ref.key
                     // 10/10/2017 - 20/10/2017
-                    val lich = DeteiladSchedulesData(key,EDT_tieude!!.text.toString(), NgayBatDau.timeInMillis, NgayKetThuc.timeInMillis, EDT_ghichu!!.text.toString())
-                    ref.setValue(lich,DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                    val lich = DeteiladSchedulesData(EDT_ghichu!!.text.toString(),System.currentTimeMillis().toString(), NgayBatDau.timeInMillis.toString(), NgayKetThuc.timeInMillis.toString(),EDT_tieude!!.text.toString() )
+                    database.child("schedule").child(id_USER).child(System.currentTimeMillis().toString()).setValue(lich,DatabaseReference.CompletionListener { databaseError, databaseReference ->
                         if (databaseError==null)
                         {
                             Toast.makeText(this,"Đã thêm vào Lịch Trình",Toast.LENGTH_LONG).show()

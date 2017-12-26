@@ -28,6 +28,9 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
 
     private var BtnTheLoai: Button?=null
     private var BtnTinhThanh: Button?=null;
+    private var thongtin:Boolean = true
+    private var theloai:Boolean = false
+    private var diadiem:Boolean = false
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -61,19 +64,56 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
     }
     private fun adfragment() {
         BtnTinhThanh!!.setOnClickListener({
-            Toast.makeText(this.activity,a.toString(), Toast.LENGTH_LONG).show()
-            BtnTinhThanh!!.setTextColor(Color.RED)
-            BtnTheLoai!!.setTextColor(Color.BLACK)
-            val fragmentManager =this.activity.supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.content_dulich, HomeFragmentProvinces()).commit()
+            if (thongtin ==true || theloai ==true) {
+//            Toast.makeText(this.activity,a.toString(), Toast.LENGTH_LONG).show()
+                BtnTinhThanh!!.setTextColor(Color.RED)
+                BtnTinhThanh!!.setText("Vị Trí ^")
+                BtnTheLoai!!.setText("Thể Loại >>")
+                BtnTheLoai!!.setTextColor(Color.BLACK)
+                val fragmentManager = this.activity.supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.content_dulich, HomeFragmentProvinces()).commit()
+                thongtin =false
+                theloai =false
+                diadiem = true
+            }
+            else {
+                if (diadiem == true) {
+                    BtnTinhThanh!!.setTextColor(Color.BLACK)
+                    BtnTinhThanh!!.setText("Vị Trí >>")
+                    val fragmentManager = this.activity.supportFragmentManager
+                    val transaction = fragmentManager.beginTransaction()
+                    transaction.replace(R.id.content_dulich, HomeFragmentInformationTourist()).commit()
+                    thongtin = true
+                }
+            }
         })
         BtnTheLoai!!.setOnClickListener({
-            btntheloai.setTextColor(Color.RED)
-            BtnTinhThanh!!.setTextColor(Color.BLACK)
-            val fragmentManager =this.activity.supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.content_dulich, HomeFragmentTourismType()).commit()
+            if (thongtin ==true || diadiem ==true) {
+                btntheloai.setTextColor(Color.RED)
+                BtnTinhThanh!!.setText("Vị Trí >>")
+                BtnTheLoai!!.setText("Thể Loại ^")
+                BtnTinhThanh!!.setTextColor(Color.BLACK)
+                val fragmentManager = this.activity.supportFragmentManager
+                val transaction = fragmentManager.beginTransaction()
+                transaction.replace(R.id.content_dulich, HomeFragmentTourismType()).commit()
+                thongtin =false
+                theloai =true
+                diadiem = false
+            }
+            else
+            {
+                if (theloai ==true)
+                {
+                    BtnTheLoai!!.setTextColor(Color.BLACK)
+                    BtnTheLoai!!.setText("Thể Loại >>")
+                    val fragmentManager = this.activity.supportFragmentManager
+                    val transaction = fragmentManager.beginTransaction()
+                    transaction.replace(R.id.content_dulich, HomeFragmentInformationTourist()).commit()
+                    thongtin = true
+                }
+            }
+
         })
     }
 

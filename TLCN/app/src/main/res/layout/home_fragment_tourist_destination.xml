@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:layout_marginLeft="40dp"
                 android:background="@drawable/botrongoc"
-                android:text="Thể Loại"
+                android:text="Thể Loại >>"
                 android:id="@+id/btntheloai"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -37,7 +37,7 @@
             <Button
                 android:textColor="@color/black"
                 android:background="@drawable/botrongoc"
-                android:text="Vị Trí"
+                android:text="Vị Trí >>"
                 android:id="@+id/btntinhthanh"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
