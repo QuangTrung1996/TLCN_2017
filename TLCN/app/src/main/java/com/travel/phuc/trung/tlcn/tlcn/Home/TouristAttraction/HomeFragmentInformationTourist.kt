@@ -8,15 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
-import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import com.travel.phuc.trung.tlcn.tlcn.Conect.CheckInternet
 import com.travel.phuc.trung.tlcn.tlcn.Conect.CheckInternetInterface
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeAdapter
 import com.travel.phuc.trung.tlcn.tlcn.R
-import de.hdodenhof.circleimageview.CircleImageView
 
 /**
  * Created by Admin on 16/11/2017.
@@ -31,15 +27,15 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
 
     val database : DatabaseReference
     private var Lv_ThongTin: ListView? = null
-    private var tong:Int=10
-    private var listkeycomment:ArrayList<String> = ArrayList()
     private lateinit var adapter: HomeLvTourist
+
     companion object{
         var listkeyDDDL:ArrayList<String> = ArrayList()
         var theloai:Int = -1;
         var tinh:Int = -1;
         var huyen:Int=-1;
     }
+
     init {
         database    = FirebaseDatabase.getInstance().reference
     }
@@ -47,25 +43,23 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.home_fragment_information_tourist, container, false);
-        Lv_ThongTin =view.findViewById<ListView>(R.id.LV_ThongTinDuLich)
-        loading = view.findViewById<FrameLayout>(R.id.loading)
-        adapter = HomeLvTourist(this.context,arrList_ThongTinDL)
+        Lv_ThongTin = view.findViewById(R.id.LV_ThongTinDuLich)
+        loading     = view.findViewById(R.id.loading)
+        adapter     = HomeLvTourist(this.context,arrList_ThongTinDL)
         try {
-
             val a = CheckInternet(this)
             a.checkConnection(this.context)
-        }catch (e: Exception){}
+        }
+        catch (e: Exception){}
         return view
     }
 
 
     override fun kiemtrainternet(flag: Boolean) {
         if (flag==true){
-            //Toast.makeText(this.context,"có in ternet",Toast.LENGTH_LONG).show()
             if(doctaikhoan()) {
                 if (theloai==-1 || theloai==7 ){
                 addthongtin()
-                    //test()
                 }
                 else
                 {
@@ -76,40 +70,27 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
             {
                 addthongtin1()
             }
-
         }
         else{
             Toast.makeText(this.context,"đéo có internet",Toast.LENGTH_LONG).show()
         }
-
     }
+
     // lấy thoogn tiin địa điểm theo thể loại
     private fun addtheotheloai() {
         database.child("TheLoai").child(theloai.toString()).addChildEventListener(object :ChildEventListener {
-            override fun onCancelled(p0: DatabaseError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onCancelled(p0: DatabaseError?) {}
 
-            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {}
 
-            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {}
 
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
-                if (p0!=null && p0!!.key!=null)
-                {
+                if (p0!=null && p0.key!=null)
                     docthongtintheotheloai(p0.key.toString())
-                }
-
             }
 
-            override fun onChildRemoved(p0: DataSnapshot?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
+            override fun onChildRemoved(p0: DataSnapshot?) {}
         })
     }
 
@@ -122,7 +103,7 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
             override fun onDataChange(p0: DataSnapshot?) {
                 listkeyDDDL.add(p0!!.key.toString())
 
-                var data: GetDataTourist? = p0.getValue(GetDataTourist::class.java)
+                val data: GetDataTourist? = p0.getValue(GetDataTourist::class.java)
                 database.child("DisLike").child(p0.key.toString()).child(id_USER).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p1: DatabaseError?) {
                         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -130,7 +111,7 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
 
                     override fun onDataChange(p1: DataSnapshot?) {
                         if (p1!!.value == null) {
-                            var tt = HomeInformationTourisData(p0.key.toString(), data!!.Lat, data.Long, data.MoTa, data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                            val tt = HomeInformationTourisData(p0.key.toString(), data!!.Lat, data.Long, data.MoTa, data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
                             arrList_ThongTinDL.add(tt)
                             adapter.notifyDataSetChanged()
                             Lv_ThongTin!!.adapter = adapter
@@ -156,10 +137,10 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
             override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
                 for (i in 0 until arrList_ThongTinDL.size)
                 {
-                    var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
-                    if (p0!!.key ==arrList_ThongTinDL.get(i).key )
+                    val data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                    if (p0.key ==arrList_ThongTinDL[i].key )
                     {
-                        var tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                        val tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
                         arrList_ThongTinDL[i] = tt
                     }
                 }
@@ -169,9 +150,9 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
 
                 listkeyDDDL.add(p0!!.key.toString())
 
-                var data: GetDataTourist? = p0.getValue(GetDataTourist::class.java)
+                val data: GetDataTourist? = p0.getValue(GetDataTourist::class.java)
 
-                var tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                val tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
                 arrList_ThongTinDL.add(tt)
                 adapter.notifyDataSetChanged()
                 Lv_ThongTin!!.adapter = adapter

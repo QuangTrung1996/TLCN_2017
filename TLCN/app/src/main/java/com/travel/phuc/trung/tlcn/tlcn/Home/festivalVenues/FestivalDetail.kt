@@ -4,14 +4,13 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -20,18 +19,17 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Polyline
 import com.google.firebase.database.*
+import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment
+import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
+import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
 import com.travel.phuc.trung.tlcn.tlcn.Home.HomeRatingData
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladActivityCreateSchedules
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladAdaprerImage
+import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeActivityCheckDislike
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeDistrictsData
 import com.travel.phuc.trung.tlcn.tlcn.R
 import kotlinx.android.synthetic.main.activity_festival_detail.*
 import java.text.SimpleDateFormat
-import com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityComment
-import com.travel.phuc.trung.tlcn.tlcn.Home.HomeActivityLike
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.DeteiladActivityCreateSchedules
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeActivityCheckDislike
-import kotlinx.android.synthetic.main.activity_maps.*
 
 
 class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
@@ -200,7 +198,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        mMap.setMyLocationEnabled(true);
+        //mMap.setMyLocationEnabled(true);
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item!!.itemId

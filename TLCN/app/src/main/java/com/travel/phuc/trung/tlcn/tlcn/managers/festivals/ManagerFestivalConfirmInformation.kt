@@ -24,17 +24,17 @@ import java.util.*
 class ManagerFestivalConfirmInformation : AppCompatActivity(), OnMapReadyCallback {
     val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
 
-    private var Lat:Double =1.0
-    private var Long:Double = 1.0
-    private var key = ""
+    private var Lat  : Double = 0.0
+    private var Long : Double = 0.0
+    private var key  = ""
     private var tenDD:String = ""
     private var ttLH:getDataFestival = getDataFestival()
-    var Arraychild:ArrayList<ManagerFestivalImageData>?= ArrayList();
+    private var Arraychild:ArrayList<ManagerFestivalImageData>?= ArrayList();
     private lateinit var adapter: PagerAdapter
     private val sharedprperences : String="taikhoan"
-    var ten:String? =null
-    var ten_email:String? = null
-    var hinhDaiDien:String?=null
+    private var ten:String? =null
+    private var ten_email:String? = null
+    private var hinhDaiDien:String?=null
     private var id_USER :String?=null
     private lateinit var mMap: GoogleMap
 
@@ -52,14 +52,14 @@ class ManagerFestivalConfirmInformation : AppCompatActivity(), OnMapReadyCallbac
         if (key != "" && doctaikhoan()) {
             docthongtin()
             layanh()
+
+            val mapFragment = supportFragmentManager.findFragmentById(R.id.CFmapLH) as SupportMapFragment
+            mapFragment.getMapAsync(this)
         }
         else{
             CFconfirmLH.visibility = FrameLayout.GONE
         }
         xacnhantt()
-
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.CFmapLH) as SupportMapFragment
-        mapFragment.getMapAsync(this)
     }
 
     private fun xacnhantt() {
@@ -115,14 +115,17 @@ class ManagerFestivalConfirmInformation : AppCompatActivity(), OnMapReadyCallbac
                 CFAddDiachiLH.append(data.DiaChi)
                 val sdf_date : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 val sdf_time : SimpleDateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+
                 val Tgbd = sdf_time.format(data.NgayBD)
                 val NgBD=sdf_date.format(data.NgayBD)
                 val Tgkt = sdf_time.format(data.NgayKT)
                 val Ngkt=sdf_date.format(data.NgayKT)
+
                 CFAddgioBDLH.text = Tgbd.toString()
                 CFAddgioKTLH.text = Tgkt.toString()
                 CFAddngayBDLH.text = NgBD.toString()
                 CFAddngayKTLH.text = Ngkt.toString()
+
                 Lat =ttLH.Lat
                 Long = ttLH.Long
                 tenDD = ttLH.TenLeHoi
@@ -151,7 +154,7 @@ class ManagerFestivalConfirmInformation : AppCompatActivity(), OnMapReadyCallbac
                 {
                     for (i in 0 until Arraychild!!.size)
                     {
-                        if (p0!!.key == Arraychild!!.get(i).key)
+                        if (p0.key == Arraychild!![i].key)
                         {
                             Arraychild!!.removeAt(i)
                             adapter.notifyDataSetChanged()

@@ -6,13 +6,8 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeFragmentInformationTourist
 import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeFragmentTouristDestination
-import com.travel.phuc.trung.tlcn.tlcn.Home.TouristAttraction.HomeTypeInterface
 import com.travel.phuc.trung.tlcn.tlcn.R
-import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeFragment : Fragment() {
 
@@ -34,5 +29,4 @@ class HomeFragment : Fragment() {
         return view;
 
     }
-
 }

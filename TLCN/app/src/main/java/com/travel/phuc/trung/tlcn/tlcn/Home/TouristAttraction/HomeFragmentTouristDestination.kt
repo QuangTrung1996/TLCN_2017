@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ListView
 import android.widget.Toast
-import com.google.firebase.database.DatabaseReference
 import com.travel.phuc.trung.tlcn.tlcn.Conect.CheckInternet
 import com.travel.phuc.trung.tlcn.tlcn.Conect.CheckInternetInterface
 import com.travel.phuc.trung.tlcn.tlcn.R
@@ -24,10 +22,9 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
         @JvmStatic
         var a:Double=0.9
     }
-    //var stchinhanh:getLatlng? = getLatlng()
 
-    private var BtnTheLoai: Button?=null
-    private var BtnTinhThanh: Button?=null;
+    private lateinit var BtnTheLoai: Button
+    private lateinit var BtnTinhThanh: Button
     private var thongtin:Boolean = true
     private var theloai:Boolean = false
     private var diadiem:Boolean = false
@@ -36,19 +33,22 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.home_fragment_tourist_destination, container, false);
 
-        BtnTheLoai=view.findViewById<Button>(R.id.btntheloai)
-        BtnTinhThanh=view.findViewById<Button>(R.id.btntinhthanh)
+        BtnTheLoai  = view.findViewById(R.id.btntheloai)
+        BtnTinhThanh= view.findViewById(R.id.btntinhthanh)
+
         kiemtraInternet()
         adfragment()
+
         return view
     }
+
     // gọi class Checkinternet
     private fun kiemtraInternet() {
         try {
-
-        val a = CheckInternet(this)
-        a.checkConnection(this.context)
-    }catch (e: Exception){}
+            val a = CheckInternet(this)
+            a.checkConnection(this.context)
+        }
+        catch (e: Exception){}
     }
 
     override fun kiemtrainternet(flag: Boolean) {
@@ -63,13 +63,12 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
         }
     }
     private fun adfragment() {
-        BtnTinhThanh!!.setOnClickListener({
+        BtnTinhThanh.setOnClickListener({
             if (thongtin ==true || theloai ==true) {
-//            Toast.makeText(this.activity,a.toString(), Toast.LENGTH_LONG).show()
-                BtnTinhThanh!!.setTextColor(Color.RED)
-                BtnTinhThanh!!.setText("Vị Trí ^")
-                BtnTheLoai!!.setText("Thể Loại >>")
-                BtnTheLoai!!.setTextColor(Color.BLACK)
+                BtnTinhThanh.setTextColor(Color.RED)
+                BtnTinhThanh.text = ("Vị Trí ^")
+                BtnTheLoai.text = ("Thể Loại >>")
+                BtnTheLoai.setTextColor(Color.BLACK)
                 val fragmentManager = this.activity.supportFragmentManager
                 val transaction = fragmentManager.beginTransaction()
                 transaction.replace(R.id.content_dulich, HomeFragmentProvinces()).commit()
@@ -79,8 +78,8 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
             }
             else {
                 if (diadiem == true) {
-                    BtnTinhThanh!!.setTextColor(Color.BLACK)
-                    BtnTinhThanh!!.setText("Vị Trí >>")
+                    BtnTinhThanh.setTextColor(Color.BLACK)
+                    BtnTinhThanh.text = ("Vị Trí >>")
                     val fragmentManager = this.activity.supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.content_dulich, HomeFragmentInformationTourist()).commit()
@@ -88,12 +87,12 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
                 }
             }
         })
-        BtnTheLoai!!.setOnClickListener({
+        BtnTheLoai.setOnClickListener({
             if (thongtin ==true || diadiem ==true) {
                 btntheloai.setTextColor(Color.RED)
-                BtnTinhThanh!!.setText("Vị Trí >>")
-                BtnTheLoai!!.setText("Thể Loại ^")
-                BtnTinhThanh!!.setTextColor(Color.BLACK)
+                BtnTinhThanh.text = ("Vị Trí >>")
+                BtnTheLoai.text= ("Thể Loại ^")
+                BtnTinhThanh.setTextColor(Color.BLACK)
                 val fragmentManager = this.activity.supportFragmentManager
                 val transaction = fragmentManager.beginTransaction()
                 transaction.replace(R.id.content_dulich, HomeFragmentTourismType()).commit()
@@ -105,8 +104,8 @@ class HomeFragmentTouristDestination: Fragment(),CheckInternetInterface {
             {
                 if (theloai ==true)
                 {
-                    BtnTheLoai!!.setTextColor(Color.BLACK)
-                    BtnTheLoai!!.setText("Thể Loại >>")
+                    BtnTheLoai.setTextColor(Color.BLACK)
+                    BtnTheLoai.text = ("Thể Loại >>")
                     val fragmentManager = this.activity.supportFragmentManager
                     val transaction = fragmentManager.beginTransaction()
                     transaction.replace(R.id.content_dulich, HomeFragmentInformationTourist()).commit()

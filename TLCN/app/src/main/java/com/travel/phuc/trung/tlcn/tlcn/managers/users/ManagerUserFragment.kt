@@ -12,13 +12,11 @@ import com.travel.phuc.trung.tlcn.tlcn.logins.UserData
 
 class ManagerUserFragment : Fragment() {
 
-    val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
-
-    var idUser : String = "null"
-
-    lateinit var listUser : ListView
-    val managerUserData : ArrayList<ManagerUserData> = ArrayList()
-    lateinit var adapter : ManagerUserAdapter
+    private val databaseRef : DatabaseReference = FirebaseDatabase.getInstance().reference
+    private var idUser : String = "null"
+    private lateinit var listUser : ListView
+    private val managerUserData : ArrayList<ManagerUserData> = ArrayList()
+    private lateinit var adapter : ManagerUserAdapter
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =inflater!!.inflate(R.layout.manager_fragment_list,container,false)

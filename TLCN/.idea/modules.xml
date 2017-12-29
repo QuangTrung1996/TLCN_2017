@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TLCN.iml" filepath="$PROJECT_DIR$/TLCN.iml" />
-      <module fileurl="file://F:\TLCN\GitHub\TLCN_2017\TLCN\TLCN.iml" filepath="F:\TLCN\GitHub\TLCN_2017\TLCN\TLCN.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:\TLCN\GitHub\TLCN_2017\TLCN\app\app.iml" filepath="F:\TLCN\GitHub\TLCN_2017\TLCN\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/multipleimagepickerlibrary/multipleimagepickerlibrary.iml" filepath="$PROJECT_DIR$/multipleimagepickerlibrary/multipleimagepickerlibrary.iml" />
-      <module fileurl="file://F:\TLCN\GitHub\TLCN_2017\TLCN\multipleimagepickerlibrary\multipleimagepickerlibrary.iml" filepath="F:\TLCN\GitHub\TLCN_2017\TLCN\multipleimagepickerlibrary\multipleimagepickerlibrary.iml" />
     </modules>
   </component>
 </project>
