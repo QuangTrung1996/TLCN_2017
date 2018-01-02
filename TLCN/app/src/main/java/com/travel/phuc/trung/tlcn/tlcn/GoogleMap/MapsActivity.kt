@@ -86,6 +86,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
         moTa!!.text = nhanTT!!.Mota
         btn_Disklike = findViewById<ImageButton>(R.id.Btn_Dislike_chitiet)
         danhGia=findViewById(R.id.DanhGia_chitiet)
+        diachi.text = nhanTT!!.DiaChi
         Arraychild!!.add(HomeDistrictsData(nhanTT!!.url))
         var adapter: PagerAdapter = DeteiladAdaprerImage(this@MapsActivity,Arraychild!!)
         adapter.notifyDataSetChanged()

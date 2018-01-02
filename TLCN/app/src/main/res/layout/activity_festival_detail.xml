@@ -34,7 +34,7 @@
                     android:textStyle="normal|bold|italic"/>
                 <TextView
                     android:textSize="10sp"
-                    android:id="@+id/diachi"
+                    android:id="@+id/diachiLH"
                     android:textStyle="italic"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -245,12 +245,6 @@ When you assign input filters in code all previously set input filters are clear
                         android:layout_marginStart="5dp">
                     </Spinner>
                 </LinearLayout>
-                <fragment
-                    android:id="@+id/map_LH"
-                    class="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    />
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
@@ -272,6 +266,13 @@ When you assign input filters in code all previously set input filters are clear
                         android:textSize="10sp"
                         />
                 </LinearLayout>
+                <fragment
+                    android:id="@+id/map_LH"
+                    class="com.travel.phuc.trung.tlcn.tlcn.GoogleMap.WorkaroundMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="380dp"
+                    />
+
             </LinearLayout>
 
         </ScrollView>

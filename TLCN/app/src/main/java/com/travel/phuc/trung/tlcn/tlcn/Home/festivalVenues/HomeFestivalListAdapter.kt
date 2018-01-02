@@ -95,6 +95,7 @@ class HomeFestivalListAdapter constructor(var context:Context,var listFestival:A
             val intent = Intent(view!!.getContext(), HomeActivityComment::class.java)
             intent.putExtra("keyDL",listFestival.get(position).key)
             intent.putExtra("key",0)
+            intent.putExtra("tendd",listFestival.get(position).TenDiaDiem)
             view!!.getContext().startActivity(intent)
         }
          return view as View

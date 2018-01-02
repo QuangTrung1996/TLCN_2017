@@ -40,19 +40,23 @@ class HomeFragmentFestivalLocation : Fragment() {
 
         lvFestival = view.findViewById<ListView>(R.id.LV_ThongTinLeHoi)
         adapterLH = HomeFestivalListAdapter(this.activity,ArrlistFestival)
-        adapterLH.notifyDataSetChanged()
-        lvFestival!!.adapter = adapterLH
+//        adapterLH.notifyDataSetChanged()
+//        lvFestival!!.adapter = adapterLH
+        addTTLeHoi()
         chonkv!!.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked == true)
             {
-                Toast.makeText(this.context,idkhuvuc.toString(),Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this.context,idkhuvuc.toString(),Toast.LENGTH_SHORT).show()
                 ArrlistFestival.clear()
                 adapterLH.notifyDataSetChanged()
                 lvFestival!!.adapter = adapterLH
                 addTTLeHoitheokhuvuc()
             }
+            else
+            {
+                addTTLeHoi()
+            }
         }
-        addTTLeHoi()
         val adapterKhuVuc: ArrayAdapter<String> = ArrayAdapter(this.activity, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.KhuVuc))
         adapterKhuVuc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         khuvuc!!.adapter=adapterKhuVuc
@@ -104,6 +108,7 @@ class HomeFragmentFestivalLocation : Fragment() {
     }
 
     private fun addTTLeHoi() {
+        ArrlistFestival.clear()
         databaseFB.child("DiaDiemLeHoi").addChildEventListener(object : ChildEventListener{
             override fun onCancelled(p0: DatabaseError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -122,6 +127,7 @@ class HomeFragmentFestivalLocation : Fragment() {
                     {
                         ArrlistFestival[i]=tt
                         adapterLH.notifyDataSetChanged()
+                        lvFestival!!.adapter = adapterLH
                     }
                 }
             }
@@ -162,7 +168,7 @@ class HomeFragmentFestivalLocation : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 idkhuvuc = p2+1
                 addtinh(idkhuvuc)
-                chonkv!!.isChecked = false
+              chonkv!!.isChecked = false
                 when (p2) {
                     0 ->{ }
 

@@ -76,12 +76,12 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_festival_detail)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         nhanTT = intent.getSerializableExtra("data") as DataFestival
-
         viepager=findViewById<ViewPager>(R.id.ViewPager_Hinhanh_LH_chitiet);
         ThemVaoLichTrinh = findViewById<Button>(R.id.ThemVaoLichTrinh_LH)
         btnYeuThich = findViewById(R.id.Btn_YeuThich_chitiet_LH)
         btnLike = findViewById(R.id.Bnt_like_chitiet_LH)
         tenDDDL=findViewById(R.id.Ten_DDLH_ChiTiet)
+        diachiLH.text = nhanTT!!.DiaChi
         tenDDDL!!.text =nhanTT!!.TenDiaDiem
         moTa=findViewById(R.id.mota_LH)
         moTa!!.text = nhanTT!!.Mota

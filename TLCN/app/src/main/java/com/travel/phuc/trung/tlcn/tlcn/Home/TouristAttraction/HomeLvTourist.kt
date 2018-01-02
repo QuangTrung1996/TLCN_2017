@@ -160,6 +160,7 @@ class HomeLvTourist(var context: Context, var arrayList : ArrayList<HomeInformat
             val intent = Intent(view.context, HomeActivityComment::class.java)
             intent.putExtra("keyDL",arrayList.get(position).key)
             intent.putExtra("key",0)
+            intent.putExtra("tendd",arrayList.get(position).TenDiaDiem)
             view.context.startActivity(intent)
         }
 

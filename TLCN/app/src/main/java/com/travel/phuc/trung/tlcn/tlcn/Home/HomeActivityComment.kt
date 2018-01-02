@@ -37,6 +37,8 @@ class HomeActivityComment : AppCompatActivity() {
         val intent = intent
         keyDL = intent.getStringExtra("keyDL")
         role = intent.getIntExtra("key",0)
+        val ten= intent.getStringExtra("tendd")
+        tendiadiemcomment.text = ten
         if (role !=1)
         {
             dangBL.visibility = FrameLayout.GONE
