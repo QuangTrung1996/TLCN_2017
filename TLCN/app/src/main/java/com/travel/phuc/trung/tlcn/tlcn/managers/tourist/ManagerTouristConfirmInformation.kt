@@ -188,6 +188,7 @@ class ManagerTouristConfirmInformation : AppCompatActivity(), OnMapReadyCallback
                         {
                             Arraychild!!.removeAt(i)
                             adapter.notifyDataSetChanged()
+                            break
                         }
                     }
                 }

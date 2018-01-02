@@ -43,7 +43,7 @@ class AddChangImage : AppCompatActivity() {
         })
         danganh.setOnClickListener({
             val time = System.currentTimeMillis()
-            val nameImage = "phuctest" + time.toString()
+            val nameImage = key + time.toString()
             val ref: StorageReference = storageRef.child(key + "/" + nameImage + ".png")
             anhthem.setDrawingCacheEnabled(true)
             anhthem.buildDrawingCache()

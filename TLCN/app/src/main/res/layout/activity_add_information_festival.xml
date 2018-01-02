@@ -216,7 +216,7 @@
                         android:layout_height="20dp" />
                 </LinearLayout>
                 <ImageView
-                    android:src="@drawable/anhbia"
+                    android:src="@drawable/noimange"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
@@ -232,6 +232,19 @@
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/botrongoc"
+                    android:text="Cập Nhật Thông Tin"
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    />
+                <ProgressBar
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/addtientrinhcapnhatLH"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="Cập Nhật Thông Tin"
                     android:textStyle="normal"
                     android:textSize="10sp"

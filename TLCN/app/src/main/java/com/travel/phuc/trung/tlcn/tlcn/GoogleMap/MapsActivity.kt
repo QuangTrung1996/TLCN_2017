@@ -209,7 +209,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(Lat, Long)
-        Toast.makeText(this,Lat.toString(),Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,Lat.toString(),Toast.LENGTH_LONG).show()
         mMap.addMarker(MarkerOptions().position(sydney).title(tenDD))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,17f))
 //        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -236,7 +236,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        //mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true);
     }
 
     override fun onDirectionFinderStart() {

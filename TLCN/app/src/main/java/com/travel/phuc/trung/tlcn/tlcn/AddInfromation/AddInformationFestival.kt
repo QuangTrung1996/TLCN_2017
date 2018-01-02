@@ -13,9 +13,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.DatabaseReference
@@ -53,6 +51,7 @@ class AddInformationFestival : AppCompatActivity() {
     var uri : Uri? = null
     private var RequestCode:Int = 3;
     private var PICK_IMAGE_REQUEST :Int =4
+    private var laynh : Boolean = false
     companion object {
         var latLH:Double? = null
         var longLH:Double? = null
@@ -224,7 +223,10 @@ class AddInformationFestival : AppCompatActivity() {
             val NgayKetThuc =GregorianCalendar(namkt, thangkt, ngaykt,giokt,phutkt)
             doctaikhoan()
             if (doctaikhoan()) {
-                if (checktt() && (NgayBatDau < NgayKetThuc)) {
+                if (checktt() && (NgayBatDau < NgayKetThuc) && laynh == true) {
+                    AddcapnhatTTLH.visibility = Button.GONE
+                    addtientrinhcapnhatLH.visibility = ProgressBar.VISIBLE
+
                     val a: getlatlongFestival = getlatlongFestival()
                     a.execute(AddDiachiLH.text.toString())
                     val refLH= databaseRef!!.child("Tam").child("DiaDiemLH").push()
@@ -250,8 +252,8 @@ class AddInformationFestival : AppCompatActivity() {
                         val getdata = getDataFestival(downloadUrl!!.toString(),  AddDiachiLH.text.toString(), idhuyen, KhuVuc, latLH!!, longLH!!, AddMotaLH.text.toString(),NgayBatDau.timeInMillis,NgayKetThuc.timeInMillis,AddTenDDLH.text.toString(), idtinh, nameImage .plus(".png"),id_USER!!)
                         refLH.setValue(getdata, DatabaseReference.CompletionListener { databaseError, databaseReference ->
                             if (databaseError == null) {
-                                databaseRef.child("Tam").child("Album").child(key).child(nameImage).setValue(downloadUrl.toString(), DatabaseReference.CompletionListener { databaseError, databaseReference ->
-                                    if (databaseError==null)
+                                databaseRef.child("Tam").child("Album").child(key).child(nameImage).setValue(downloadUrl.toString(), DatabaseReference.CompletionListener { databaseError1, databaseReference ->
+                                    if (databaseError1 == null)
                                     {
                                         finish()
                                     }
@@ -301,6 +303,7 @@ class AddInformationFestival : AppCompatActivity() {
         {
             val bitmap: Bitmap = data.extras.get("data") as Bitmap
             AddanhdaidienLH.setImageBitmap(bitmap)
+            laynh = true
 
         }
         else
@@ -309,6 +312,7 @@ class AddInformationFestival : AppCompatActivity() {
             {
                 val bm = BitmapFactory.decodeStream(this@AddInformationFestival.contentResolver.openInputStream(data.data))
                 AddanhdaidienLH!!.setImageBitmap(bm)
+                laynh = true
             }
             else
             {

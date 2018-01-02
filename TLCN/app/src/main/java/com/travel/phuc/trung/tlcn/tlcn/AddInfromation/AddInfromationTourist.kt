@@ -51,6 +51,7 @@ class AddInfromationTourist : AppCompatActivity() {
     private var manghuyen:Cursor?=null
     var uri : Uri? = null
     private var RequestCode:Int = 1;
+    private var layanh:Boolean = false
     private var PICK_IMAGE_REQUEST :Int =2
     companion object {
         var lat:Double? = null
@@ -272,6 +273,7 @@ class AddInfromationTourist : AppCompatActivity() {
         {
             var bitmap:Bitmap = data.extras.get("data") as Bitmap
             Addanhdaidien.setImageBitmap(bitmap)
+            layanh =true
 
         }
         else
@@ -280,6 +282,7 @@ class AddInfromationTourist : AppCompatActivity() {
             {
                 val bm = BitmapFactory.decodeStream(this@AddInfromationTourist.contentResolver.openInputStream(data.data))
                 Addanhdaidien!!.setImageBitmap(bm)
+                layanh = true
             }
             else
             {
@@ -295,7 +298,7 @@ class AddInfromationTourist : AppCompatActivity() {
 
             doctaikhoan()
             if (doctaikhoan()) {
-                if (checktt() && checkTheloai()) {
+                if (checktt() && checkTheloai() && layanh == true) {
                         addtientrinhcapnhat.visibility = ProgressBar.VISIBLE
                         AddcapnhatTT.visibility = Button.GONE
                         val a: getLatlng = getLatlng()

@@ -171,7 +171,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(Lat, Long)
-        Toast.makeText(this,Lat.toString(), Toast.LENGTH_LONG).show()
+        //Toast.makeText(this,Lat.toString(), Toast.LENGTH_LONG).show()
         mMap.addMarker(MarkerOptions().position(sydney).title(tenDD))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,17f))
 //        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -198,7 +198,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        //mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true);
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item!!.itemId
