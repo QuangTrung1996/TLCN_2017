@@ -236,7 +236,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, DirectionFinderLis
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        mMap.setMyLocationEnabled(true);
+        //mMap.setMyLocationEnabled(true);
     }
 
     override fun onDirectionFinderStart() {

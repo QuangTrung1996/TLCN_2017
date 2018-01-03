@@ -198,7 +198,7 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
 //
 //       etOrigin.append(lastLocation.accuracy.toString())
 
-        mMap.setMyLocationEnabled(true);
+        //mMap.setMyLocationEnabled(true);
     }
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val id = item!!.itemId

@@ -168,7 +168,7 @@ class HomeFragmentFestivalLocation : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 idkhuvuc = p2+1
                 addtinh(idkhuvuc)
-              //chonkv!!.isChecked = false
+              chonkv!!.isChecked = false
                 when (p2) {
                     0 ->{ }
 
