@@ -149,6 +149,7 @@ class ScheduleFragment : Fragment() {
                     if(p0!!.key == listEvents[i].key){
                         schedule = listEvents[i]
                         temp = i
+                        break
                     }
                 }
                 listEvents.removeAt(temp)
@@ -350,7 +351,12 @@ class ScheduleFragment : Fragment() {
 
                 val ref = database.child("schedule").child(idUser).child(keyValue)
                 if (keyValue != ""){
-                    ref.removeValue()
+                    ref.removeValue(DatabaseReference.CompletionListener { databaseError, databaseReference ->
+                        if (databaseError != null)
+                        {
+                            shortToast("xóa không thành công")
+                        }
+                    })
                     keyValue = ""
                 }
                 else{

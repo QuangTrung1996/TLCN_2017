@@ -19,6 +19,7 @@
             android:contentDescription="TODO" />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/danganhALbum"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -40,4 +41,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/tiengtrinhdangalbum"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"/>
 </FrameLayout>

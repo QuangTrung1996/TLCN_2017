@@ -64,6 +64,7 @@ class ManagerFestivalConfirmInformation : AppCompatActivity(), OnMapReadyCallbac
 
     private fun xacnhantt() {
         CFkhongxacnhanLH.setOnClickListener {
+            CFconfirmLH.visibility = FrameLayout.GONE
             CFaddtientrinhcapnhat.visibility = ProgressBar.VISIBLE
             if (CFthongtinphanhoiLH.text.toString()!="" && CFthongtinphanhoiLH !=null)
             {
@@ -81,6 +82,7 @@ class ManagerFestivalConfirmInformation : AppCompatActivity(), OnMapReadyCallbac
             }
         }
         CFAddcapnhatTTLH.setOnClickListener({
+            CFconfirmLH.visibility = FrameLayout.GONE
             CFaddtientrinhcapnhatLH.visibility = ProgressBar.VISIBLE
             databaseRef.child("DiaDiemLeHoi").child(key).setValue(ttLH, DatabaseReference.CompletionListener { databaseError, databaseReference ->
                 if (databaseError ==null)

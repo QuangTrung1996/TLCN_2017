@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -42,6 +44,8 @@ class AddChangImage : AppCompatActivity() {
             this.finish()
         })
         danganh.setOnClickListener({
+            danganhALbum.visibility = LinearLayout.GONE
+            tiengtrinhdangalbum.visibility = ProgressBar.VISIBLE
             val time = System.currentTimeMillis()
             val nameImage = key + time.toString()
             val ref: StorageReference = storageRef.child(key + "/" + nameImage + ".png")

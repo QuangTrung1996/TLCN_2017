@@ -32,6 +32,7 @@ class HomeFragmentFestivalLocation : Fragment() {
     init {
         databaseFB    = FirebaseDatabase.getInstance().reference
     }
+    private var DStinh:Cursor? = null
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater!!.inflate(R.layout.home_fragment_festival_location, container, false);
         khuvuc =view.findViewById<Spinner>(R.id.SP_khuvuc_LH)
@@ -152,6 +153,7 @@ class HomeFragmentFestivalLocation : Fragment() {
     private fun addtinh(idkhuvuc:Int){
         database = ConectDatabaseSQLite().initDatabase(this.activity,DATABASENAME);
         var cursor : Cursor = database!!.rawQuery("SELECT * FROM Tinh_TP where Tinh_TP.Vung="+idkhuvuc,null)
+        DStinh = cursor
         listTinh!!.clear();
         //cursor.moveToPosition(2)
         for (i in 0 until cursor.count){
@@ -168,7 +170,7 @@ class HomeFragmentFestivalLocation : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 idkhuvuc = p2+1
                 addtinh(idkhuvuc)
-              chonkv!!.isChecked = false
+              chonkv!!.isChecked = true
                 when (p2) {
                     0 ->{ }
 
@@ -184,17 +186,13 @@ class HomeFragmentFestivalLocation : Fragment() {
         }
         Tinh!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                var tinh = p2+1
-                docthongtintheotinh(tinh)
-                when (p2) {
-                    0 ->{ }
-
-                    1 ->{ }
-                    2 ->{ }
-                    3 -> { }
-                    4 ->{ }
-                    5 -> { }
-                    6 ->{ } }
+                var tinh = p2
+                DStinh!!.moveToPosition(tinh)
+                val id = DStinh!!.getInt(0)
+                ArrlistFestival.clear()
+                adapterLH.notifyDataSetChanged()
+                lvFestival!!.adapter = adapterLH
+                docthongtintheotinh(id)
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -204,8 +202,8 @@ class HomeFragmentFestivalLocation : Fragment() {
 
     private fun docthongtintheotinh(idtinh: Int) {
         ArrlistFestival.clear()
-        adapterLH.notifyDataSetChanged()
-        lvFestival!!.adapter = adapterLH
+//        adapterLH.notifyDataSetChanged()
+//        lvFestival!!.adapter = adapterLH
         databaseFB.child("DiaDiemLeHoi").orderByChild("tinh").equalTo(idtinh.toDouble()).addChildEventListener(object :ChildEventListener{
             override fun onCancelled(p0: DatabaseError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -231,7 +229,9 @@ class HomeFragmentFestivalLocation : Fragment() {
             override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
                 if (p0 == null)
                 {
-
+                    ArrlistFestival.clear()
+                    adapterLH.notifyDataSetChanged()
+                    lvFestival!!.adapter = adapterLH
                 }
                 var data: getDataFestival? = p0!!.getValue(getDataFestival::class.java)
                 var tt = DataFestival(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.TenLeHoi, data.DiaChi, data.AnhDaiDien, data.NgayBD, data.NgayKT)

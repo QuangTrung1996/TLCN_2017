@@ -108,6 +108,7 @@ class ManagerTouristConfirmInformation : AppCompatActivity(), OnMapReadyCallback
         }
         CFAddcapnhatTT.setOnClickListener {
             if (doctaikhoan()) {
+                CFconfirm.visibility = FrameLayout.GONE
                 CFaddtientrinhcapnhat.visibility = ProgressBar.VISIBLE
                 databaseRef.child("DiadiemDuLich").child(key).setValue(tt, DatabaseReference.CompletionListener { databaseError, databaseReference ->
                     if (databaseError == null) {
