@@ -44,7 +44,6 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
     private var btnComment: ImageButton?=null
     private var xacsnhandanhgia: Button?=null
     private var soComment: TextView?= null
-    private var btnYeuThich: ImageButton?=null
     private var danhGia: RatingBar?=null
     private var btn_Disklike : ImageButton?=null
     private var idLH:String=""
@@ -78,7 +77,6 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         nhanTT = intent.getSerializableExtra("data") as DataFestival
         viepager=findViewById<ViewPager>(R.id.ViewPager_Hinhanh_LH_chitiet);
         ThemVaoLichTrinh = findViewById<Button>(R.id.ThemVaoLichTrinh_LH)
-        btnYeuThich = findViewById(R.id.Btn_YeuThich_chitiet_LH)
         btnLike = findViewById(R.id.Bnt_like_chitiet_LH)
         tenDDDL=findViewById(R.id.Ten_DDLH_ChiTiet)
         diachiLH.text = nhanTT!!.DiaChi
@@ -103,7 +101,6 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         addlistanh()
         loadmapType()
         addTimepicker()
-        ktYeuThich()
         kiemtraLike()
     }
 
@@ -226,9 +223,6 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         btnLike!!.setOnClickListener {
             setlike()
         }
-        btnYeuThich!!.setOnClickListener(){
-            setyeuthich()
-        }
         btn_Disklike!!.setOnClickListener {
             setDislike()
         }
@@ -273,38 +267,6 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
             Toast.makeText(this@FestivalDetail,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
         }
     }
-
-    // set yêu thich khi click vào biểu tượng trái tim
-    private fun setyeuthich() {
-
-        if(doctaikhoan()){
-            database.child("YeuThich").child(id_USER).child(idLH).addListenerForSingleValueEvent(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.exists()){
-                        btnYeuThich!!.setImageResource(R.drawable.chuayeuthich)
-//                        var calender:Calendar= Calendar.getInstance()
-                        database.child("YeuThich").child(id_USER).child(idLH).removeValue()
-                        Toast.makeText(this@FestivalDetail,"Đã xóa khỏi mục yêu thích",Toast.LENGTH_LONG).show()
-                    }
-                    else{
-                        btnYeuThich!!.setImageResource(R.drawable.tim)
-                        database.child("YeuThich").child(id_USER).child(idLH).setValue(idLH)
-                        Toast.makeText(this@FestivalDetail,"Đã thêm vào mục yêu thích",Toast.LENGTH_LONG).show()
-                    }
-                }
-
-            })
-        }
-        else{
-            Toast.makeText(this@FestivalDetail,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
-        }
-
-    }
-
     private fun setlike() {
         if(doctaikhoan()){
             database.child("Like").child(idLH).child(id_USER).addListenerForSingleValueEvent(object : ValueEventListener {
@@ -355,27 +317,6 @@ class FestivalDetail : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
-    // kiểm tra địa điểm có trong danh sách yêu thich hay không
-    private fun ktYeuThich() {
-        if(doctaikhoan()){
-            database.child("YeuThich").child(id_USER).child(idLH).addValueEventListener(object :ValueEventListener{
-                override fun onCancelled(p0: DatabaseError?) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onDataChange(p0: DataSnapshot?) {
-                    if (p0!!.value!=null){
-                        btnYeuThich!!.setImageResource(R.drawable.tim)
-
-                    }
-                }
-
-            })
-        }
-        else{
-            Toast.makeText(this@FestivalDetail,"Bạn cần đăng nhập",Toast.LENGTH_SHORT).show()
-        }
-    }
     fun doctaikhoan():Boolean {
         val sharedpreferences = this@FestivalDetail.getSharedPreferences(sharedprperences, android.content.Context.MODE_PRIVATE)
         id_USER = sharedpreferences.getString("Uid", null)

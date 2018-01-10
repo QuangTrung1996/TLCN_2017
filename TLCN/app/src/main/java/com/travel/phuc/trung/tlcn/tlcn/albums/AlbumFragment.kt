@@ -96,6 +96,7 @@ class AlbumFragment : Fragment(){
                 for (i in 0..(listKeyImage.size-1)){
                     if (key == listKeyImage[i]){
                         deleteList(i)
+                        break
                     }
                 }
             }

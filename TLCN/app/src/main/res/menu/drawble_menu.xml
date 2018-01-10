@@ -22,27 +22,27 @@
 
         <item
             android:id="@+id/album"
-            android:title="Album"
+            android:title="Album Ảnh"
             android:icon="@drawable/ic_album"/>
 
         <item
             android:id="@+id/favorite"
-            android:title="Favorite"
+            android:title="Yêu Thích"
             android:icon="@drawable/chuayeuthich"/>
 
         <item
             android:id="@+id/addinfromation"
-            android:title="Add Infromation"
+            android:title="Đăng Địa Điểm"
             android:icon="@drawable/edit"/>
 
         <item
             android:id="@+id/notifications"
-            android:title="Notifications"
+            android:title="Thông Báo"
             android:icon="@drawable/ic_notification"/>
 
         <item
             android:id="@+id/manager"
-            android:title="Manager"
+            android:title="Quản Lý"
             android:icon="@drawable/ic_manager"
             android:visible="false"/>
 

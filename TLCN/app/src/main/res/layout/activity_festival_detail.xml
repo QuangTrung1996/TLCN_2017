@@ -108,16 +108,9 @@
                         android:scaleType="fitXY"
                         android:background="@color/white"/>
 
-                    <ImageButton
-                        android:id="@+id/Btn_YeuThich_chitiet_LH"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="20dp"
-                        android:src="@drawable/chuayeuthich"
-                        android:scaleType="fitXY"
-                        android:background="@color/white"/>
+
                     <TextView
-                        android:text="lược like"
+                        android:text="lượt thích"
                         android:layout_marginLeft="20dp"
                         android:layout_gravity="center_vertical"
                         android:layout_width="wrap_content"
@@ -220,8 +213,8 @@ When you assign input filters in code all previously set input filters are clear
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical|end"
                             android:background="@color/colorPrimary"
-                            android:gravity="end"
-                            android:text="Find path"
+                            android:gravity="center"
+                            android:text="tìm"
                             android:textColor="@color/colorAccent" />
                     </LinearLayout>
                 </LinearLayout>

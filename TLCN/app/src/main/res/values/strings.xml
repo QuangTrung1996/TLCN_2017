@@ -36,25 +36,25 @@
     <string name="title_activity_maps">Map</string>
 
     <!--menu cua album-->
-    <string name="add">Add</string>
-    <string name="edit">Edit</string>
-    <string name="upload">Upload</string>
-    <string name="delete">Delete</string>
+    <string name="add">Thêm</string>
+    <string name="edit">Sửa</string>
+    <string name="upload">Đăng ảnh</string>
+    <string name="delete">Xóa</string>
 
     <!--menu cua schedule-->
-    <string name="action_today">Today</string>
-    <string name="action_day_view">Day view</string>
-    <string name="action_three_day_view">3 day view</string>
-    <string name="action_week_view">Week view</string>
+    <string name="action_today">Hôm nay</string>
+    <string name="action_day_view">Theo ngày</string>
+    <string name="action_three_day_view">Theo 3 ngày</string>
+    <string name="action_week_view">Theo Tuần</string>
     <string name="title_activity_basic">Basic Example</string>
     <string name="title_activity_asynchronous">Asynchronous Events</string>
     <string name="async_error">Could not download events from the internet</string>
 
     <!--add event of schedule-->
-    <string name="action_add">Add Event</string>
-    <string name="action_edit">Edit Event</string>
-    <string name="form_button_add">add</string>
-    <string name="form_button_cancel">Cancel</string>
+    <string name="action_add">Thêm sự kiện</string>
+    <string name="action_edit">Sửa sự kiện</string>
+    <string name="form_button_add">Thêm</string>
+    <string name="form_button_cancel">Hủy</string>
     <string name="date_bd">Bắt đầu :</string>
     <string name="date_kt">Kết thúc :</string>
     <string name="temptext">text</string>
@@ -69,11 +69,11 @@
 
     <string name="manager_user">Danh sách User</string>
     <string name="manager_quyen">Quyền</string>
-    <string name="login">Login</string>
-    <string name="logout">Logout</string>
-    <string name="home">Home</string>
-    <string name="schedule">Schedule</string>
-    <string name="back">Back</string>
+    <string name="login">Đăng Nhập</string>
+    <string name="logout">Đăng Xuất</string>
+    <string name="home">Trang Chủ</string>
+    <string name="schedule">Lịch Trình</string>
+    <string name="back">Quay Lại</string>
 
 </resources>
 

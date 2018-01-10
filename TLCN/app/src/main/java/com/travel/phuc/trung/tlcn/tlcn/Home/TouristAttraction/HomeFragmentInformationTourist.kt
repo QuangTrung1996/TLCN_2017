@@ -58,12 +58,28 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
     override fun kiemtrainternet(flag: Boolean) {
         if (flag==true){
             if(doctaikhoan()) {
-                if (theloai==-1 || theloai==7 ){
-                addthongtin()
+                if ((theloai==-1 || theloai==7) && tinh ==-1 && huyen == -1 ){
+                    addthongtin()
                 }
                 else
                 {
-                    addtheotheloai()
+                    if ((theloai >=0 && theloai<7) && tinh == -1 && huyen == -1) {
+                        addtheotheloai()
+                    }
+                    else
+                    {
+                        if (tinh !=-1)
+                        {
+                            doctheotinh()
+                        }
+                        else
+                        {
+                            if (huyen != -1)
+                            {
+                                doctheohuyen()
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -222,8 +238,8 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
 
         })
     }
-    private fun test(){
-        database.child("DiadiemDuLich").orderByChild("Huyen").equalTo(11.0).addChildEventListener(object :ChildEventListener{
+    private fun doctheohuyen(){
+        database.child("DiadiemDuLich").orderByChild("huyen").equalTo(huyen.toDouble()).addChildEventListener(object :ChildEventListener{
             override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
@@ -269,6 +285,54 @@ class HomeFragmentInformationTourist :Fragment(),CheckInternetInterface{
 
         })
     }
+    private fun doctheotinh(){
+        database.child("DiadiemDuLich").orderByChild("tinh").equalTo(tinh.toDouble()).addChildEventListener(object :ChildEventListener{
+            override fun onChildMoved(p0: DataSnapshot?, p1: String?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildChanged(p0: DataSnapshot?, p1: String?) {
+                for (i in 0 until arrList_ThongTinDL.size)
+                {
+                    var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                    if (p0!!.key ==arrList_ThongTinDL.get(i).key )
+                    {
+                        var tt = HomeInformationTourisData(p0.key.toString(),data!!.Lat,data.Long,data.MoTa,data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                        arrList_ThongTinDL[i] = tt
+                    }
+                }
+            }
+
+            override fun onChildAdded(p0: DataSnapshot?, p1: String?) {
+                var data: GetDataTourist? = p0!!.getValue(GetDataTourist::class.java)
+                database.child("DisLike").child(p0.key.toString()).child(id_USER).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p1: DatabaseError?) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun onDataChange(p1: DataSnapshot?) {
+                        if (p1!!.value == null) {
+                            var tt = HomeInformationTourisData(p0.key.toString(), data!!.Lat, data.Long, data.MoTa, data!!.tenDiaDiem, data.DiaChi, data.AnhDaiDien, 0, 0, 2.3f)
+                            arrList_ThongTinDL.add(tt)
+                            adapter.notifyDataSetChanged()
+                            Lv_ThongTin!!.adapter = adapter
+                            loading!!.visibility = FrameLayout.GONE
+                        }
+                    }
+                })                    }
+
+            override fun onChildRemoved(p0: DataSnapshot?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onCancelled(p0: DatabaseError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+
+        })
+    }
+
 
     private fun doctaikhoan():Boolean {
         val sharedpreferences = this.activity.getSharedPreferences(sharedprperences, Context.MODE_PRIVATE)

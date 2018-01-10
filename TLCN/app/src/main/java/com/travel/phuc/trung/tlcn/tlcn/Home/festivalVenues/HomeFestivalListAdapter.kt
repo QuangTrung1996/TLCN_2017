@@ -21,6 +21,9 @@ import java.util.*
  * Created by Admin on 4/12/2017.
  */
 class HomeFestivalListAdapter constructor(var context:Context,var listFestival:ArrayList<DataFestival>): BaseAdapter() {
+    val sharedprperences : String="taikhoan";
+    var id_USER :String?=null
+
     class viewHolder(row : View) {
         var NgayBD: TextView
         var Khung_DDLH: LinearLayout
@@ -79,12 +82,17 @@ class HomeFestivalListAdapter constructor(var context:Context,var listFestival:A
                 .error(R.drawable.wellcom0)
                 .into(viewHolder.anhdaidien)
         viewHolder.Khung_DDLH.setOnClickListener({
-            val intent = Intent(view!!.getContext(),FestivalDetail::class.java)
-            var Thongtin: DataFestival
-            Thongtin = listFestival.get(position)
-            //Toast.makeText(view!!.context,arrayList.get(position).SoCmmt.toString(),Toast.LENGTH_SHORT).show()
-            intent.putExtra("data", Thongtin)
-            context.startActivity(intent)
+            if (doctaikhoan()) {
+                val intent = Intent(view!!.getContext(), FestivalDetail::class.java)
+                var Thongtin: DataFestival
+                Thongtin = listFestival.get(position)
+                intent.putExtra("data", Thongtin)
+                context.startActivity(intent)
+            }
+            else
+            {
+                Toast.makeText(view!!.context,"Bạn chưa đăng nhập",Toast.LENGTH_SHORT).show()
+            }
         })
         viewHolder.like.setOnClickListener {
             val intent = Intent(view!!.getContext(), HomeActivityLike::class.java)
@@ -112,5 +120,14 @@ class HomeFestivalListAdapter constructor(var context:Context,var listFestival:A
 
     override fun getCount(): Int {
        return listFestival.size
+    }
+    private fun doctaikhoan():Boolean {
+        val sharedpreferences = context.getSharedPreferences(sharedprperences, android.content.Context.MODE_PRIVATE)
+        id_USER = sharedpreferences.getString("Uid", null)
+        if (id_USER != null) {
+
+            return true
+        }
+        return false
     }
 }

@@ -152,7 +152,7 @@ class HomeLvTourist(var context: Context, var arrayList : ArrayList<HomeInformat
             }
             else
             {
-                Toast.makeText(context,"Bạn Cần Dăng Nhập",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Bạn Cần Đăng Nhập",Toast.LENGTH_LONG).show()
             }
         }
 

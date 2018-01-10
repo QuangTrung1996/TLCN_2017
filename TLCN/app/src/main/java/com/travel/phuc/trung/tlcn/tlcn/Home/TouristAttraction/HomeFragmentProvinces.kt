@@ -42,6 +42,8 @@ class HomeFragmentProvinces : Fragment() {
             //Toast.makeText(this.activity, groupPosition.toString(), Toast.LENGTH_SHORT).show();
 //            val intent = Intent(this.activity, ThongTinChiTiet_DDDL::class.java)
 //            startActivity(intent)
+            HomeFragmentInformationTourist.theloai = -2
+            HomeFragmentInformationTourist.huyen = -1
             tinh!!.moveToPosition(groupPosition)
             HomeFragmentInformationTourist.tinh = tinh!!.getInt(0)
             Toast.makeText(this.activity, HomeFragmentInformationTourist.tinh.toString(), Toast.LENGTH_SHORT).show();
@@ -52,8 +54,11 @@ class HomeFragmentProvinces : Fragment() {
         }
        ExpandbleLV!!.setOnChildClickListener( {parent, v, groupPosition, childPosition, id ->
            tinh!!.moveToPosition(groupPosition)
-           HomeFragmentInformationTourist.tinh = tinh!!.getInt(0)
-           HomeFragmentInformationTourist.huyen = read(HomeFragmentInformationTourist.tinh,childPosition)
+           //HomeFragmentInformationTourist.tinh = tinh!!.getInt(0)
+           HomeFragmentInformationTourist.tinh = -1
+           HomeFragmentInformationTourist.theloai = -2
+           val idtinh = tinh!!.getInt(0)
+           HomeFragmentInformationTourist.huyen = read(tinh!!.getInt(0),childPosition)
            Toast.makeText(this.activity, HomeFragmentInformationTourist.huyen.toString(), Toast.LENGTH_SHORT).show();
            val fragmentManager = this.activity.supportFragmentManager
            val transaction = fragmentManager.beginTransaction()
